@@ -5,6 +5,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-favicon": "^2.0.1",
+    "express-session": "^1.17.3",
     "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
@@ -12,6 +13,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "gege": "nodemon database.js"
   }
 }

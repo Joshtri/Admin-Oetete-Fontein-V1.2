@@ -30,44 +30,37 @@
         </h3>
         <hr />
 
-        <form>
+        <form method="POST" action="/tambah_data/tambah-data-keluarga" novalidate>
+
+          
           <div class="form-label">
-            <label>ID KK</label>
-            <input type="text" name="" class="form-control" />
+            <label>Nomor KK</label>
+            <input type="number" name="no_kk" class="form-control" />
           </div>
 
           <div class="form-label">
-            <label>Nomor KK</label>
-            <input type="number" name="" class="form-control" />
+            <label>Alamat</label>
+            <input type="text" name="alamat" class="form-control" />
           </div>
 
           <div class="form-label">
             <label>Kepala Keluarga</label>
-            <input type="text" name="" class="form-control" />
+            <input type="text" name="kepala_kel" class="form-control" />
           </div>
 
-          <!-- <div class="form-label">
-            <label>Nama Kepala keluarga</label>
-            <input type="text" name="" class="form-control" placeholder="Masukkan NIK Anda">
-            </div> -->
-
-          <!-- <div class="form-label mb-3">
-                <label>Nomor KK</label>
-                <input type="text" name="" class="form-control" placeholder="Masukkan Nomor KK Anda">
-            </div> -->
 
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
                 <label>RT</label>
-                <input type="text" name="" class="form-control" />
+                <input type="number" name="rt" class="form-control" />
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-label">
                 <label>RW</label>
-                <input type="text" name="" class="form-control" />
+                <input type="number" name="rw" class="form-control" />
               </div>
             </div>
           </div>
@@ -76,14 +69,14 @@
             <div class="col-md-6">
               <div class="form-label">
                 <label>Kelurahan</label>
-                <input type="text" name="" class="form-control" />
+                <input type="text" name="kel_n_desa" class="form-control" />
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-label">
                 <label>Kecamatan</label>
-                <input type="text" name="" class="form-control" />
+                <input type="text" name="kecamatan" class="form-control" />
               </div>
             </div>
           </div>
@@ -95,7 +88,7 @@
             <div class="col-md-6">
               <div class="form-label">
                 <label>Kota/Kabupaten</label>
-                <input type="text" name="" class="form-control" />
+                <input type="text" name="kota_n_kab" class="form-control" />
               </div>
             </div>
             <!-- <div class="form-label">
@@ -105,29 +98,21 @@
             <div class="col-md-6">
               <div class="form-label">
                 <label>Provinsi</label>
-                <input type="text" name="" class="form-control" />
+                <input type="text" name="provinsi" class="form-control" />
               </div>
             </div>
           </div>
 
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            SIMPAN
-          </button>
-          <a href=""
-            ><button type="reset" class="btn btn-danger">RESET</button></a
-          >
-          <a href="/data/data-keluarga"
-            ><button type="button" class="btn btn-warning">KEMBALI</button></a
-          >
+          <button type="submit"class="btn btn-primary">SIMPAN</button>
+          
+            
+          <button type="reset" class="btn btn-danger">RESET</button>
+          <a href="/data/data-keluarga"><button type="button" class="btn btn-warning">KEMBALI</button></a>
+
         </form>
       </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal
     <div
       class="modal fade"
       id="exampleModal"
@@ -161,7 +146,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- footer start -->
     <%- include('footer'); -%>

@@ -4,9 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const favicon = require('express-favicon');
-require('dotenv').config(); 
+require('dotenv').config();
+
+var session = require('express-session')
+
+var mysql = require('mysql');
 
 var app = express();
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,9 +27,28 @@ const port = process.env.PORT || "3000";
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret: 'webslesson',
+  resave : true, 
+  saveUninitialized : true,
+}));
 
 //app.use(express.favicon(__dirname + '/public/images/favicon.ico'))
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
+// const pool = mysql.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASS,
+//   database: process.env.DB_NAME,
+// });
+
+
+// //connect db. 
+// pool.getConnection((err,connection)=>{
+//   if(err) throw err;
+//   console.log(`Connected as ID ` + connection.threadId);
+// });
 
 
 app.use(logger('dev'));
@@ -32,7 +57,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/dashboard', indexRouter);
+app.use('/', indexRouter);  // most  top level sitemap. 
 app.use('/data', datasRouter)
 app.use('/users', usersRouter);
 app.use('/tambah_data', addRouter);
@@ -55,7 +80,5 @@ app.use(function(err, req, res, next) {
 });
 
 
-
-module.exports = app;
-
 app.listen(port, () => console.log(`listening on ${port}`));
+

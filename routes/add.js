@@ -1,10 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-// GET tambah penduduk.
-router.get('/tambah-data-penduduk', function (req, res, next) {
-    res.render('tambah-data-penduduk');
-});
+const UserController = require('../controller/addData');
+
 
 // GET tambah kematian.
 router.get('/tambah-data-kematian', function (req, res, next) {
@@ -14,9 +12,12 @@ router.get('/tambah-data-pindah', function (req, res, next) {
     res.render('tambah-data-pindah');
 });
 
-router.get('/tambah-data-keluarga', function (req, res, next) {
-    res.render('tambah-data-keluarga');
-});
+router.get('/tambah-data-keluarga', UserController.form);
+router.post('/tambah-data-keluarga', UserController.create); 
+
+// GET tambah penduduk.
+router.get('/tambah-data-penduduk', UserController.form)
+router.post('/tambah-data-penduduk', UserController.create); 
 
 router.get('/tambah-data-kelahiran', function (req, res, next) {
     res.render('tambah-data-kelahiran');

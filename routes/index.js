@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var database  = require('../database')
+
 /* GET home page. */
 router.get('/main-admin', function (req, res, next) {
   res.render('main-admin');
@@ -17,59 +19,66 @@ router.get('/publikasi',function(req,res,next){
 });
 
 
-// router.get('/statistik/umur', function (req, res, next) {
-//   // konek
-//   // data dari tabel
-
-//   res.json(
-//     {
-//       label: ["My First dataset"],
-//       backgroundColor: [
-//         "rgb(255, 99, 132)",
-//         "rgb(54, 162, 235)",
-//         "rgb(255, 205, 86)",
-//       ],
-
-//       data: [200, 10],
-//       hoverOffset: 4,
-//     },
-//   );
-// });
-
 // GET data-kbli
 router.get('/data-umkm', function (req, res, next) {
   res.render('data-umkm');
 });
 
-
-
-// GET login view
-router.get('/login', function (req, res, next) {
-  res.render('login');
+/* GET login page. */
+router.get('/', function(req, res, next) {
+  res.render('login', { title: 'Express', session : req.session });
 });
 
+router.post('/main-admin', function(request, response, next){
 
+    var user_name = request.body.user_name;
 
-// router.get('/statistik-umur', function (req, res, next) {
+    var user_password = request.body.user_password;
 
-//   res.render('statistik-umur');
+    if(user_name && user_password)
+    {
+        query = `SELECT * FROM admin_login 
+        WHERE user_name = "${user_name}"`;
 
-// });
+        database.query(query, function(error, data){
 
-// router.get('/statistik-pekerjaan', function (req, res, next) {
-//   res.render('statistik-pekerjaan');
-// });
+            if(data.length > 0)
+            {
+                for(var count = 0; count < data.length; count++)
+                {
+                    if(data[count].user_password == user_password)
+                    {
+                        request.session.user_id = data[count].user_id;
 
-// router.get('/statistik-jeniskelamin', function (req, res, next) {
-//   res.render('statistik-jeniskelamin');
-// });
+                        response.redirect("/");
+                    }
+                    else
+                    {
+                        response.send('Incorrect Password');
+                    }
+                }
+            }
+            else
+            {
+                response.send('Incorrect Email Address');
+            }
+            response.end();
+        });
+    }
+    else
+    {
+        response.send('Please Enter Email Address and Password Details');
+        response.end();
+    }
 
-// router.get('/statistik-pendidikan', function (req, res, next) {
-//   res.render('statistik-pendidikan');
-// });
+});
 
-// // router.get('/statistik-pekerjaan', function(req,res,next){
-// //   res.render('statistik-pekerjaan');
-// // });
+router.get('/logout', function(request, response, next){
+
+    request.session.destroy();
+
+    response.redirect("/");
+
+});
 
 module.exports = router;
