@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon source -->
+  
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="/public/images/favicon.ico">
+    
+    <title>Admin Panel</title>
+  </head>
+  <body>
+  
+      <!-- header start -->
+      <%- include('header'); -%>
+      <!-- header end   -->
+      
+    
+    <style>
+      .nav-link:hover{
+        background-color: gray;
+      }
+    </style>
+
+    <div class="row no-gutters g-0 mt-5">
+      <!-- header start -->
+      <%-  include('sidebar'); -%>
+      <!-- header end   -->
+    
+
+      <div class="col-md-10 p-5 pt-5">
+        <h3><i class="fa-solid fa-desktop ms-2"></i>&nbsp&nbspDASHBOARD</h3><hr>
+        <!-- First Row -->
+        <div class="row pt-3">
+          <div class="card bg-info ms-3" style="width: 14rem;">
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-users ms-2"></i></div>
+              <h5 class="card-title">PENDUDUK</h5>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">200</div>
+              <a href="/data/data-penduduk" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>
+          <div class="card bg-success ms-3" style="width: 14rem;">
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-credit-card"></i></div>
+              <h6 class="card-title">KARTU KELUARGA</h6>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">10</div>
+              <a href="/data/data-keluarga" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>
+
+          <div class="card bg-danger ms-3" style="width: 14rem;" >
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-mars-double"></i></div>
+              <h5 class="card-title">LAKI-LAKI</h5>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">50</div>
+              <a  class="text-decoration-none fw-bold" aria-disabled="true"><p class="card-text text-white" style="cursor:not-allowed;">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>
+
+  
+          <div class="card bg-warning ms-3" style="width: 14rem;">
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-venus-double"></i></div>
+              <h5 class="card-title">PEREMPUAN</h5>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">50</div>
+              <a class="text-decoration-none fw-bold" ><p class="card-text text-white"style="cursor:not-allowed;">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>  
+        </div> 
+
+        <!-- Second Row -->
+        <div class="row mt-4">
+          <div class="card bg-info ms-3" style="width: 14rem ;">
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-baby"></i></div>
+              <h5 class="card-title">LAHIR</h5>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">0</div>
+              <a href="/data/data-kelahiran" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>
+
+          <div class="card bg-success ms-3" style="width: 14rem;">
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-person-falling-burst"></i></div>
+              <h5 class="card-title">MENINGGAL</h5>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">200</div>
+              <a href="/data/data-kematian" class="text-decoration-none fw-bold" ><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>  
+
+          <div class="card bg-danger ms-3" style="width: 14rem;">
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <h5 class="card-title">PENDATANG</h5>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">30</div>
+              <a href="/data/data-masuk" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>
+
+          <div class="card bg-warning ms-3" style="width: 14rem;">
+            <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+              <h5 class="card-title">PINDAH</h5>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;">2</div>
+              <a href="/data/data-pindah" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>  
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- footer start -->
+    <%- include('footer'); -%>
+    <!-- footer end   -->
+
+    
+
+  
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js" integrity="sha512-8pHNiqTlsrRjVD4A/3va++W1sMbUHwWxxRPWNyVlql3T+Hgfd81Qc6FC5WMXDC+tSauxxzp1tgiAvSKFu1qIlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
