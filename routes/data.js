@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+const UserController = require('../controller/dataView');
+
 // GET data-keluarga
-router.get('/data-keluarga', function (req, res, next) {
-    res.render('data-keluarga');
-});
+router.get('/data-keluarga', UserController.view_keluarga); 
 
 // GET data-penduduk
 router.get('/data-penduduk', function (req, res, next) {
