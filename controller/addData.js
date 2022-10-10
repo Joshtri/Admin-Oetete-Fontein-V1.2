@@ -13,11 +13,11 @@ let connection = mysql.createConnection({
 // }
 
 //add new keluarga
-exports.form = (req, res) => {
+exports.form_keluarga = (req, res) => {
   res.render('tambah-data-keluarga');
 };
 // Add new user
-exports.create = (req, res) => {
+exports.create_keluarga = (req, res) => {
   const {
     no_kk,
     alamat,
@@ -128,7 +128,7 @@ exports.create = (req, res) => {
 
 //add new pengguna
 exports.form_pengguna_add = (req, res) => {
-  res.render('tambah-pengguna');
+  res.render('tambah-data-pengguna');
 };
 // Add new pengguna
 exports.create_pengguna = (req, res) => {
@@ -146,7 +146,39 @@ exports.create_pengguna = (req, res) => {
     [nama_lengkap, user_name, user_password],
     (err, rows) => {
       if (!err) {
-        res.render("tambah-pengguna", {
+        res.render('tambah-data-pengguna', {
+          //send this in views.
+          alert: "User added successfully.",
+        });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    }
+  );
+};
+
+//add new publikasi.
+exports.form_publikasi_add = (req, res) => {
+  res.render('tambah-data-publikasi');
+};
+
+
+exports.create_publikasi = (req,res) =>{
+  const {
+    file_article,
+    tanggal_terbit,
+    judul_publish
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO publikasi SET file_article = ?, tanggal_terbit = ?, judul_publish = ?',
+    [file_article, tanggal_terbit, judul_publish],
+    (err, rows) => {
+      if (!err) {
+        res.render('tambah-data-publikasi', {
           //send this in views.
           alert: "User added successfully.",
         });

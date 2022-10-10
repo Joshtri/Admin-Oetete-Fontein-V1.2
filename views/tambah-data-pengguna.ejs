@@ -28,7 +28,7 @@
         <h3><i class="fa-solid fa-users ms-2"></i>&nbsp&nbspTAMBAH PENGGUNA</h3>
         <hr />
 
-        <form>
+        <form action="/tambah_data/tambah-data-pengguna" method="post" novalidate>
           <div class="form-label mb-3">
             <label>Nama</label>
             <input type="text" name="nama_lengkap" class="form-control" />
@@ -64,23 +64,15 @@
             </div>
           </div>
 
-          <button
-            type="button"
-            class="btn btn-primary"
-          >
-            SIMPAN
-          </button>
-          <a href=""
-            ><button type="reset" class="btn btn-danger">RESET</button></a
-          >
-          <a href="/pengguna"
-            ><button type="button" class="btn btn-warning">KEMBALI</button></a
-          >
-        </form>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">SIMPAN</button>
+          <a href=""><button type="reset" class="btn btn-danger">RESET</button></a>
+          <a href="/data/data-pengguna"><button type="button" class="btn btn-warning">KEMBALI</button></a>
+       
       </div>
     </div>
 
     <!-- Modal -->
+   
     <div
       class="modal fade"
       id="exampleModal"
@@ -110,11 +102,12 @@
             >
               Kembali
             </button>
-            <button type="button" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
           </div>
         </div>
       </div>
     </div>
+  </form>
 
     <!-- footer start -->
     <%- include('footer'); -%>

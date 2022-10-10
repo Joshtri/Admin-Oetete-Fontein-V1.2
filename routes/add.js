@@ -3,6 +3,8 @@ var router = express.Router();
 
 const UserController = require('../controller/addData');
 
+router.get('/tambah-data-pengguna', UserController.form_pengguna_add);
+router.post('/tambah-data-pengguna', UserController.create_pengguna);
 
 // GET tambah kematian.
 router.get('/tambah-data-kematian', function (req, res, next) {
@@ -12,8 +14,8 @@ router.get('/tambah-data-pindah', function (req, res, next) {
     res.render('tambah-data-pindah');
 });
 
-router.get('/tambah-data-keluarga', UserController.form);
-router.post('/tambah-data-keluarga', UserController.create); 
+router.get('/tambah-data-keluarga', UserController.form_keluarga);
+router.post('/tambah-data-keluarga', UserController.create_keluarga); 
 
 // GET tambah penduduk.
 // router.get('/tambah-data-penduduk', UserController.form)
@@ -26,16 +28,22 @@ router.get('/tambah-data-masuk', function (req, res, next) {
     res.render('tambah-data-masuk');
 });
 
-router.get('/tambah-pengguna', UserController.form_pengguna_add);
-router.post('/tambah-pengguna', UserController.create_pengguna);
+
+
+// router.get('/tambah-pengguna', UserController.form_pengguna_add);
+
 
 router.get('/tambah-data-umkm',function(req,res,next){
     res.render('tambah-data-umkm');
 });
 
-router.get('/tambah-publikasi',function(req,res,next){
-    res.render('tambah-publikasi');
-});
+// GET tambah publikasi.
+// router.get('/tambah-data-publikasi',function(req,res,next){
+//     res.render('tambah-data-publikasi');
+// });
 
+// GET tambah publikasi.
+router.get('/tambah-data-publikasi',UserController.form_publikasi_add);
+router.post('/tambah-data-publikasi',UserController.create_publikasi);
 
 module.exports = router;

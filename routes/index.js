@@ -8,15 +8,10 @@ router.get('/main-admin', function (req, res, next) {
   res.render('main-admin');
 });
 
-// GET Pengguna
-router.get('/pengguna',function(req,res,next){
-  res.render('pengguna');
-});
-
 //GET Publikasi
-router.get('/publikasi',function(req,res,next){
-  res.render('publikasi');
-});
+// router.get('/publikasi',function(req,res,next){
+//   res.render('publikasi');
+// });
 
 
 // GET data-kbli

@@ -56,36 +56,43 @@
   
       <div class="col-md-10 p-5 pt-5">
         <h3><i class="fa-solid fa-users ms-2"></i>&nbsp&nbspPENGGUNA</h3><hr>
-        <a href="/tambah_data/tambah-pengguna" class="btn btn-primary mb-3 "><i class="fa-solid fa-pen-to-square"></i>Tambah Data</a>
+        <!-- <a href="/tambah_data/tambah-data-pengguna" type="button" class="btn btn-primary mb-3 "><i class="fa-solid fa-pen-to-square"></i>Tambah Data Pengguna</a> -->
+        <a href="/tambah_data/tambah-data-pengguna" type="button" class="btn btn-primary mb-3 "><i class="fa-solid fa-pen-to-square"></i>Tambah Data</a>
         <!-- First Row -->
         <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm " cellspacing="0"
           width="100%">
           <thead>
             <tr>
               <th scope="col" class="text-center">No</th>
-              <th scope="col" class="text-center">Nama User</th>
-              <th scope="col" class="text-center">User</th>
+              <th scope="col" class="text-center">Nama Lengkap</th>
+              <th scope="col" class="text-center">Username</th>
+              <!-- <th scope="col" class="text-center">Password</th> -->
               <th scope="col" class="text-center">Level</th>
+              <!-- <th scope="col" class="text-center">Aksi</th> -->
               <th scope="col" class="text-center">Aksi</th>
-              <!-- <th scope="col" class="text-center">Aksi</th>
-              <th scope="col" class="text-center">Aksi</th> -->
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td scope="row" class="text-center" >1</td>
-              <td scope="row" class="text-center" >Tesalonika</td>
-              <td scope="row" class="text-center" >admin</td>
+              <% var number = 1; %> 
+              <% for (let row of rows) {%>
+              <td scope="row" class="text-center" ><%= number %></td>
+              <td scope="row" class="text-center" ><%= row.nama_lengkap %></td>
+              <td scope="row" class="text-center" ><%= row.user_name %></td>
+              <!-- <td scope="row" class="text-center" ><%= row.user_password %></td> -->
               <td scope="row" class="text-center" >Administrator</td>
               <td scope="row" class="text-center">
                 <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
                 <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
-                <button class="border-0"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button>
+                <!-- <button class="border-0"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button> -->
+                <a href="/data/data-pengguna/delete/<%= row.user_id %>"  type="button"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></a> 
               </td>
+              <% number++; %>
             </tr>
+            <% }%>
           </tbody>
         </table>
-        
+
       </div>
 
       <!-- Modal -->

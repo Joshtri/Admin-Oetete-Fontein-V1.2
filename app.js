@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const favicon = require('express-favicon');
 require('dotenv').config();
+const fileUpload = require('express-fileupload');
 
 var session = require('express-session')
 
@@ -56,6 +57,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
+
 
 app.use('/', indexRouter);  // most  top level sitemap. 
 app.use('/data', datasRouter)

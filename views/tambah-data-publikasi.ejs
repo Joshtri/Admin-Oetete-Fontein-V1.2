@@ -28,83 +28,82 @@
         <h3><i class="fa-solid fa-book ms-2"></i>&nbsp&nbspTAMBAH PUBLIKASI</h3>
         <hr />
 
-        <form>
+      <form action="/tambah_data/tambah-data-publikasi" method="post" novalidate>
           <div class="form-label mb-3">
             <label>Judul Publikasi</label>
-            <input type="text" name="" class="form-control" />
+            <input type="text" name="judul_publish" class="form-control" />
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
                 <label>Tanggal Terbit</label>
-                <input type="date" name="" class="form-control" />
+                <input type="date" name="tanggal_terbit" class="form-control" />
               </div>
             </div>
           </div>
+
+          <!-- <div class="row">
+            <div class="col-md-6">
+              <div class="form-label">
+                <label>Jenis File</label>
+                <input type="value" name="" class="form-control" />
+              </div>
+            </div>
+          </div> -->
 
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
-                <label>File.pdf</label>
-                <input type="value" name="" class="form-control" />
+                <label>Upload File</label>
+                <input type="file" name="file_article" class="form-control"/>
               </div>
             </div>
           </div>
 
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            SIMPAN
-          </button>
-          <a href=""
-            ><button type="reset" class="btn btn-danger">RESET</button></a
-          >
-          <a href="/dashboard/publikasi"
-            ><button type="button" class="btn btn-warning">KEMBALI</button></a
-          >
-        </form>
-      </div>
-    </div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">SIMPAN</button>
+          <a href=""><button type="reset" class="btn btn-danger">RESET</button></a>
+          <a href="/data/data-publikasi" ><button type="button" class="btn btn-warning">KEMBALI</button></a>
+        
+            </div>
+          </div>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Memastikan Data</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            Apakah anda sudah memastikan inputan data benar?
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
             >
-              Kembali
-            </button>
-            <button type="button" class="btn btn-primary">Simpan</button>
-          </div>
-        </div>
-      </div>
-    </div>
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Memastikan Data</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    Apakah anda sudah memastikan inputan data benar?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Kembali
+                    </button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+       </form>
 
     <!-- footer start -->
     <%- include('footer'); -%>
