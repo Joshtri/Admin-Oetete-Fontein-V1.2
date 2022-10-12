@@ -82,19 +82,20 @@
               <!-- <td scope="row" class="text-center" ><%= row.user_password %></td> -->
               <td scope="row" class="text-center" >Administrator</td>
               <td scope="row" class="text-center">
-                <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
-                <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
+                <button class="border-0" data-bs-toggle="modal" data-bs-target="#" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
+                <button class="border-0" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
                 <!-- <button class="border-0"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button> -->
                 <a href="/data/data-pengguna/delete/<%= row.user_id %>"  type="button"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></a> 
               </td>
               <% number++; %>
+              <%- include('edit-modal-pengguna.ejs'); -%>
             </tr>
             <% }%>
           </tbody>
         </table>
-
       </div>
 
+      
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -117,7 +118,7 @@
 
 
       <!-- footer start -->
-      <%- include('footer'); -%>
+      <%- include('footer.ejs'); -%>
       <!-- footer end   -->
 
       <script>
@@ -129,6 +130,8 @@
         $('.dataTables_length').addClass('bs-select');
         });
       </script>
+
+
     
     <!-- <h1>Hello, world!</h1> -->
 
@@ -139,6 +142,103 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js" integrity="sha512-8pHNiqTlsrRjVD4A/3va++W1sMbUHwWxxRPWNyVlql3T+Hgfd81Qc6FC5WMXDC+tSauxxzp1tgiAvSKFu1qIlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
+
+    <script>
+
+      $(document).ready(function(){
+      
+          load_data();
+      
+          function load_data()
+          {
+              $.ajax({
+                  url:"http://localhost:3000/data/action",
+                  method:"POST",
+                  data:{action:'fetch'},
+                  dataType : "JSON",
+                  success:function(data)
+                  {
+                      var html = '';
+      
+                      if(data.data.length > 0)
+                      {
+                          for(var count = 0; count < data.data.length; count++)
+                          {
+                              html += `
+                              <tr>
+                                  <td>`+data.data[count].nama_lengkap+`</td>
+                                  <td>`+data.data[count].username+`</td>
+                                  <td>`+data.data[count].user_password+`</td>
+                                  <td><button type="button" class="btn btn-warning btn-sm edit" data-user_id="`+data.data[count].user_id+`">Edit</button></td>
+                              </tr>
+                              `;
+                          }
+                      }
+      
+                      $('#sample_form tbody').html(html);
+                  }
+              });
+          }
+      
+          $('#sample_form').on('submit', function(event){
+      
+              event.preventDefault();
+      
+              $.ajax({
+                  url:"http://localhost:3000/data/editing-pengguna",
+                  method:"POST",
+                  data:$('#sample_form').serialize(),
+                  dataType:"JSON",
+                  beforeSend:function(){
+                      $('#action_button').attr('disabled', 'disabled');
+                  },
+                  success:function(data)
+                  {
+                      $('#action_button').attr('disabled', false);
+      
+                      $('#message').html('<div class="alert alert-success">'+data.message+'</div>');
+      
+                      $('#action_modal').modal('hide');
+      
+                      load_data();
+      
+                      setTimeout(function(){
+                          $('#message').html('');
+                      }, 5000);
+                  }
+              });
+      
+          });
+      
+          $(document).on('click', '.edit', function(){
+      
+              var user_id = $(this).data('user_id');
+      
+              $('#dynamic_modal_title').text('Edit Data');
+      
+              $('#action').val('Edit');
+      
+              $('#action_button').text('Edit');
+      
+              $('#action_modal').modal('show');
+      
+              $.ajax({
+                  url:"http://localhost:3000/data/editing-pengguna",
+                  method:"POST",
+                  data:{user_id:user_id, action:'fetch_single'},
+                  dataType:"JSON",
+                  success:function(data)
+                  {
+                      $('#nama_lengkap').val(data.nama_lengkap);
+                      $('#user_name').val(data.user_name);
+                      $('#user_password').val(data.user_password);
+                  }
+              });
+      
+          });
+      });
+      
+      </script>
     
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

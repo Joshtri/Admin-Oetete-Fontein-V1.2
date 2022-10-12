@@ -1,4 +1,4 @@
-const { response } = require("express");
+var express = require("express");
 const mysql = require("mysql");
 
 //Connection Pool
@@ -25,7 +25,7 @@ exports.view_keluarga = (req, res) => {
       connection.release();
 
       if (!err) {
-        res.render("data-pendidikan", { rows });
+        res.render("data-keluarga", { rows });
       } else {
         console.log(err);
       }
@@ -33,6 +33,30 @@ exports.view_keluarga = (req, res) => {
     });
   });
 };
+
+
+//View data
+exports.view_penduduk = (req, res) => {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+
+    //show data
+    connection.query("SELECT * FROM penduduk", (err, rows) => {
+      //when done with the connection, release it.
+      connection.release();
+
+      if (!err) {
+        res.render("data-penduduk", { rows });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    });
+  });
+};
+
 
 
 //View data-pengguna

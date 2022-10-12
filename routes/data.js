@@ -10,14 +10,11 @@ var database  = require('../database')
 // router.get('/data-keluarga', UserController.view_keluarga);
 
 // GET data-penduduk
-router.get("/data-keluarga", function (req, res, next) {
-  res.render("data-keluarga");
-});
+router.get("/data-keluarga", UserController.view_keluarga);
+
 
 // GET data-penduduk
-router.get("/data-penduduk", function (req, res, next) {
-  res.render("data-penduduk");
-});
+router.get("/data-penduduk", UserController.view_penduduk);
 
 // GET data-kelahiran
 router.get("/data-kelahiran", function (req, res, next) {
@@ -39,10 +36,11 @@ router.get("/data-pindah", function (req, res, next) {
 router.get("/data-masuk", function (req, res, next) {
   res.render("data-masuk");
 });
+
 // GET data-penduduk
-router.get("/data-penduduk", function (req, res, next) {
-  res.render("data-penduduk");
-});
+// router.get("/data-penduduk", function (req, res, next) {
+//   res.render("data-penduduk");
+// });
 
 // GET data-umkm
 router.get("/data-umkm", function (req, res, next) {
@@ -74,6 +72,25 @@ router.get('/data-pengguna/delete/:user_id',function(request, response,next){
    });
 });
 
+
+router.get('/data-keluarga/delete/:no_kk',function(request, response,next){
+    var no_kk = request.params.no_kk;
+  // User the connection
+  var query = `DELETE FROM keluarga WHERE no_kk = "${no_kk}"`;
+  // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
+
+  database.query(query, function(error, data){
+    if(error){
+      throw error;
+    }
+    else
+    {
+      response.redirect("/data/data-keluarga"); 
+    }
+   });
+});
+
+
 //GET Publikasi
 router.get("/data-publikasi", UserController.view_publikasi);
 
@@ -100,5 +117,62 @@ router.get("/data-publikasi/delete/:id_publish",function(request, response, next
 // router.get("/data-publikasi", function (req, res, next) {
 //   res.render("data-publikasi");
 // });
+
+router.post("/editing-pengguna", function(request, response, next){
+
+	var action = request.body.action;
+
+	if(action == 'fetch')
+	{
+		var query = "SELECT * FROM admin_login ORDER BY user_id";
+
+		database.query(query, function(error, data){
+
+			response.json({
+				data:data
+			});
+
+		});
+	}
+
+
+	if(action == 'fetch_single')
+	{
+		var user_id = request.body.user_id;
+
+		var query = `SELECT * FROM admin_login WHERE user_id = "${user_id}"`;
+
+		database.query(query, function(error, data){
+
+			response.json(data[0]);
+
+		});
+	}
+  q
+	if(action == 'Edit')
+	{
+		var user_id = request.body.user_id;
+		var nama_lengkap = request.body.nama_lengkap;
+		var user_name = request.body.user_name;
+		var user_password = request.body.user_password;
+		// var = request.body.age;
+
+		var query = `
+		UPDATE admin_login 
+		SET nama_lengkap = "${nama_lengkap}", 
+		user_name = "${user_name}", 
+		user_password = "${user_password}", 
+		WHERE user_id = "${user_id}"
+		`;
+
+		database.query(query, function(error, data){
+			response.json({
+				message : 'Data Edited'
+			});
+		});
+	}
+
+});
+
 
 module.exports = router;

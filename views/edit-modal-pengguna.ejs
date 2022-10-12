@@ -1,0 +1,61 @@
+      <!-- Modal Edit -->
+      <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Publikasi</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body table-responsive">
+            <form method="POST" id="sample_form">
+            <div class="form-label mb-3">
+              <label>Nama</label>
+              <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" />
+            </div>
+  
+            <div clas="row">
+              <div class="col-md-6">
+                <div class="form-label">
+                  <label>Username</label>
+                  <input
+                    type="text"
+                    name="user_name"
+                    class="form-control"
+                    aria-placeholder="Masukkan Username Anda"
+                    id="user_name"
+                  />
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <label>Password</label>
+              <input type="password" name="user_password" class="form-control" id="user_password" />
+            </div>
+  
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-label">
+                  <label>Level</label>
+                  <select class="form-control">
+                    <option value="">Administrator</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+          <div class="modal-footer">
+            <!-- Hidden Input -->
+            <input type="hidden" name="id" class="id">
+            <input type="hidden" name="action" id="action" value="Add">
+
+            <button type="submit" class="btn btn-primary" id="action_button">Update Data</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </form>
+        </div>
+      </div>
+      </div>

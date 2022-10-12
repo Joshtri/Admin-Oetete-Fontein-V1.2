@@ -51,21 +51,23 @@
           </thead>
           <tbody>
             <tr>
-              <td scope="row" class="text-center">1</td>
-              <td scope="row" class="text-center">1234567891234567</td>
-              <td scope="row" class="text-center">Arphaksad Lenggu</td>
-              <td scope="row" class="text-center">Jln terus gk jadian</td>
+              <% var number = 1; %>
+              <% for (let row of rows) {%>
+              <td scope="row" class="text-center"><%= number %></td>
+              <td scope="row" class="text-center"><%= row.no_kk %></td>
+              <td scope="row" class="text-center"><%= row.kepala_kel %></td>
+              <td scope="row" class="text-center"><%= row.alamat %></td>
               <td scope="row" class="text-center">
                 <button type="button"
                 class="border-0"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"  ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
                 <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"></i></button>
-                <button class="border-0"  data-bs-target="#exampleModalDelete" data-bs-toggle="modal" ><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button>
+                <a href="/data/data-keluarga/delete/<%= row.no_kk %>"><button class="border-0"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button></a>
               </td>
-             
-              
+              <% number++; %>
             </tr>
+            <% }%>
           </tbody>
         </table>
       </div>

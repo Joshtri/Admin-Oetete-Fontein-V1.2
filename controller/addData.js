@@ -54,37 +54,42 @@ exports.create_keluarga = (req, res) => {
 //   res.render('tambah-data-penduduk');
 // };
 
-// // Add new user
-// exports.create = (req, res) => {
-//   const {
-//     no_kk,
-//     nik,
-//     nama,
-//     jk,
-//     tgl_lahir,
-//     hub_kel,
-//     pend,
-//     pekerjaan,
-//     status,
-//   } = req.body;
-//   let searchTerm = req.body.search;
 
-//   // User the connection
-//   connection.query(
-//     'INSERT INTO penduduk SET no_kk = ?, nik = ?, nama = ?, jk = ?, tgl_lahir = ?, hub_kel = ?, pend = ?, pekerjaan = ?, status = ?',
-//     [no_kk, nik, nama, jk, tgl_lahir, hub_kel, pend, pekerjaan, status],
-//     (err, rows) => {
-//       if (!err) {
-//         res.render("tambah-data-penduduk", {
-//           alert: "User added successfully.",
-//         });
-//       } else {
-//         console.log(err);
-//       }
-//       console.log("The data from user table: \n", rows);
-//     }
-//   );
-// };
+
+exports.form_penduduk = (req, res) => {
+  res.render('tambah-data-penduduk');
+};
+// Add new user
+exports.create_penduduk = (req, res) => {
+  const {
+    no_kk,
+    nik,
+    nama,
+    jk,
+    tgl_lahir,
+    hub_kel,
+    pend,
+    pekerjaan,
+    status,
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO penduduk SET no_kk = ?, nik = ?, nama = ?, jk = ?, tgl_lahir = ?, hub_kel = ?, pend = ?, pekerjaan = ?, status = ?',
+    [no_kk, nik, nama, jk, tgl_lahir, hub_kel, pend, pekerjaan, status],
+    (err, rows) => {
+      if (!err) {
+        res.render("tambah-data-penduduk", {
+          alert: "User added successfully.",
+        });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    }
+  );
+};
 
 // // Add new user
 // exports.create = (req, res) => {

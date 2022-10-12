@@ -13,22 +13,22 @@
             <form action="/data/update?_method=PUT" method="POST">
             <div class="form-group">
                 <label for="">Judul Publikasi</label>
-                <input type="text" name="judul_publish" class="form-control 9" required>
+                <input type="text" name="judul_publish" class="form-control judul_publish" value="<%= row.judul_publish %>" required>
             </div>
             <div class="form-group">
                 <label for="">Tanggal Terbit</label>
-                <input type="date" name="tanggal_terbit" class="form-control" required>
+                <input type="date" name="tanggal_terbit" class="form-control tanggal_terbit"  value="<%= row.tanggal_terbit %>" required>
             </div>
             <div class="form-group">
                 <label for="">Upload File</label>
-                <input type="file" name="file_article" class="form-control" required>
+                <input type="file" name="file_article" class="form-control file_article"  value="<%= row.file_article %>" required>
             </div>
           </div>
   
           <div class="modal-footer">
             <input type="hidden" name="id" class="id">
 
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Update Data</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </form>
