@@ -1,5 +1,13 @@
 var express = require('express');
 var router = express.Router();
+const mysql = require("mysql");
+
+let connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+});
 
 router.get('/statistik-pekerjaan', function (req, res, next) {
     res.render('statistik-pekerjaan');
@@ -57,6 +65,8 @@ router.get('/statistik/pekerjaan', function (req, res, next) {
 
 router.get('/statistik/status', function (req, res, next) {
     // konek
+    // Connection Pool
+
     // data dari tabel
     res.json(
         {
