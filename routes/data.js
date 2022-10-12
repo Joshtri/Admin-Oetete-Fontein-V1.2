@@ -15,6 +15,8 @@ router.get("/data-keluarga", UserController.view_keluarga);
 
 // GET data-penduduk
 router.get("/data-penduduk", UserController.view_penduduk);
+router.get("/data-penduduk", UserController.delete_penduduk);
+
 
 // GET data-kelahiran
 router.get("/data-kelahiran", function (req, res, next) {
@@ -54,6 +56,7 @@ router.get("/data-umkm", function (req, res, next) {
 
 //GET Pengguna
 router.get("/data-pengguna", UserController.view_pengguna);
+router.post("/data-publikasi/edit/:nik", UserController.delete_publikasi);
 
 router.get('/data-pengguna/delete/:user_id',function(request, response,next){
     var user_id = request.params.user_id;

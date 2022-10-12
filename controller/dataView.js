@@ -59,6 +59,8 @@ exports.view_penduduk = (req, res) => {
 
 
 
+
+
 //View data-pengguna
 //View data
 exports.view_pengguna = (req, res) => {
@@ -110,31 +112,35 @@ exports.view_publikasi = (req, res) => {
 // Delete User
 exports.delete_publikasi = (req, res) => {
 
-  // Delete a record
-
   // User the connection
   connection.query('DELETE FROM publikasi id_publish = ?', [req.params.id_publish], (err, rows) => {
 
     if(!err) {
       res.redirect('/data/data-publikasi');
     } else {
+    console.log(err);
+    }
+    console.log('The data from user table: \n', rows);
+
+  });
+};
+
+// Delete User
+exports.delete_penduduk = (req, res) => {
+
+  // Delete a record
+
+  // User the connection
+  connection.query('DELETE FROM penduduk nik = ?', [req.params.nik], (err, rows) => {
+
+    if(!err) {
+      res.redirect('/data/data-penduduk');
+    } else {
       console.log(err);
     }
     console.log('The data from user table: \n', rows);
 
   });
-
-  // Hide a record
-
-  // connection.query('UPDATE publikasi WHERE id_publish = ?', ['removed', req.params.id], (err, rows) => {
-  //   if (!err) {
-  //     let removedPublish = encodeURIComponent('User successeflly removed.');
-  //     res.redirect('/?removed=' + removedPublish);
-  //   } else {
-  //     console.log(err);
-  //   }
-  //   console.log('The data from beer table are: \n', rows);
-  // });
 
 };
 

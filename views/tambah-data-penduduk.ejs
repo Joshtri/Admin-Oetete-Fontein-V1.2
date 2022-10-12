@@ -38,7 +38,7 @@
         <hr />
 
         <form>
-          <div class="form-label mb-3">
+          <!-- <div class="form-label mb-3">
             <label>Nomor KK</label>
             <input
               type="tel"
@@ -48,7 +48,22 @@
               name="no_kk"
               class="form-control"
             />
+          </div> -->
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-label">
+                <label>Nomor KK</label>
+                <select class="form-control" name="kel_no_kk">
+                  <option value="">-</option>
+                  <% for (let row of keluarga) {%>
+                    <option value="<%= row.no_kk %>"><%= row.no_kk %></td>
+                  <% } %>
+                </select>
+              </div>
+            </div>
           </div>
+
 
           <div class="form-label">
             <label>NIK</label>
@@ -63,17 +78,17 @@
 
           <div class="form-label">
             <label>Nama</label>
-            <input type="text" name="Nama" class="form-control" />
+            <input type="text" name="nama" class="form-control" />
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
                 <label>Pilih Jenis Kelamin</label>
-                <select class="form-control" name="jk">
+                <select class="form-control" name="jenis_kelamin">
                   <option>-</option>
-                  <option>P</option>
-                  <option>L</option>
+                  <option value="Perempuan">Perempuan</option>
+                  <option value="Laki-Laki">Laki-Laki</option>
                 </select>
               </div>
             </div>
@@ -83,16 +98,18 @@
             <div class="col-md-6">
               <div class="form-label">
                 <label>Tanggal Lahir</label>
-                <input type="date" name="" class="form-control" name="tgl_lahir" />
+                <input type="date" class="form-control" name="lahir" />
               </div>
             </div>
           </div>
+
+          
 
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
                 <label>Status Hubungan dalam Keluarga</label>
-                <select class="form-control" name="hub_kel">
+                <select class="form-control" name="hubungan_keluarga">
                   <option value="">-</option>
                   <option value="">Kepala Keluarga</option>
                   <option value="">Istri</option>
@@ -111,7 +128,7 @@
             <div class="col-md-6">
               <div class="form-label">
                 <label>Pendidikan</label>
-                <select class="form-control" name="pend">
+                <select class="form-control" name="pendidikan">
                   <option value="">-</option>
                   <option value="">Belum/Tidak Pernah Sekolah</option>
                   <option value="">Belum/Tidak Tamat SD/SDLB/MI/Paket A</option>
@@ -144,7 +161,7 @@
             <div class="col-md-6">
               <div class="form-label">
                 <label>Status Perkawanin</label>
-                <select class="form-control" name="status">
+                <select class="form-control" name="status_perkawinan">
                   <option value="">-</option>
                   <option value="">Belum Menikah</option>
                   <option value="">Sudah Menikah</option>
@@ -155,26 +172,15 @@
             </div>
           </div>
 
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            SIMPAN
-          </button>
-          <a href=""
-            ><button type="reset" class="btn btn-danger">RESET</button></a
-          >
-          <a href="/data/data-penduduk"
-            ><button type="button" class="btn btn-warning">KEMBALI</button></a
-          >
+          <button type="submit"class="btn btn-primary">SIMPAN</button>
+          <a href=""><button type="reset" class="btn btn-danger">RESET</button></a>
+          <a href="/data/data-penduduk"><button type="button" class="btn btn-warning">KEMBALI</button></a>
         </form>
       </div>
     </div>
 
     <!-- Modal -->
-    <div
+    <!-- <div
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -203,11 +209,11 @@
             >
               Kembali
             </button>
-            <button type="button" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- footer start -->
     <%- include('footer'); -%>

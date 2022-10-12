@@ -8,6 +8,14 @@ let connection = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+const pool = mysql.createPool({
+  connectionLimit: 100,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+});
+
 // exports.form = (req,res)=>{
 //     res.render('tambah-data-keluarga')
 // }
@@ -57,27 +65,36 @@ exports.create_keluarga = (req, res) => {
 
 
 exports.form_penduduk = (req, res) => {
-  res.render('tambah-data-penduduk');
+  pool.getConnection((err, conn) => {
+    conn.query("SELECT * FROM keluarga", (err, rows) => {
+      if(err) throw new Error(err)
+      conn.release();
+      res.render("tambah-data-penduduk", { keluarga: rows });
+    })
+  })
+
 };
+
 // Add new user
 exports.create_penduduk = (req, res) => {
   const {
-    no_kk,
+    kel_no_kk,
     nik,
     nama,
-    jk,
-    tgl_lahir,
-    hub_kel,
-    pend,
+    jenis_kelamin,
+    lahir,
+    hubungan_keluarga,
+    pendidikan,
     pekerjaan,
-    status,
+    status_perkawinan,
+
   } = req.body;
   let searchTerm = req.body.search;
 
   // User the connection
   connection.query(
-    'INSERT INTO penduduk SET no_kk = ?, nik = ?, nama = ?, jk = ?, tgl_lahir = ?, hub_kel = ?, pend = ?, pekerjaan = ?, status = ?',
-    [no_kk, nik, nama, jk, tgl_lahir, hub_kel, pend, pekerjaan, status],
+    'INSERT INTO penduduk SET kel_no_kk = ?, nik = ?, nama = ?, jenis_kelamin = ?, lahir = ?, hubungan_keluarga = ?, pendidikan = ?, pekerjaan = ?, status_perkawinan = ?',
+    [kel_no_kk, nik, nama, jenis_kelamin, lahir, hubungan_keluarga, pendidikan, pekerjaan, status_perkawinan],
     (err, rows) => {
       if (!err) {
         res.render("tambah-data-penduduk", {
