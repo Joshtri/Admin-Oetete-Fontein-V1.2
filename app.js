@@ -64,7 +64,7 @@ app.use('/', indexRouter);  // most  top level sitemap.
 app.use('/data', datasRouter)
 app.use('/users', usersRouter);
 app.use('/tambah_data', addRouter);
-app.use('/statistik', statsRouter)
+app.use('/statistics', statsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

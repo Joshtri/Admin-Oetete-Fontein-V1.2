@@ -13,6 +13,8 @@ router.get('/statistik-pendidikan', function (req, res, next) {
     res.render('statistik-pendidikan');
 });
 
+// There is 7 router
+
 //DONE
 router.get('/statistik/umur', function (req, res, next) {
     // konek
@@ -24,12 +26,15 @@ router.get('/statistik/umur', function (req, res, next) {
                 "rgb(255, 99, 132)",
                 "rgb(54, 162, 235)",
                 "rgb(255, 205, 86)",
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                
             ],
             data: [90, 60, 45, 80, 100, 40, 25],
             hoverOffset: 4,
         },
     );
-
 });
 
 router.get('/statistik/pekerjaan', function (req, res, next) {
@@ -127,6 +132,25 @@ router.get('/statistik/umkm', function (req, res, next) {
                 "rgb(255, 205, 86)",
             ],
             data: [8, 5, 3],
+            hoverOffset: 4,
+        },
+    );
+
+});
+
+
+router.get('/statistik/penduduk', function (req, res, next) {
+    // konek
+    // data dari tabel
+    res.json(
+        {
+            label: ["My First dataset"],
+            backgroundColor: [
+                "rgb(128,0,0)",
+                "rgb(139,0,0)",
+                "rgb(165,42,42)",
+            ],
+            data: [10, 15],
             hoverOffset: 4,
         },
     );

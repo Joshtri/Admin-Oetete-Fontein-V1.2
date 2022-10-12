@@ -47,12 +47,23 @@
                     <h3><i class="fa-solid fa-dove"></i>&nbsp&nbspSTATISTIK STATUS PERNIKAHAN</h3>
                     <hr>
 
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary" type="button" onclick="switchType();"><i class="fa-solid fa-chart-column"></i>&nbspUbah
-                            grafik</button>
-                    </div>
-                    <div class="container-fluid " style="width:400px ;">
-                        <canvas id="Status-Chart"></canvas>
+                    <li class="nav-item dropdown list-unstyled">
+                        <a class="dropdown-toggle active btn btn-yellowwhite" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-chart-column"></i>    
+                            Ubah Grafik
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><button onclick="ChartType('bar')" class="dropdown-item btn"  href="#"><img src="https://img.icons8.com/office/16/000000/futures.png"/>&nbsp&nbspBar Chart</button></li>
+                            <li><button onclick="ChartType('pie')" class="dropdown-item"  href="#"><img src="https://img.icons8.com/flat-round/16/000000/pie-chart-3d.png"/>&nbsp&nbspPie Chart</button></li>
+                            <li><button onclick="ChartType('doughnut')" class="dropdown-item"  href="#"><img src="https://img.icons8.com/office/16/000000/doughnut-chart--v1.png"/>&nbsp&nbspDoughnut Chart</button></li>
+                            
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        </ul>
+                    </li>
+                    <div class="container-fluid mb-5">
+                        <canvas id="Status-Chart" style="position: relative; height:40vh; width:80vw; max-width: fit-content; min-width: fit-content;"></canvas>
                     </div>
 
                     <!-- First Row -->
@@ -101,54 +112,11 @@
                         });
                     </script>
 
-                    <script>
-                        const labels = ["Sudah Menikah", "Belum Menikah", "Cerai Hidup", "Cerai Mati"];
-
-                        const data = {
-                            labels: labels,
-                            datasets: [
-                                {
-                                    label: ["My First dataset"],
-                                    backgroundColor: [
-                                        "#C84B31",    
-                                        "#ECDBBA",
-                                        "#2D4263",
-                                        "#1E5128"
-                                    ],
-
-                                    data: [2,10,50,20],
-                                    hoverOffset: 4,
-                                },
-                            ],
-                        };
-
-                        const config = {
-                            type: "pie",
-                            data: data,
-                            options: {
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                        text: 'Grafik Status Pernikahan'
-                                    }
-                                }
-                            },
-                        };
-
-                        const myChart = new Chart(document.getElementById("Status-Chart"), config);
-
-                        axios.get('/statistik/statistik/status').then(e => {
-                            console.log(e);
-                            myChart.data.datasets[0].data = e.data.data;
-                            myChart.update();
-                        });
-
-                    </script>
 
                     <!-- <h1>Hello, world!</h1> -->
 
                     <!-- Optional JavaScript; choose one of the two! -->
-
+                    <script src="/javascripts/stats-statuspernikahan.js"></script>
                     <!-- Option 1: Bootstrap Bundle with Popper -->
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
