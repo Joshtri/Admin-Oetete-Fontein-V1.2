@@ -8,6 +8,14 @@ let connection = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+const pool = mysql.createPool({
+  connectionLimit: 100,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+});
+
 // exports.form = (req,res)=>{
 //     res.render('tambah-data-keluarga')
 // }
@@ -57,7 +65,14 @@ exports.create_keluarga = (req, res) => {
 
 
 exports.form_penduduk = (req, res) => {
-  res.render('tambah-data-penduduk');
+  pool.getConnection((err, conn) => {
+    conn.query("SELECT * FROM keluarga", (err, rows) => {
+      if(err) throw new Error(err)
+      conn.release();
+      res.render("tambah-data-penduduk", { keluarga: rows });
+    })
+  })
+
 };
 // Add new user
 exports.create_penduduk = (req, res) => {
