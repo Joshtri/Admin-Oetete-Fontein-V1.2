@@ -37,7 +37,7 @@
         </h3>
         <hr />
 
-        <form>
+        <form method="POST" action="/tambah_data/tambah-data-penduduk" novalidate>
           <!-- <div class="form-label mb-3">
             <label>Nomor KK</label>
             <input
@@ -49,28 +49,24 @@
               class="form-control"
             />
           </div> -->
-
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
-                <label>Nomor KK</label>
+                <label>Keluarga</label>
                 <select class="form-control" name="kel_no_kk">
-                  <option value="">-</option>
+                  <option>-</option>
                   <% for (let row of keluarga) {%>
-                    <option value="<%= row.no_kk %>"><%= row.no_kk %></td>
+                    <option value="<%= row.no_kk %>"><%=row.no_kk%></td>
                   <% } %>
                 </select>
               </div>
             </div>
           </div>
 
-
           <div class="form-label">
             <label>NIK</label>
             <input
-              type="number"
-              min="16"
-              maxlength="16"
+
               name="nik"
               class="form-control"
             />
@@ -102,39 +98,22 @@
               </div>
             </div>
           </div>
-
-          
-<<<<<<< HEAD
-=======
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-label">
-                <label>Keluarga</label>
-                <select class="form-control" name="kel_no_kk">
-                  <option value="">-</option>
-                  <% for (let row of keluarga) {%>
-                    <option value="<%= row.no_kk %>"><%= row.kepala_kel %></td>
-                  <% } %>
-                </select>
-              </div>
-            </div>
-          </div>
->>>>>>> b0d502d157753e83b12631e4ae64faf470f75e60
+        
 
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
                 <label>Status Hubungan dalam Keluarga</label>
                 <select class="form-control" name="hubungan_keluarga">
-                  <option value="">-</option>
-                  <option value="">Kepala Keluarga</option>
-                  <option value="">Istri</option>
-                  <option value="">Anak</option>
-                  <option value="">Menantu</option>
-                  <option value="">Orang Tua</option>
-                  <option value="">Mertua</option>
-                  <option value="">Famili Lain</option>
-                  <option value="">Pembantu</option>
+                  <option>-</option>
+                  <option value="Kepala Keluarga">Kepala Keluarga</option>
+                  <option value="Istri">Istri</option>
+                  <option value="Anak">Anak</option>
+                  <option value="Menantu">Menantu</option>
+                  <option value="Orang Tua">Orang Tua</option>
+                  <option value="Mertua">Mertua</option>
+                  <option value="Famili Lain">Famili Lain</option>
+                  <option value="Pembantu">Pembantu</option>
                 </select>
               </div>
             </div>
@@ -145,16 +124,16 @@
               <div class="form-label">
                 <label>Pendidikan</label>
                 <select class="form-control" name="pendidikan">
-                  <option value="">-</option>
-                  <option value="">Belum/Tidak Pernah Sekolah</option>
-                  <option value="">Belum/Tidak Tamat SD/SDLB/MI/Paket A</option>
-                  <option value="">SD/SDLB/MI/Paket A</option>
-                  <option value="">SMP/SMPLB/MTs/Paket B</option>
-                  <option value="">SMA/SMLB/MA/SMK/MAK/paket C</option>
-                  <option value="">DI/DII/DIII</option>
-                  <option value="">DIV/S1</option>
-                  <option value="">S2</option>
-                  <option value="">S3</option>
+                  <option>-</option>
+                  <option value="Belum/Tidak Pernah Sekolah">Belum/Tidak Pernah Sekolah</option>
+                  <option value="Belum/Tidak Tamat SD/SDLB/MI/Paket A">Belum/Tidak Tamat SD/SDLB/MI/Paket A</option>
+                  <option value="SD/SDLB/MI/Paket A">SD/SDLB/MI/Paket A</option>
+                  <option value="SMP/SMPLB/MTs/Paket B">SMP/SMPLB/MTs/Paket B</option>
+                  <option value="SMA/SMLB/MA/SMK/MAK/paket C">SMA/SMLB/MA/SMK/MAK/paket C</option>
+                  <option value="DI/DII/DIII">DI/DII/DIII</option>
+                  <option value="DIV/S1">DIV/S1</option>
+                  <option value="S2">S2</option>
+                  <option value="S3">S3</option>
                 </select>
               </div>
             </div>
@@ -165,9 +144,10 @@
               <div class="form-label">
                 <label>Pekerjaan</label>
                 <select class="form-control" name="pekerjaan">
-                  <option value="">-</option>
-                  <option value="">Swasta</option>
-                  <option value="">Negeri</option>
+                  <option >-</option>
+                  <option value="Belum Bekerja">Belum Bekerja</option>
+                  <option value="Swasta">Swasta</option>
+                  <option value="Negeri">Negeri</option>
                 </select>
               </div>
             </div>
@@ -178,25 +158,34 @@
               <div class="form-label">
                 <label>Status Perkawanin</label>
                 <select class="form-control" name="status_perkawinan">
-                  <option value="">-</option>
-                  <option value="">Belum Menikah</option>
-                  <option value="">Sudah Menikah</option>
-                  <option value="">Cerai Hidup</option>
-                  <option value="">Cerai Mati</option>
+                  <option>-</option>
+                  <option value="Belum Menikah">Belum Menikah</option>
+                  <option value="Sudah Menikah">Sudah Menikah</option>
+                  <option value="Cerai Hidup">Cerai Hidup</option>
+                  <option value=">Cerai Mati">Cerai Mati</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <button type="submit"class="btn btn-primary">SIMPAN</button>
-          <a href=""><button type="reset" class="btn btn-danger">RESET</button></a>
-          <a href="/data/data-penduduk"><button type="button" class="btn btn-warning">KEMBALI</button></a>
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            SIMPAN
+          </button>
+          <a href=""
+            ><button type="reset" class="btn btn-danger">RESET</button></a
+          >
+          <a href="/data/data-penduduk"
+            ><button type="button" class="btn btn-warning">KEMBALI</button></a
+          >
         </form>
       </div>
     </div>
 
     <!-- Modal -->
-    <!-- <div
+    <div
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -225,11 +214,11 @@
             >
               Kembali
             </button>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="button" class="btn btn-primary">Simpan</button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- footer start -->
     <%- include('footer'); -%>

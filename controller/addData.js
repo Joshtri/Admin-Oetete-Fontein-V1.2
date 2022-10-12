@@ -74,7 +74,6 @@ exports.form_penduduk = (req, res) => {
   })
 
 };
-
 // Add new user
 exports.create_penduduk = (req, res) => {
   const {
@@ -87,7 +86,6 @@ exports.create_penduduk = (req, res) => {
     pendidikan,
     pekerjaan,
     status_perkawinan,
-
   } = req.body;
   let searchTerm = req.body.search;
 
@@ -107,45 +105,6 @@ exports.create_penduduk = (req, res) => {
     }
   );
 };
-
-// // Add new user
-// exports.create = (req, res) => {
-//   const {
-//     nama_usaha,
-//     alamat_usaha,
-//     nama_kk,
-//     nama_pemilik,
-//     umur,
-//     alamat_tmpt_tnggl,
-//     pendidikan_pemilik,
-//     jenis_pengelolaan_usaha,
-//     kbli,
-//     rincian_kgiatan_usaha,
-//     omset,
-//     kekayaan_bersih_usaha,
-//     tenaga_kerja,
-//     modal_usaha,
-//     bina_usaha,
-
-//   } = req.body;
-//   let searchTerm = req.body.search;
-
-//   // User the connection
-//   connection.query(
-//     'INSERT INTO umkm SET nama_usaha = ?, alamat_usaha = ?, nama_kk = ?, nama_pemilik = ?, umur = ?, alamat_tmpt_tnggl = ?, pendidikan_pemilik = ?, jenis_pengelolaan_usaha = ?, kbli = ?, rincian_kgiatan_usaha = ?, omset = ?,kekayaan_bersih_usaha = ?, tenaga_kerja = ?, modal_usaha = ?, bina_usaha = ? ',
-//     [nama_usaha, alamat_usaha , nama_kk, nama_pemilik, umur, alamat_tmpt_tnggl, pendidikan_pemilik , jenis_pengelolaan_usaha, kbli, rincian_kgiatan_usaha,omset, kekayaan_bersih_usaha,tenaga_kerja,modal_usaha,bina_usaha ],
-//     (err, rows) => {
-//       if (!err) {
-//         res.render("tambah-data-umkm", {
-//           alert: "User added successfully.",
-//         });
-//       } else {
-//         console.log(err);
-//       }
-//       console.log("The data from user table: \n", rows);
-//     }
-//   );
-// };
 
 
 //add new pengguna
@@ -202,6 +161,33 @@ exports.create_publikasi = (req,res) =>{
       if (!err) {
         res.render('tambah-data-publikasi', {
           //send this in views.
+          alert: "User added successfully.",
+        });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    }
+  );
+};
+
+
+exports.create_kelahiran = (req,res) =>{
+  const {
+    file_article,
+    tanggal_terbit,
+    judul_publish
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO publikasi SET file_article = ?, tanggal_terbit = ?, judul_publish = ?',
+    [file_article, tanggal_terbit, judul_publish],
+    (err, rows) => {
+      if (!err) {
+        res.render('tambah-data-kelahiran', {
+          //send this in views. 
           alert: "User added successfully.",
         });
       } else {

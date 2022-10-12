@@ -49,4 +49,4 @@ router.post('/tambah-data-publikasi',UserController.create_publikasi);
 router.get('/tambah-data-penduduk', UserController.form_penduduk);
 router.post('/tambah-data-penduduk', UserController.create_penduduk);
 
-module.exports = router;
+module.exports = router;    

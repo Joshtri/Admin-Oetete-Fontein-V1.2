@@ -66,7 +66,7 @@
           <thead>
             <tr>
               <th scope="col" class="text-center">No</th>
-              <th scope="col" class="text-center">Id Kelahiran</th>
+              <!-- <th scope="col" class="text-center">Id Kelahiran</th> -->
               <th scope="col" class="text-center">Nomor KK</th>
               <th scope="col" class="text-center">Nama</th>
               <th scope="col" class="text-center">Jenis Kelamin</th>
@@ -76,22 +76,26 @@
           </thead>
           <tbody>
             <tr>
-              <td scope="row" class="text-center"></td>
-              <td scope="row" class="text-center">202201</td>
-              <td scope="row" class="text-center">1234567891234567</td>
-              <td scope="row" class="text-center">Laravelia</td>
-              <td scope="row" class="text-center">P</td>
-              <td scope="row" class="text-center">29/07/2022</td>
+              <% var number = 1; %>
+              <% for (let row of rows) {%>
+              <td scope="row" class="text-center"><%= number %></td>
+                                                           <!-- <td scope="row" class="text-center"></td> -->
+              <td scope="row" class="text-center"><%= row.kel_no_kk %></td>
+              <td scope="row" class="text-center"><%= row.nama %></td>
+              <td scope="row" class="text-center"><%= row.jenis_kelamin %></td>
+              <td scope="row" class="text-center"><%= row.tgl_lahir %></td>
               <td scope="row" class="text-center">
                 <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i>
                 </button>
                 <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"></i></button>
-                <button class="border-0"data-bs-toggle="modal"data-bs-target="#exampleModalKelahiran">
+                <a href="/data/data-kelahiran/delete/<%= row.id_lahir %>"><button class="border-0">
                   <i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i>
-                </button>
+                </button></a>
               </td>
+              <% number++; %>
             </tr>
+            <% }%>
           </tbody>
         </table>
       </div>

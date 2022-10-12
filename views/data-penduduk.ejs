@@ -84,13 +84,12 @@
         >
           <thead>
             <tr>
-              <% var number = 1; %> 
-              <% for (let row of rows) {%>
+              
               <th scope="col" class="text-center">No</th>
               <th scope="col" class="text-center">Nama</th>
               <th scope="col" class="text-center">NIK</th>
               <th scope="col" class="text-center">JK</th>
-              <th scope="col" class="text-center">Alamat</th>
+              <th scope="col" class="text-center">Hubungan</th>
               <th scope="col" class="text-center">Nomor KK</th>
               <th scope="col" class="text-center">Aksi</th>
               <!-- <th scope="col" class="text-center">Aksi</th>
@@ -99,6 +98,8 @@
           </thead>
           <tbody>
             <tr>
+              <% var number = 1; %>  
+              <% for (let row of rows) {%>
               <td scope="row" class="text-center"><%= number %></td>
               <td scope="row" class="text-center"><%= row.nama %></td>
               <td scope="row" class="text-center"><%= row.nik %></td>
@@ -122,7 +123,7 @@
                   <i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip"
                     title="Edit"></i>
                 </button>
-                <a href=""><button class="border-0" data-bs-toggle="modal"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded"data-toggle="tooltip"title="Delete"></i></button></a>
+                <a href="/data/data-penduduk/delete/<%= row.nik %>"><button class="border-0" data-bs-toggle="modal"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded"data-toggle="tooltip"title="Delete"></i></button></a>
               </td>
               <% number++; %>
             </tr>

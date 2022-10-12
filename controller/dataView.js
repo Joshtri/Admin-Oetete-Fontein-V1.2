@@ -107,7 +107,50 @@ exports.view_publikasi = (req, res) => {
   });
 };
 
+//view kelahiran
+exports.view_kelahiran = (req, res) => {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
 
+    //show data
+    connection.query("SELECT * FROM kelahiran", (err, rows) => {
+      //when done with the connection, release it.
+      connection.release();
+
+      if (!err) {
+        res.render("data-kelahiran", { rows });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    });
+  });
+};
+
+
+//view kematian
+exports.view_kematian = (req, res) => {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+
+    //show data
+    connection.query("SELECT * FROM kematian", (err, rows) => {
+      //when done with the connection, release it.
+      connection.release();
+
+      if (!err) {
+        res.render("data-kematian", { rows });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    });
+  });
+};
 
 // Delete User
 exports.delete_publikasi = (req, res) => {

@@ -42,7 +42,6 @@
           <thead>
             <tr>
               <th scope="col" class="text-center">No</th>
-              <th scope="col" class="text-center">Id Meninggal</th>
               <th scope="col" class="text-center">Tanggal</th>
               <th scope="col" class="text-center">NIK</th>
               <th scope="col" class="text-center">Aksi</th>
@@ -53,24 +52,24 @@
           </thead>
           <tbody>
             <tr>
-              <td scope="row" class="text-center">1</td>
-              <td scope="row" class="text-center">MA23</td>
-              <td scope="row" class="text-center">15/16/2002</td>
-              <td scope="row" class="text-center">5371041054580002</td>
+              <% var number = 1; %>
+              <% for (let row of rows) {%>
+              <td scope="row" class="text-center"><%= number%></td>
+              <td scope="row" class="text-center"><%= row.tgl_lahir %></td>
+              <td scope="row" class="text-center"><%= row.nik %></td>
               <td scope="row" class="text-center">
                 <button type="button"
                 class="border-0"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
                 <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
-                <button type="button"
-                class="border-0"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModalDelete"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button>
+                <a href="/data/data-kematian/delete/<%= row.id_kematian %>"><button type="button"class="border-0" data-bs-toggle="modal"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button></a>
               </td>
              
-              
+       
+              <% number++; %>
             </tr>
+            <% }%>
           </tbody>
         </table>
       </div>
