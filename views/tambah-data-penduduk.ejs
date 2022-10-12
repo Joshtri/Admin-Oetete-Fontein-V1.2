@@ -72,8 +72,8 @@
                 <label>Pilih Jenis Kelamin</label>
                 <select class="form-control" name="jk">
                   <option>-</option>
-                  <option>P</option>
-                  <option>L</option>
+                  <option value="Perempuan">Perempuan</option>
+                  <option value="Laki-Laki">Laki-Laki</option>
                 </select>
               </div>
             </div>
@@ -84,6 +84,21 @@
               <div class="form-label">
                 <label>Tanggal Lahir</label>
                 <input type="date" name="" class="form-control" name="tgl_lahir" />
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-label">
+                <label>Keluarga</label>
+                <select class="form-control" name="kel_no_kk">
+                  <option value="">-</option>
+                  <% for (let row of keluarga) {%>
+                    <option value="<%= row.no_kk %>"><%= row.kepala_kel %></td>
+                  <% } %>
+                </select>
               </div>
             </div>
           </div>
