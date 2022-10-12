@@ -56,7 +56,7 @@ router.get("/data-umkm", function (req, res, next) {
 
 //GET Pengguna
 router.get("/data-pengguna", UserController.view_pengguna);
-router.post("/data-publikasi/edit/:nik", UserController.delete_publikasi);
+// router.post("/data-publikasi/edit/:nik", UserController.delete_publikasi);
 
 router.get('/data-pengguna/delete/:user_id',function(request, response,next){
     var user_id = request.params.user_id;
