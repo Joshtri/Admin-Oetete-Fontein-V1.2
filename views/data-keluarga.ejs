@@ -58,10 +58,14 @@
               <td scope="row" class="text-center"><%= row.kepala_kel %></td>
               <td scope="row" class="text-center"><%= row.alamat %></td>
               <td scope="row" class="text-center">
+                <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
+                <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
                 <button type="button"
                 class="border-0"
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"  ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
+                data-bs-target="#exampleModal" 
+                data-json="<%= JSON.stringify(row) %>"
+                ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
                 <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"></i></button>
                 <a href="/data/data-keluarga/delete/<%= row.no_kk %>"><button class="border-0"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button></a>
               </td>
@@ -93,31 +97,36 @@
           </tr> -->
           <tr>
             <th style="width:50%">No KK</th>
-            <td>5371041506020007</td>
+            <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
+            <td class="no_kk"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">Kepala Keluarga</th>
+            <td class="kepala_kel"></td>
           </tr>
           <tr>
             <th style="width:50%">RT</th>
-            <td>001</td>
+            <td class="rt"></td>
           </tr>
           <tr>
             <th style="width:50%">RW</th>
-            <td>002</td>
+            <td class="rw"></td>
           </tr>
           <tr>
             <th style="width:50%">Kelurahan</th>
-            <td>Oetete</td>
+            <td class="kel_n_desa"></td>
           </tr>
           <tr>
             <th style="width:50%">Kecamatan</th>
-            <td>Oebobo</td>
+            <td class="kecamatan"></td>
           </tr>          
           <tr>
             <th style="width:50%">Kota/Kabupaten</th>
-            <td>Kota Kupang</td>
+            <td class="kota_n_kab"></td>
           </tr>
           <tr>
             <th style="width:50%">Provinsi</th>
-            <td>Nusa Tenggara Timur</td>
+            <td class="provinsi"></td>
           </tr>
 
           
@@ -230,6 +239,46 @@
           "scrollY": 200,
         });
         $('.dataTables_length').addClass('bs-select');
+        
+        /**
+         * fungsi ditriger ketika modal dibuka
+         * 
+         */
+        // semua elemen yang memiliki id exampleModal
+        let modal = document.querySelector("#exampleModal");
+        // menambah event listener pada setiap elemen modal
+        modal.addEventListener('show.bs.modal', event => {
+          console.log("Modal dibuka: ", event);
+          /**
+           * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+           * (tombol yang diklik)
+           * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+           * keluarga berupa json
+           * 
+           */
+          // cara mengakses data attribut dari jquery
+          // contoh atribut data-json
+          let data = $(event.relatedTarget).data('json');
+          // di console browser
+          console.log("data tombol yang diklik: ", data);
+
+          // binding data yang diterima dari tombol ke element yang ada pada modal detail
+          
+          // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+          $(modal).find(".no_kk").text(data.no_kk) // cara jquery
+          // atau sama dengan cara vanilla javascript (javascript native/biasa)
+          // modal.querySelector('.no_kk').innerHTML = data.no_kk
+          // binding elemen lainnya yang ada pada modal detail
+          $(modal).find(".alamat").text(data.alamat)
+          $(modal).find(".kecamatan").text(data.kecamatan)
+          $(modal).find(".kel_n_desa").text(data.kel_n_desa)
+          $(modal).find(".kepala_kel").text(data.kepala_kel)
+          $(modal).find(".kota_n_kab").text(data.kota_n_kab)
+          $(modal).find(".provinsi").text(data.provinsi)
+          $(modal).find(".rt").text(data.rt)
+          $(modal).find(".rw").text(data.rw)
+
+        })
       });
     </script>
     
