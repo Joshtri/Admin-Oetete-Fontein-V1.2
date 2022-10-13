@@ -1,6 +1,7 @@
 const { response } = require("express");
 var express = require("express");
 var router = express.Router();
+const url = require('url');
 
 const UserController = require("../controller/dataView");
 var database = require("../database");
@@ -116,6 +117,52 @@ router.get(
     });
   }
 );
+
+router.post("/data-keluarga/update/:no_kk", function (request, response, next) {
+  var no_kk = request.params.no_kk;
+  // response.send("Cek No KK = " + no_kk);
+  // response.send("Cek Body = " + JSON.stringify(request.body));
+
+  let query = `
+    UPDATE keluarga SET
+      no_kk = ?,
+      rt = ?,
+      rw = ?,
+      alamat = ?,
+      kel_n_desa = ?,
+      kecamatan = ?,
+      kota_n_kab = ?,
+      provinsi = ?
+    WHERE no_kk = ?`;
+  database.query(query, [
+    request.body.no_kk,
+    request.body.rt,
+    request.body.rw,
+    request.body.alamat,
+    request.body.kel_n_desa,
+    request.body.kecamatan,
+    request.body.kota_n_kab,
+    request.body.provinsi,
+
+    no_kk
+  ], (err, row) => {
+    if(err)
+      return response.redirect(url.format({
+        pathname:"/data/data-keluarga",
+        query: {
+          "sukses": false,
+          "pesan": "Gagal menyimpan perubahan"
+        }
+      }));
+    return response.redirect(url.format({
+      pathname:"/data/data-keluarga",
+      query: {
+        "sukses": true,
+        "pesan": "Berhasil menyimpan perubahan"
+      }
+    }));
+  })
+});
 
 router.get("/data-keluarga/delete/:no_kk", function (request, response, next) {
   var no_kk = request.params.no_kk;
