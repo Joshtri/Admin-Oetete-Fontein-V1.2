@@ -315,10 +315,12 @@
        * 
        */
       let pemberitahuan = document.querySelector('.modal-pemberitahuan');
-      let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
-        
-      })
-      modal_pemberitahuan.show();
+      if(pemberitahuan){
+        let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
+          
+        })
+        modal_pemberitahuan.show();
+      }
 
       /**
        * fungsi ditriger ketika modal dibuka
