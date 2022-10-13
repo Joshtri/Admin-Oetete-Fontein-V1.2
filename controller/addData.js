@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const url = require('url')
 
 // Connection Pool
 let connection = mysql.createConnection({
@@ -66,7 +67,11 @@ exports.create_keluarga = (req, res) => {
 
 exports.form_penduduk = (req, res) => {
   pool.getConnection((err, conn) => {
-    conn.query("SELECT * FROM keluarga", (err, rows) => {
+    /**
+     * karena int pada js memiliki batasan maka no_kk diconvert ke
+     * string
+     */
+    conn.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS no_kk FROM keluarga", (err, rows) => {
       if(err) throw new Error(err)
       conn.release();
       res.render("tambah-data-penduduk", { keluarga: rows });
@@ -94,14 +99,23 @@ exports.create_penduduk = (req, res) => {
     'INSERT INTO penduduk SET kel_no_kk = ?, nik = ?, nama = ?, jenis_kelamin = ?, lahir = ?, hubungan_keluarga = ?, pendidikan = ?, pekerjaan = ?, status_perkawinan = ?',
     [kel_no_kk, nik, nama, jenis_kelamin, lahir, hubungan_keluarga, pendidikan, pekerjaan, status_perkawinan],
     (err, rows) => {
-      if (!err) {
-        res.render("tambah-data-penduduk", {
-          alert: "User added successfully.",
-        });
-      } else {
-        console.log(err);
-      }
-      console.log("The data from user table: \n", rows);
+      if(err) return res.send(err);
+      if(err) return res.send(JSON.stringify(err));
+      if(err)
+        return res.redirect(url.format({
+          pathname:"/data/data-penduduk",
+          query: {
+            "sukses": false,
+            "pesan": "Gagal menambahkan data"
+          }
+        }));
+      return res.redirect(url.format({
+        pathname:"/data/data-penduduk",
+        query: {
+          "sukses": true,
+          "pesan": "Berhasil menambahkan data"
+        }
+      }));
     }
   );
 };

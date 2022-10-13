@@ -56,7 +56,7 @@
                 <select class="form-control" name="kel_no_kk">
                   <option>-</option>
                   <% for (let row of keluarga) {%>
-                    <option value="<%= row.kel_no_kk %>"><%= row.kel_no_kk %></td>
+                    <option value="<%= row.no_kk %>"><%= row.no_kk %>-<%= row.kepala_kel %></td>
                   <% } %>
                 </select>
               </div>
