@@ -25,7 +25,11 @@ exports.view_keluarga = (req, res) => {
       connection.release();
 
       if (!err) {
-        res.render("data-keluarga", { rows });
+        res.render("data-keluarga", { 
+          rows, 
+          sukses: req.query.sukses, 
+          pesan: req.query.pesan 
+        });
       } else {
         console.log(err);
       }
@@ -244,4 +248,3 @@ exports.update_publikasi = (req, res) => {
     console.log('The data from user table: \n', rows);
   });
 }
-

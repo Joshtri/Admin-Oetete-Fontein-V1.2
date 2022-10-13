@@ -9,6 +9,7 @@ let connection = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+
 const pool = mysql.createPool({
   connectionLimit: 100,
   host: process.env.DB_HOST,
@@ -16,6 +17,3 @@ const pool = mysql.createPool({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
 });
-
-
-
