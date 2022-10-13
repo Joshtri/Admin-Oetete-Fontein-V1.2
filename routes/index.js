@@ -1,11 +1,47 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+const mysql = require("mysql");
 
-var database  = require('../database')
+var database = require("../database");
+
+// Connection Pool
+let connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+  });
+  
+  const pool = mysql.createPool({
+    connectionLimit: 100,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+  });
 
 /* GET home page. */
-router.get('/main-admin', function (req, res, next) {
-  res.render('main-admin');
+router.get("/main-admin", function (req, res, next) {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+
+    //show data
+
+    connection.query("SELECT Count(no_kk) AS TotalNo_kk FROM keluarga", (err, rows) => {
+      //when done with the connection, release it.
+      connection.release();
+
+      if (!err) {
+        res.render("main-admin", { rows });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    });
+
+  });
 });
 
 //GET Publikasi
@@ -13,67 +49,51 @@ router.get('/main-admin', function (req, res, next) {
 //   res.render('publikasi');
 // });
 
-
 // GET data-kbli
-router.get('/data-umkm', function (req, res, next) {
-  res.render('data-umkm');
+router.get("/data-umkm", function (req, res, next) {
+  res.render("data-umkm");
 });
 
 /* GET login page. */
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Express', session : req.session });
+router.get("/", function (req, res, next) {
+  res.render("login", { title: "Express", session: req.session });
 });
 
-router.post('/main-admin', function(request, response, next){
+router.post("/main-admin", function (request, response, next) {
+  var user_name = request.body.user_name;
 
-    var user_name = request.body.user_name;
+  var user_password = request.body.user_password;
 
-    var user_password = request.body.user_password;
-
-    if(user_name && user_password)
-    {
-        query = `SELECT * FROM admin_login 
+  if (user_name && user_password) {
+    query = `SELECT * FROM admin_login 
         WHERE user_name = "${user_name}"`;
 
-        database.query(query, function(error, data){
+    database.query(query, function (error, data) {
+      if (data.length > 0) {
+        for (var count = 0; count < data.length; count++) {
+          if (data[count].user_password == user_password) {
+            request.session.user_id = data[count].user_id;
 
-            if(data.length > 0)
-            {
-                for(var count = 0; count < data.length; count++)
-                {
-                    if(data[count].user_password == user_password)
-                    {
-                        request.session.user_id = data[count].user_id;
-
-                        response.redirect("/");
-                    }
-                    else
-                    {
-                        response.send('Incorrect Password');
-                    }
-                }
-            }
-            else
-            {
-                response.send('Incorrect Email Address');
-            }
-            response.end();
-        });
-    }
-    else
-    {
-        response.send('Please Enter Email Address and Password Details');
-        response.end();
-    }
-
+            response.redirect("/");
+          } else {
+            response.send("Incorrect Password");
+          }
+        }
+      } else {
+        response.send("Incorrect Email Address");
+      }
+      response.end();
+    });
+  } else {
+    response.send("Please Enter Email Address and Password Details");
+    response.end();
+  }
 });
 
-router.get('/logout', function(request, response, next){
+router.get("/logout", function (request, response, next) {
+  request.session.destroy();
 
-    request.session.destroy();
-
-    response.redirect("/");
-
+  response.redirect("/");
 });
 
 module.exports = router;

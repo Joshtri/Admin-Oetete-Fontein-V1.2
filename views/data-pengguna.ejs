@@ -82,7 +82,7 @@
               <!-- <td scope="row" class="text-center" ><%= row.user_password %></td> -->
               <td scope="row" class="text-center" >Administrator</td>
               <td scope="row" class="text-center">
-                <button class="border-0" data-bs-toggle="modal" data-bs-target="#" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
+                <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"  data-json="<%= JSON.stringify(row) %>"><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
                 <button class="border-0" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
                 <!-- <button class="border-0"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button> -->
                 <a href="/data/data-pengguna/delete/<%= row.user_id %>"  type="button"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></a> 
@@ -96,9 +96,54 @@
       </div>
     </div>
 
+                  <!-- Modal untuk detail data.  --> 
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detail Pengguna</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body table-responsive">
+              <table class="table table-bordered no-margin">
+              <tbody>
+                <!-- <tr>
+                  <th style="width:50%">Id KK</th>
+                  <td>KK010202</td>
+                </tr> -->
+                
+                <tr>
+                  <th style="width:50%">Nama Lengkap</th>
+                  <td class="nama_lengkap"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Username</th>
+                  <td class="user_name"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">User Password</th>
+                  <td class="user_password"></td>
+                </tr>
+                
+
+                
+              </tbody>
+            </table>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -114,7 +159,7 @@
             </div>
         </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -130,6 +175,43 @@
         });
         $('.dataTables_length').addClass('bs-select');
         });
+
+          // semua elemen yang memiliki id exampleModal
+          let modal = document.querySelector("#exampleModal");
+        // menambah event listener pada setiap elemen modal
+        modal.addEventListener('show.bs.modal', event => {
+          console.log("Modal dibuka: ", event);
+          /**
+           * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+           * (tombol yang diklik)
+           * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+           * keluarga berupa json
+           * 
+           */
+          // cara mengakses data attribut dari jquery
+          // contoh atribut data-json
+          let data = $(event.relatedTarget).data('json');
+          // di console browser
+          console.log("data tombol yang diklik: ", data);
+
+          // binding data yang diterima dari tombol ke element yang ada pada modal detail
+          
+          // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+          $(modal).find(".user_id").text(data.user_id) // cara jquery
+          $(modal).find(".nama_lengkap").text(data.nama_lengkap) // cara jquery
+          // atau sama dengan cara vanilla javascript (javascript native/biasa)
+          // modal.querySelector('.no_kk').innerHTML = data.no_kk
+          // binding elemen lainnya yang ada pada modal detail
+          $(modal).find(".user_name").text(data.user_name)
+          $(modal).find(".user_password").text(data.user_password)
+          // $(modal).find(".kel_n_desa").text(data.kel_n_desa)
+          // $(modal).find(".kepala_kel").text(data.kepala_kel)
+          // $(modal).find(".kota_n_kab").text(data.kota_n_kab)
+          // $(modal).find(".provinsi").text(data.provinsi)
+          // $(modal).find(".rt").text(data.rt)
+          // $(modal).find(".rw").text(data.rw)
+                
+        });
       </script>
 
 
@@ -143,103 +225,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js" integrity="sha512-8pHNiqTlsrRjVD4A/3va++W1sMbUHwWxxRPWNyVlql3T+Hgfd81Qc6FC5WMXDC+tSauxxzp1tgiAvSKFu1qIlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
-
-    <script>
-
-      $(document).ready(function(){
-      
-          load_data();
-      
-          function load_data()
-          {
-              $.ajax({
-                  url:"http://localhost:3000/data/action",
-                  method:"POST",
-                  data:{action:'fetch'},
-                  dataType : "JSON",
-                  success:function(data)
-                  {
-                      var html = '';
-      
-                      if(data.data.length > 0)
-                      {
-                          for(var count = 0; count < data.data.length; count++)
-                          {
-                              html += `
-                              <tr>
-                                  <td>`+data.data[count].nama_lengkap+`</td>
-                                  <td>`+data.data[count].username+`</td>
-                                  <td>`+data.data[count].user_password+`</td>
-                                  <td><button type="button" class="btn btn-warning btn-sm edit" data-user_id="`+data.data[count].user_id+`">Edit</button></td>
-                              </tr>
-                              `;
-                          }
-                      }
-      
-                      $('#sample_form tbody').html(html);
-                  }
-              });
-          }
-      
-          $('#sample_form').on('submit', function(event){
-      
-              event.preventDefault();
-      
-              $.ajax({
-                  url:"http://localhost:3000/data/editing-pengguna",
-                  method:"POST",
-                  data:$('#sample_form').serialize(),
-                  dataType:"JSON",
-                  beforeSend:function(){
-                      $('#action_button').attr('disabled', 'disabled');
-                  },
-                  success:function(data)
-                  {
-                      $('#action_button').attr('disabled', false);
-      
-                      $('#message').html('<div class="alert alert-success">'+data.message+'</div>');
-      
-                      $('#action_modal').modal('hide');
-      
-                      load_data();
-      
-                      setTimeout(function(){
-                          $('#message').html('');
-                      }, 5000);
-                  }
-              });
-      
-          });
-      
-          $(document).on('click', '.edit', function(){
-      
-              var user_id = $(this).data('user_id');
-      
-              $('#dynamic_modal_title').text('Edit Data');
-      
-              $('#action').val('Edit');
-      
-              $('#action_button').text('Edit');
-      
-              $('#action_modal').modal('show');
-      
-              $.ajax({
-                  url:"http://localhost:3000/data/editing-pengguna",
-                  method:"POST",
-                  data:{user_id:user_id, action:'fetch_single'},
-                  dataType:"JSON",
-                  success:function(data)
-                  {
-                      $('#nama_lengkap').val(data.nama_lengkap);
-                      $('#user_name').val(data.user_name);
-                      $('#user_password').val(data.user_password);
-                  }
-              });
-      
-          });
-      });
-      
-      </script>
     
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
