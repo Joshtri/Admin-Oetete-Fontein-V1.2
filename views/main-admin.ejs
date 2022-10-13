@@ -39,7 +39,9 @@
             <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-users ms-2"></i></div>
               <h5 class="card-title">PENDUDUK</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">200</div>
+              <% for (let row of rows4) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.TotalNik %></div>
+              <% }%>
               <a href="/data/data-penduduk" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
@@ -47,7 +49,9 @@
             <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-credit-card"></i></div>
               <h6 class="card-title">KARTU KELUARGA</h6>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">10</div>
+              <% for (let row of rows1) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.TotalNo_kk %></div>
+              <% }%>
               <a href="/data/data-keluarga" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
@@ -56,7 +60,9 @@
             <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-mars-double"></i></div>
               <h5 class="card-title">LAKI-LAKI</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">50</div>
+              <% for (let row of rows2) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.Total_laki %></div>
+              <% }%>
               <a  class="text-decoration-none fw-bold" aria-disabled="true"><p class="card-text text-white" style="cursor:not-allowed;">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
@@ -66,7 +72,9 @@
             <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-venus-double"></i></div>
               <h5 class="card-title">PEREMPUAN</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">50</div>
+              <% for (let row of rows3) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.Total_perempuan %></div>
+              <% }%>
               <a class="text-decoration-none fw-bold" ><p class="card-text text-white"style="cursor:not-allowed;">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>  

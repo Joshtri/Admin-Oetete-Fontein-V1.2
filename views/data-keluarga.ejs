@@ -68,20 +68,6 @@
                 <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
                 <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
                 <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
-<<<<<<< HEAD
-                data-json="<%= JSON.stringify(row) %>"><i
-                  class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
-                  title="Detail"></i></button>
-                <!-- menambah data-form-action sebagai target / alamat proses untuk 
-                    mengubah data setiap data yang memiliki alamat update berbeda -->
-
-                    <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
-                    data-json="<%= JSON.stringify(row) %>"
-                    data-form-action="/data/data-keluarga/update/<%= row.no_kk %>"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
-                    
-                    data-toggle="tooltip" title="Edit"></i></button>
-
-=======
                   data-json="<%= JSON.stringify(row) %>"><i
                     class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
                     title="Detail"></i></button>
@@ -91,7 +77,6 @@
                     data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
                     data-json="<%= JSON.stringify(row) %>"
                     data-form-action="/data/data-keluarga/update/<%= row.no_kk %>"></i></button>
->>>>>>> 7caa1def2e67e41c59f105560e862706b251ed07
                 <a href="/data/data-keluarga/delete/<%= row.no_kk %>"><button class="border-0"><i
                       class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
                       title="Delete"></i></button></a>
@@ -330,19 +315,12 @@
        * 
        */
       let pemberitahuan = document.querySelector('.modal-pemberitahuan');
-<<<<<<< HEAD
-      let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
-        
-      })
-      modal_pemberitahuan.show();
-=======
       if(pemberitahuan){
         let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
           
         })
         modal_pemberitahuan.show();
       }
->>>>>>> 7caa1def2e67e41c59f105560e862706b251ed07
 
       /**
        * fungsi ditriger ketika modal dibuka

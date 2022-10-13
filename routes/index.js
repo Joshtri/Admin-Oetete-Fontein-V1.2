@@ -28,19 +28,36 @@ router.get("/main-admin", function (req, res, next) {
     console.log(`Connected as ID ` + connection.threadId);
 
     //show data
-
-    connection.query("SELECT Count(no_kk) AS TotalNo_kk FROM keluarga", (err, rows) => {
+    // SELECT SUM (jenis_kelamin = 'Perempuan') AS Total_perempuan FROM penduduk
+    connection.query("SELECT Count(no_kk) AS TotalNo_kk FROM keluarga", (err, rows1) => {
       //when done with the connection, release it.
-      connection.release();
-
-      if (!err) {
-        res.render("main-admin", { rows });
-      } else {
-        console.log(err);
-      }
-      console.log("The data from user table: \n", rows);
+      // connection.release();
+      connection.query("SELECT SUM(jenis_kelamin ='laki-laki') AS Total_laki FROM penduduk", (err, rows2) => {
+        //when done with the connection, release it.
+        connection.query("SELECT SUM (jenis_kelamin = 'Perempuan') AS Total_perempuan FROM penduduk", (err, rows3) => {
+          //when done with the connection, release it.
+          connection.query("SELECT Count(nik) AS TotalNik FROM penduduk", (err, rows4) => {
+             connection.release();
+  
+            if (!err) { 
+              res.render("main-admin", { rows1, rows2, rows3, rows4});
+            } else {
+              console.log(err);
+            }
+            console.log("The data from user table: \n",rows1, rows2, rows3,rows4);
+            }); 
+          }); 
+      });
+      // if (!err) {
+      //   res.render("main-admin", { rows });
+      // } else {
+      //   console.log(err);
+      // }
+      // console.log("The data from user table: \n", rows);
     });
-
+    
+    // SELECT SUM(jenis_kelamin ="Perempuan") AS Total_perempuan FROM penduduk;
+    
   });
 });
 
