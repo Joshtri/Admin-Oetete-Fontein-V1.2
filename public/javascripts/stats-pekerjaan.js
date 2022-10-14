@@ -24,6 +24,16 @@ const labels = [
   "Mengurus Rumah Tangga",
   "Pelajar/Mahasiswa",
   "Pensiunan",
+  "PNS",
+  "POLRI",
+  "TNI",
+  "WIRASWASTA",
+  "SWASTA",
+  "Pegawai BUMN",
+  "Pekerja Lepas",
+  "Petani/Peternak/Pekebun",
+  "Nelayan",
+  "Industri"
 ];
 const data = {
   labels: labels,
@@ -31,13 +41,23 @@ const data = {
     {
       label: ["My First dataset"],
       backgroundColor: [
-        "rgb(255, 99, 132)",
-        "rgb(54, 162, 235)",
-        "rgb(255, 205, 86)",
-        "rgb(255, 25, 86)",
+        "#62374E",
+        "#007880",
+        "#2D4263",
+        "#ECDBBA",
+        "#C84B31",
+        "#1E5128",
+        "#FFD700",
+        "#FF731D",
+        "#EEE3CB",
+        "#E80F88",
+        "#EB1D36",
+        "#9AD0EC",
+        "#F6D7A7",
+        "#C9D8B6"
       ],
-      data: [2, 10, 50, 20],
-      hoverOffset: 4,
+      data: [0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0],
+      hoverOffset: 14,
     },
   ],
 };
