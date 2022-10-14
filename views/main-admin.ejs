@@ -9,6 +9,17 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" href="/public/images/favicon.ico">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <style>
+        .card{
+          transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+          cursor: pointer;
+        }
+        .card:hover{
+          transform: scale(1.05);
+          box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+    </style>
     
     <title>Admin Panel</title>
   </head>
@@ -126,7 +137,7 @@
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-sack-dollar"></i></div>
               <h5 class="card-title">TOTAL UMKM</h5>
               <div class="display-4" style="font-weight:bold ; font-size:50px ;">170</div>
-              <a href="/data/data-kelahiran" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+              <a href="/data/data-umkm" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
 
@@ -135,7 +146,7 @@
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-shop"></i></div>
               <h5 class="card-title">US. MIKRO</h5>
               <div class="display-4" style="font-weight:bold ; font-size:50px ;">95</div>
-              <a href="/data/data-kematian" class="text-decoration-none fw-bold" ><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+              <a href="/data/data-umkm" class="text-decoration-none fw-bold" ><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>  
 
@@ -144,7 +155,7 @@
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-cart-shopping"></i></div>
               <h5 class="card-title">US. KECIL</h5>
               <div class="display-4" style="font-weight:bold ; font-size:50px ;">52</div>
-              <a href="/data/data-masuk" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+              <a href="/data/data-umkm" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
 
@@ -153,7 +164,7 @@
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-building"></i></div>
               <h5 class="card-title">US. MENENGAH</h5>
               <div class="display-4" style="font-weight:bold ; font-size:50px ;">23</div>
-              <a href="/data/data-pindah" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+              <a href="/data/data-umkm" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>  
         </div>
