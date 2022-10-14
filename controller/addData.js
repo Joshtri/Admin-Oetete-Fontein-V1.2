@@ -75,10 +75,55 @@ exports.form_penduduk = (req, res) => {
       if(err) throw new Error(err)
       conn.release();
       res.render("tambah-data-penduduk", { keluarga: rows });
-    })
-  })
+    });
+  });
 
 };
+
+exports.form_kelahiran  = (req, res) => {
+  pool.getConnection((err, conn) => {
+    /**
+     * karena int pada js memiliki batasan maka no_kk diconvert ke
+     * string
+     */
+    conn.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS no_kk FROM keluarga", (err, rows) => {
+      if(err) throw new Error(err)
+      conn.release();
+      res.render("tambah-data-kelahiran", { keluarga: rows });
+    });
+  });
+};
+
+
+// Add new user
+exports.create_kelahiran = (req, res) => {
+  const {
+    kel_no_kk,
+    nama,
+    jenis_kelamin,
+    tgl_lahir,
+
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO kelahiran SET kel_no_kk = ?, nama = ?, jenis_kelamin = ?, tgl_lahir = ?',
+    [kel_no_kk, nama, jenis_kelamin, tgl_lahir],
+      (err, rows) => {
+        if (!err) {
+          res.render("tambah-data-kelahiran", {
+            alert: "User added successfully.",
+          });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows);
+      }
+    );
+};
+
+
 // Add new user
 exports.create_penduduk = (req, res) => {
   const {
@@ -186,28 +231,28 @@ exports.create_publikasi = (req,res) =>{
 };
 
 
-exports.create_kelahiran = (req,res) =>{
-  const {
-    file_article,
-    tanggal_terbit,
-    judul_publish
-  } = req.body;
-  let searchTerm = req.body.search;
+// exports.create_kelahiran = (req,res) =>{
+//   const {
+//     file_article,
+//     tanggal_terbit,
+//     judul_publish
+//   } = req.body;
+//   let searchTerm = req.body.search;
 
-  // User the connection
-  connection.query(
-    'INSERT INTO publikasi SET file_article = ?, tanggal_terbit = ?, judul_publish = ?',
-    [file_article, tanggal_terbit, judul_publish],
-    (err, rows) => {
-      if (!err) {
-        res.render('tambah-data-kelahiran', {
-          //send this in views. 
-          alert: "User added successfully.",
-        });
-      } else {
-        console.log(err);
-      }
-      console.log("The data from user table: \n", rows);
-    }
-  );
-};
+//   // User the connection
+//   connection.query(
+//     'INSERT INTO publikasi SET file_article = ?, tanggal_terbit = ?, judul_publish = ?',
+//     [file_article, tanggal_terbit, judul_publish],
+//     (err, rows) => {
+//       if (!err) {
+//         res.render('tambah-data-kelahiran', {
+//           //send this in views. 
+//           alert: "User added successfully.",
+//         });
+//       } else {
+//         console.log(err);
+//       }
+//       console.log("The data from user table: \n", rows);
+//     }
+//   );
+// };

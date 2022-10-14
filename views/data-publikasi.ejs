@@ -81,13 +81,8 @@
               <td scope="row" class="text-center" ><%= row.tanggal_terbit %></td>
               <td scope="row" class="text-center">
                 <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
-                <a  href="javascript:void()"
-                data-judul="<%= row.judul_publish %>"
-                data-tanggal_terbit="<%= row.tanggal_terbit %>"
-                data-file_article="<%= row.file_article %>"
-                >
-                  <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button></a>
-                <a  href="/data/data-publikasi/delete/<%= row.id_publish %>"><button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalDelete" data-toggle="tooltip" title="Delete"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button></a> 
+                <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button></a>
+                <a href="/data/data-publikasi/delete/<%= row.id_publish %>"><button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalDelete" data-toggle="tooltip" title="Delete"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button></a> 
               </td>
               <% number++; %>
             </tr>
@@ -97,69 +92,53 @@
       </div>
     </div>
 
+      <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class=" modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detail Keluarga</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body table-responsive">
+        <table class="table table-bordered no-margin">
+          <tbody>
+            <!-- <tr>
+            <th style="width:50%">Id KK</th>
+            <td>KK010202</td>
+          </tr> -->
+            <tr>
+              <th style="width:50%">No KK</th>
+              <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
+              <td class="no_kk"></td>
+            </tr>
+            <tr>
+              <th style="width:50%">Kepala Keluarga</th>
+              <td class="kepala_kel"></td>
+            </tr>
+            <tr>
+              <th style="width:50%">Alamat</th>
+              <td class="alamat"></td>
+            </tr>
+            <tr>
+              <th style="width:50%">RT</th>
+              <td class="rt"></td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+  </div>
     
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"><img src="https://img.icons8.com/external-sbts2018-flat-sbts2018/58/000000/external-detail-basic-ui-elements-2.3-sbts2018-flat-sbts2018.png"/>Detail Data</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            Apakah anda sudah memastikan inputan data benar?
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-            <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
-        </div>
-        </div>
-      </div>
-
-      <!-- Modal Edit -->
-      <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Publikasi</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body table-responsive">
-            <table class="table table-bordered no-margin">
-              <tbody>
-                <% for (let row of rows) {%>
-                <tr>
-                    <tr>
-                      <th style="width:100%"> <label>Judul Publikasi</label></th>
-                      <td style="width:100%"><input type="text" name="judul_publish" value="<%= row.judul_publish %>" class="h-100"></td>
-                    </tr>
-                    <tr>
-                      <th style="width:100%"><label>Tanggal Terbit</label></th>
-                      <td style="width:100%"><input type="text" name="tanggal_terbit" value="<%= row.tanggal_terbit %>" class=""></td>
-                    </tr>
-                    <tr>
-                      <th style="width:50%"><label>Upload File</label></th>
-                      <td style="width:80%"><input type="file" name="file_article" value="<%= row.file_article%>"  class=""></td>
-                    </tr>
-                 </tr>
-                </tbody>
-                <% }%>
-            </table>
-          </div>
-
-          <div class="modal-footer">
-
-            <button type="submit" class="btn btn-primary">Simpan</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-      </div>
 
     
 

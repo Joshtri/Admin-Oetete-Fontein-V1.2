@@ -94,17 +94,24 @@
             <td scope="row" class="text-center"><%= row.hubungan_keluarga %></td>
             <td scope="row" class="text-center"><%= row.kel_no_kk %></td>
             <td scope="row" class="text-center">
-              <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
-                  title="Detail"></i>
-              </button>
-              <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                <i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip"
-                  title="Edit"></i>
-              </button>
-              <a href="/data/data-penduduk/delete/<%= row.nik %>"><button class="border-0" data-bs-toggle="modal"><i
-                    class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
-                    title="Delete"></i></button></a>
+              <div class="d-flex flex-nowrap">
+                <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
+                <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
+                <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-json="<%= JSON.stringify(row) %>"><i
+                    class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
+                    title="Detail"></i></button>
+                <!-- menambah data-form-action sebagai target / alamat proses untuk 
+                    mengubah data setiap data yang memiliki alamat update berbeda -->
+                <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                data-json="<%= JSON.stringify(row) %>"
+                data-form-action="/data/data-penduduk/update/<%= row.nik %>"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                    data-toggle="tooltip" title="Edit" ></i></button>
+
+                <a href="/data/data-keluarga/delete/<%= row.no_kk %>"><button class="border-0"><i
+                      class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
+                      title="Delete"></i></button></a>
+              </div>
             </td>
             <% number++; %>
           </tr>
@@ -114,184 +121,174 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"">
-    <div class=" modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Penduduk</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body table-responsive">
-        <table class="table table-bordered no-margin">
-          <tbody>
-            <tr>
-              <th style="width:50%">No KK</th>
-              <td>1234567891234567</td>
-            </tr>
-            <tr>
-              <th style="width:50%">NIK</th>
-              <td>5371041506020007</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Nama</th>
-              <td>Tesalonika Maharani Cornelia</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Jenis Kelamin</th>
-              <td>Perempuan</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Tanggal Lahir</th>
-              <td>29/08/2002</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Pendidikan Terakhir</th>
-              <td>SMA/SMLB/MA/SMK/MAK/paket C</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Pekerjaan</th>
-              <td>Mahasiswa</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Status Perkawinan</th>
-              <td>Belum Menikah</td>
-            </tr>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class=" modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Detail Penduduk</h5>
+      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body table-responsive">
+      <table class="table table-bordered no-margin">
+        <tbody>
+          <!-- <tr>
+          <th style="width:50%">Id KK</th>
+          <td>KK010202</td>
+        </tr> -->
+          <tr>
+            <th style="width:50%">NIK</th>
+        <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
+            <td class="nik"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">No KK</th>
+            <td class="kel_no_kk"></td>
+          </tr>
 
-
-          </tbody>
-        </table>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+          <tr>
+            <th style="width:50%">Nama</th>
+            <td class="nama"></td>
+          </tr>
+          <!-- <tr>
+            <th style="width:50%">Alamat</th>
+            <td class="alamat"></td>
+          </tr> -->
+          <tr>
+            <th style="width:50%">Jenis Kelamin</th>
+            <td class="jenis_kelamin"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">Lahir</th>
+            <td class="lahir"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">Hubungan Keluarga</th>
+            <td class="hubungan_keluarga"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">Pendidikan</th>
+            <td class="pendidikan"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">Pekerjaan</th>
+            <td class="pekerjaan"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">Status Perkawinan</th>
+            <td class="status_perkawinan"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     </div>
   </div>
-  </div>
+</div>
+</div>
 
-  <!-- Modal Delete-->
-  <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabelDelete">Hapus Data</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body table-responsive">
-          <table class="table table-bordered no-margin">
-            <tbody>
-              <p> Apakah anda ingin menghapus data ? </p>
-            </tbody>
-          </table>
+  <!-- Modal edit -->
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- Modal Edit -->
   <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Penduduk</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body table-responsive">
-          <table class="table table-bordered no-margin">
-            <tbody>
-              <tr>
-                <th style="width:50%">No KK</th>
-                <td>1234567891234567</td>
-              </tr>
-              <tr>
-                <th style="width:50%">NIK</th>
-                <td>5371041506020007</td>
-              </tr>
-              <tr>
-                <th style="width:50%">Nama</th>
-                <td>Tesalonika Maharani Cornelia</td>
-              </tr>
-              <tr>
-                <th style="width:50%">Jenis Kelamin</th>
-                <td>Perempuan</td>
-              </tr>
-              <tr>
-                <th style="width:50%">Tanggal Lahir</th>
-                <td>29/08/2002</td>
-              </tr>
-              <tr>
-                <th style="width:50%">Pendidikan Terakhir</th>
-                <td>SMA/SMLB/MA/SMK/MAK/paket C</td>
-              </tr>
-              <tr>
-                <th style="width:50%">Pekerjaan</th>
-                <td>Mahasiswa</td>
-              </tr>
-              <tr>
-                <th style="width:50%">Status Perkawinan</th>
-                <td>Belum Menikah</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <form action="" class="form-edit" method="POST">
+        <!-- menambah form 🔥🔥🔥🔥🔥🔥 -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Penduduk</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body table-responsive">
+            <table class="table table-bordered no-margin">
+              <tbody>
+                <tr>
+                  <th style="width:50%">NIK</th>
+                  <td>
+                    <!-- menambah target binding berdasarkan atribut name -->
+                    <input type="number" name="nik" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">No KK</th>
+                  <td>
+      
+                    <input type="number" name="kel_no_kk" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Nama</th>
+                  <td>
+                    <input type="text" name="nama" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Jenis Kelamin</th>
+                  <td>
+                    <input type="text" name="jenis_kelamin" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Lahir</th>
+                  <td>
+                    <input type="date" name="lahir" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Hubungan Keluarga</th>
+                  <td>
+                    <input type="text" name="hubungan_keluarga" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Pendidikan</th>
+                  <td>
+                    <input type="text" name="pendidikan" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Pekerjaan</th>
+                  <td>
+                    <input type="text" name="pekerjaan" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Status Perkawinan</th>
+                  <td>
+                    <input type="text" name="status_perkawinan" class="form-control" />
+                  </td>
+                </tr>
 
-        <div class="modal-footer">
+              </tbody>
+            </table>
 
-          <button type="button" class="btn btn-primary">Simpan</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
-      </div>
     </div>
+    </form>
   </div>
 
 
-  <!-- Modal Delete-->
-  <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabelDelete">Hapus Data</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body table-responsive">
-          <table class="table table-bordered no-margin">
-            <tbody>
-              <p> ???? </p>
-            </tbody>
-          </table>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
   
   <!-- 🔥🔥🔥🔥 modal pemberitahuan -->
   <% 
     if(typeof sukses != "undefined"){
   %>
   <div class="modal fade modal-pemberitahuan" tabindex="-1" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog modal-dialog-centered"">
+    <div class="modal-dialog modal-dialog-centered">
     <div class=" modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
@@ -310,9 +307,7 @@
     </div>
   </div>
   </div>
-  <% 
-    }
-  %>
+  <% } %>
 
   <!--Modal Information-->
 
@@ -321,13 +316,18 @@
   <!-- footer end   -->
 
   <script>
-    $(document).ready(function () {
-      
+       $(document).ready(function () {
+      $('#dtHorizontalVerticalExample').DataTable({
+        "scrollX": true,
+        "scrollY": 200,
+      });
+      $('.dataTables_length').addClass('bs-select');
+
       /**
        * aktivasi modal pemberitahuan
        * 
        */
-       let pemberitahuan = document.querySelector('.modal-pemberitahuan');
+      let pemberitahuan = document.querySelector('.modal-pemberitahuan');
       if(pemberitahuan){
         let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
           
@@ -335,11 +335,73 @@
         modal_pemberitahuan.show();
       }
 
-      $("#dtHorizontalVerticalExample").DataTable({
-        scrollX: true,
-        scrollY: 200,
+            /**
+       * fungsi ditriger ketika modal dibuka
+       * 
+       */
+      // semua elemen yang memiliki id exampleModal
+      let modal = document.querySelector("#exampleModal");
+      // menambah event listener pada setiap elemen modal
+      modal.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        /**
+         * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+         * (tombol yang diklik)
+         * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+         * keluarga berupa json
+         * 
+         */
+        // cara mengakses data attribut dari jquery
+        // contoh atribut data-json
+        let data = $(event.relatedTarget).data('json');
+        // di console browser
+        console.log("data tombol yang diklik: ", data);
+
+        // binding data yang diterima dari tombol ke element yang ada pada modal detail
+
+        // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+        $(modal).find(".nik").text(data.nik) // cara jquery
+        // atau sama dengan cara vanilla javascript (javascript native/biasa)
+        // modal.querySelector('.no_kk').innerHTML = data.no_kk
+        // binding elemen lainnya yang ada pada modal detail
+        $(modal).find(".kel_no_kk").text(data.kel_no_kk)
+        $(modal).find(".nama").text(data.nama)
+        $(modal).find(".jenis_kelamin").text(data.jenis_kelamin)
+        $(modal).find(".lahir").text(data.lahir)
+        $(modal).find(".hubungan_keluarga").text(data.hubungan_keluarga)
+        $(modal).find(".pendidikan").text(data.pendidikan)
+        $(modal).find(".pekerjaan").text(data.pekerjaan)
+        $(modal).find(".status_perkawinan").text(data.status_perkawinan)
+        // $(modal).find(".rw").text(data.rw)
+
       });
-      $(".dataTables_length").addClass("bs-select");
+      /**
+       * modal edit sama seperti modal detail
+       */
+      let modal_edit = document.querySelector("#exampleModalEdit");
+      modal_edit.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        let data = $(event.relatedTarget).data('json');
+        let target = $(event.relatedTarget).data('form-action');
+        console.log("data tombol yang diklik: ", data);
+        console.log("data elemen target: ", data);
+        console.log("data form target: ", target);
+        
+        // binding action form dari data target form
+        $(modal_edit).find("form").attr("action", target)
+        // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
+        $(modal_edit).find("[name='nik']").val(data.nik) // cara jquery
+        $(modal_edit).find("[name='kel_no_kk']").val(data.kel_no_kk) // cara jquery
+        $(modal_edit).find("[name='nama']").val(data.nama)
+        $(modal_edit).find("[name='jenis_kelamin']").val(data.jenis_kelamin)
+        $(modal_edit).find("[name='lahir']").val(data.lahir)
+        $(modal_edit).find("[name='hubungan_keluarga']").val(data.hubungan_keluarga)
+        $(modal_edit).find("[name='pendidikan']").val(data.pendidikan)
+        $(modal_edit).find("[name='pekerjaan']").val(data.pekerjaan)
+        $(modal_edit).find("[name='status_perkawinan']").val(data.status_perkawinan)
+        // $(modal_edit).find("[name='rw']").val(data.rw)
+
+      });
     });
   </script>
 

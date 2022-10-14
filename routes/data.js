@@ -256,4 +256,53 @@ router.post("/editing-pengguna", function (request, response, next) {
   }
 });
 
+
+router.post("/data-penduduk/update/:nik", function (request, response, next) {
+  var nik = request.params.nik;
+  // response.send("Cek No KK = " + no_kk);
+  // response.send("Cek Body = " + JSON.stringify(request.body));
+
+  let query = `
+    UPDATE penduduk SET
+      nik = ?,
+      kel_no_kk = ?,
+      nama = ?,
+      jenis_kelamin = ?,
+      lahir = ?,
+      hubungan_keluarga = ?,
+      pendidikan = ?,
+      pekerjaan = ?,
+      status_perkawinan = ?
+    WHERE nik = ?`;
+  database.query(query, [
+    request.body.nik,
+    request.body.kel_no_kk,
+    request.body.nama,
+    request.body.jenis_kelamin,
+    request.body.lahir,
+    request.body.hubungan_keluarga,
+    request.body.pendidikan,
+    request.body.pekerjaan,
+    request.body.status_perkawinan,
+
+    nik
+  ], (err, row) => {
+    if(err)
+      return response.redirect(url.format({
+        pathname:"/data/data-penduduk",
+        query: {
+          "sukses": false,
+          "pesan": "Gagal menyimpan perubahan"
+        }
+      }));
+    return response.redirect(url.format({
+      pathname:"/data/data-penduduk",
+      query: {
+        "sukses": true,
+        "pesan": "Berhasil menyimpan perubahan"
+      }
+    }));
+  })
+});
+
 module.exports = router;

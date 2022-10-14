@@ -23,40 +23,49 @@
       <div class="col-md-10 p-5 pt-5">
         <h3><i class="fa-solid fa-users ms-2"></i>&nbsp&nbspTAMBAH DATA KELAHIRAN</h3><hr>
         
-        <form>
+        <form method="POST" action="/tambah_data/tambah-data-kelahiran" novalidate>
             <!-- <div class="form-label">
             <label>ID Kelahiran</label>
             <input type="text" name="" class="form-control">
             </div> -->
-
             <div class="form-label">
-                <label>No KK</label>
-                <input type="text" name="" class="form-control">
+            <label>Nama Lengkap</label>
+            <input type="text" name="nama" class="form-control">
             </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-label">
+                <label>Keluarga</label>
+                <select class="form-control" name="kel_no_kk">
+                  <option>-</option>
+                  <% for (let row of keluarga) {%>
+                    <option value="<%= row.kel_no_kk %>"><%= row.kel_no_kk %></td>
+                  <% } %>
+                </select>
+              </div>
+            </div>
+          </div>
  
 
-            <div class="form-label">
-            <label>Nama</label>
-            <input type="text" name="" class="form-control">
-            </div>
 
             <div class="form-label">
             <label>Pilih Jenis Kelamin</label>
-                <select class="form-control">
-                    <option value="">-</option>
-                    <option value="">Pria</option>
-                    <option value="">Wanita</option>
+                <select class="form-control" name="jenis_kelamin">
+                    <option>-</option>
+                    <option value="Laki-Laki">Laki-Laki</option>
+                    <option value="Perempuan">Perempuan</option>
                 </select>
 
                 <div class="col-md-6">
                 <div class="form-label">
                         <label>Tanggal Lahir</label>
-                        <input type="date" name="" class="form-control">
+                        <input type="date" name="tgl_lahir" class="form-control">
                 </div>
                 </div>
 
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">SIMPAN</button>
+            <button type="submit" class="btn btn-primary">SIMPAN</button>
             <a href=""><button type="reset" class="btn btn-danger">RESET</button></a>
             <a href="/data/data-kelahiran"><button type="button" class="btn btn-warning">KEMBALI</button></a>
         
@@ -77,8 +86,8 @@
             Apakah anda sudah memastikan inputan data benar?
             </div>
             <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-            <button type="button" class="btn btn-primary">Simpan</button>
             </div>
         </div>
         </div>

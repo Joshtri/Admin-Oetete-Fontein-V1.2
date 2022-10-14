@@ -21,9 +21,10 @@ router.post('/tambah-data-keluarga', UserController.create_keluarga);
 // router.get('/tambah-data-penduduk', UserController.form)
 // router.post('/tambah-data-penduduk', UserController.create); 
 
-router.get('/tambah-data-kelahiran', function (req, res, next) {
-    res.render('tambah-data-kelahiran');
-});
+router.get('/tambah-data-kelahiran', UserController.form_kelahiran); 
+router.post('/tambah-data-kelahiran', UserController.create_kelahiran); 
+
+
 router.get('/tambah-data-masuk', function (req, res, next) {
     res.render('tambah-data-masuk');
 });
