@@ -12,7 +12,7 @@ const data = {
                 "#1E5128"
             ],
 
-            data: [2, 10, 50, 20],
+            data: [0, 0, 0, 0],
             hoverOffset: 4,
         },
     ],

@@ -88,7 +88,6 @@
                 <a href="/data/data-pengguna/delete/<%= row.user_id %>"  type="button"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></a> 
               </td>
               <% number++; %>
-              <%- include('edit-modal-pengguna.ejs'); -%>
             </tr>
             <% }%>
           </tbody>
@@ -204,14 +203,31 @@
           // binding elemen lainnya yang ada pada modal detail
           $(modal).find(".user_name").text(data.user_name)
           $(modal).find(".user_password").text(data.user_password)
-          // $(modal).find(".kel_n_desa").text(data.kel_n_desa)
-          // $(modal).find(".kepala_kel").text(data.kepala_kel)
-          // $(modal).find(".kota_n_kab").text(data.kota_n_kab)
-          // $(modal).find(".provinsi").text(data.provinsi)
-          // $(modal).find(".rt").text(data.rt)
-          // $(modal).find(".rw").text(data.rw)
+
+
                 
         });
+              /**
+       * modal edit sama seperti modal detail
+       */
+      let modal_edit = document.querySelector("#exampleModalEdit");
+      modal_edit.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        let data = $(event.relatedTarget).data('json');
+        let target = $(event.relatedTarget).data('form-action');
+        console.log("data tombol yang diklik: ", data);
+        console.log("data elemen target: ", data);
+        console.log("data form target: ", target);
+        // binding action form dari data target form
+        $(modal_edit).find("form").attr("action", target)
+        // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
+        $(modal_edit).find("[name='user_id']").val(data.user_id) // cara jquery
+        $(modal_edit).find("[name='nama_lengkap']").val(data.nama_lengkap)
+        $(modal_edit).find("[name='user_name']").val(data.user_name)
+        $(modal_edit).find("[name='user_password']").val(data.user_password)
+
+
+      });
       </script>
 
 

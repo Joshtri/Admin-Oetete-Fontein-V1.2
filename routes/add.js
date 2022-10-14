@@ -36,10 +36,6 @@ router.get('/tambah-data-umkm',function(req,res,next){
     res.render('tambah-data-umkm');
 });
 
-// GET tambah publikasi.
-// router.get('/tambah-data-publikasi',function(req,res,next){
-//     res.render('tambah-data-publikasi');
-// });
 
 // GET tambah publikasi.
 router.get('/tambah-data-publikasi',UserController.form_publikasi_add);
