@@ -80,11 +80,12 @@
               <% for (let row of rows) {%>
               <td scope="row" class="text-center"><%= number %></td>
                                                            <!-- <td scope="row" class="text-center"></td> -->
-              <td scope="row" class="text-center"><%= row.kel_no_kk %></td>
+              <td scope="row" class="text-center"><%= row.kel_no_kk_lahir %></td>
               <td scope="row" class="text-center"><%= row.nama %></td>
               <td scope="row" class="text-center"><%= row.jenis_kelamin %></td>
               <td scope="row" class="text-center"><%= row.tgl_lahir %></td>
               <td scope="row" class="text-center">
+                <div class="d-flex flex-nowrap">
                 <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i>
                 </button>
@@ -92,6 +93,7 @@
                 <a href="/data/data-kelahiran/delete/<%= row.id_lahir %>"><button class="border-0">
                   <i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i>
                 </button></a>
+                </div>
               </td>
               <% number++; %>
             </tr>
