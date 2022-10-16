@@ -506,7 +506,7 @@
   </div>
 
  <!-- 🔥🔥🔥🔥 modal pemberitahuan -->
- <% 
+ <!-- <% 
  if(typeof sukses != "undefined") {
 %>
 <div class="modal fade modal-pemberitahuan" tabindex="-1" aria-labelledby="exampleModalLabel">
@@ -531,7 +531,7 @@
 </div>
 <% 
  }
-%>
+%> -->
 
       <!-- footer start -->
       <%- include('footer'); -%>
@@ -545,17 +545,17 @@
       });
       $('.dataTables_length').addClass('bs-select');
 
-      /**
-       * aktivasi modal pemberitahuan
-       * 
-       */
-       let pemberitahuan = document.querySelector('.modal-pemberitahuan');
-      if(pemberitahuan){
-        let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
+      // /**
+      //  * aktivasi modal pemberitahuan
+      //  * 
+      //  */
+      //  let pemberitahuan = document.querySelector('.modal-pemberitahuan');
+      // if(pemberitahuan){
+      //   let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
           
-        })
-        modal_pemberitahuan.show();
-      }
+      //   })
+      //   modal_pemberitahuan.show();
+      // }
 
       /**
        * fungsi ditriger ketika modal dibuka
@@ -639,23 +639,6 @@
       });
     });
     </script>
-
-<!-- nama_usaha,
-alamat_tempat_usaha,
-nama_kk,
-umur,
-nama_pemilik,
-alamat_tempat_tinggal,
-pendidikan_pemilik,
-jenis_lokasi_usaha,
-jenis_pengelolaan_usaha,
-kbli,
-rincian_kgiatan_usaha,
-omset,
-kekayaan_bersih_usaha,
-jumlah_tenaga_kerja,
-modal_usaha,
-bina_usaha, -->
     
     <!-- <h1>Hello, world!</h1> -->
 

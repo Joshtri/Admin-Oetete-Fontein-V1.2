@@ -32,21 +32,25 @@ router.get("/main-admin", function (req, res, next) {
     connection.query("SELECT Count(no_kk) AS TotalNo_kk FROM keluarga", (err, rows1) => {
       //when done with the connection, release it.
       // connection.release();
-      connection.query("SELECT SUM(jenis_kelamin ='laki-laki') AS Total_laki FROM penduduk", (err, rows2) => {
+      connection.query("SELECT SUM(jenis_kelamin ='Laki-Laki') AS TotalLaki FROM penduduk", (err, rows2) => {
         //when done with the connection, release it.
         connection.query("SELECT SUM (jenis_kelamin = 'Perempuan') AS Total_perempuan FROM penduduk", (err, rows3) => {
           //when done with the connection, release it.
           connection.query("SELECT Count(nik) AS TotalNik FROM penduduk", (err, rows4) => {
+            //when done with the connection, release it.
+            connection.query("SELECT COUNT(id_Usaha) AS TotalUMKM FROM umkm", (err, rows5) => {
+
              connection.release();
   
             if (!err) { 
-              res.render("main-admin", { rows1, rows2, rows3, rows4});
+              res.render("main-admin", { rows1, rows2, rows3, rows4, rows5});
             } else {
               console.log(err);
             }
-            console.log("The data from user table: \n",rows1, rows2, rows3,rows4);
+            console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5);
             }); 
           }); 
+        });
       });
       // if (!err) {
       //   res.render("main-admin", { rows });

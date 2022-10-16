@@ -135,7 +135,9 @@
             <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-sack-dollar"></i></div>
               <h5 class="card-title">TOTAL UMKM</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">170</div>
+              <% for (let row of rows5) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.TotalUMKM %></div>
+              <% }%>
               <a href="/data/data-umkm" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
