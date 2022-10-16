@@ -292,7 +292,18 @@
                            <tr>
                              <th style="width:50%">Pendidikan Pemilik Usaha</th>
                              <td>
-                              <input type="text" name="pendidikan_pemilik" class="form-control">
+                              <select class="form-control" name="pendidikan_pemilik">
+                                <option>-</option>
+                                <option value="Belum/Tidak Pernah Sekolah">Belum/Tidak Pernah Sekolah</option>
+                                <option value="Belum/Tidak Tamat SD/SDLB/MI/Paket A">Belum/Tidak Tamat SD/SDLB/MI/Paket A</option>
+                                <option value="SD/SDLB/MI/Paket A">SD/SDLB/MI/Paket A</option>
+                                <option value="SMP/SMPLB/MTs/Paket B">SMP/SMPLB/MTs/Paket B</option>
+                                <option value="SMA/SMLB/MA/SMK/MAK/paket C">SMA/SMLB/MA/SMK/MAK/paket C</option>
+                                <option value="DI/DII/DII">DI/DII/DII</option>
+                                <option value="DIV/S1">DIV/S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S3">S3</option>
+                              </select>
                              </td>
                            </tr>
                          </tbody>
@@ -308,19 +319,117 @@
                          <tr>
                            <th style="width:50%">Jenis Lokasi Tempat Usaha</th>
                            <td>
-                            <input type="text" name="jenis_lokasi_usaha" class="form-control">
+                            <select class="form-control" name="jenis_lokasi_usaha">
+                              <option>-</option>
+                              <option value="Tetap">Tetap</option>
+                              <option value="Keliling">Keliling</option>
+                            </select>
                            </td>
                          </tr>
                          <tr>
                            <th style="width:50%">Jenis Pengelolaan Usaha</th>
                            <td>
-                            <input type="text" name="jenis_pengelolaan_usaha" class="form-control">
+                            <select class="form-control" name="jenis_pengelolaan_usaha">
+                              <option>-</option>
+                              <option value="Perorangan">Perorangan</option>
+                              <option value="Badan Usaha">Badan Usaha</option>
+                            </select>
                            </td>
                          </tr>
                          <tr>
                            <th style="width:50%">KBLI</th>
                            <td>
-                            <input type="text" name="kbli" class="form-control">
+                            <select class="form-control" name="kbli">
+                              <option>-</option>
+                              <option value="Pertanian Tanaman, Peternakan, Perburuan dan Kegiatan YBDI">Pertanian Tanaman, Peternakan, Perburuan dan Kegiatan YBDI</option>
+                              <option value="Pengelolaan Kehutanan dan Penebangan">Pengelolaan Kehutanan dan Penebangan</option>
+                              <option value="Perikanan">Perikanan</option>
+                              <option value="Pertambangan Batu Bara dan Lignit">Pertambangan Batu Bara dan Lignit</option>
+                              <option value="Pertambangan Minyak Bumi dan Gas Alam dan Panas Bumi">Pertambangan Minyak Bumi dan Gas Alam dan Panas Bumi</option>
+                              <option value="Pertambangan Bijih Logam">Pertambangan Bijih Logam</option>
+                              <option value="Pertambangan dan Penggalian Lainnya">Pertambangan dan Penggalian Lainnya</option>
+                              <option value="Aktivitas Jasa Penunjang Pertambangan">Aktivitas Jasa Penunjang Pertambangan</option>
+                              <option value="Industri Makanan">Industri Makanan</option>
+                              <option value="Industri Minuman">Industri Minuman</option>
+                              <option value="Industri Pengolahan Tembakau">Industri Pengolahan Tembakau</option>
+                              <option value="Industri Tekstil">Industri Tekstil</option>
+                              <option value="Industri Pakaian Jadi">Industri Pakaian Jadi</option>
+                              <option value="Industri Kulit, Barang dari Kulit dan Alas Kaki">Industri Kulit, Barang dari Kulit dan Alas Kaki</option>
+                              <option value="Industri Kayu, Barang dari Kayu dan Gabus (Tidak Termasuk Furnitur) dan Barang Anyaman dari Bambu, Rotan dan Sejenisnya">Industri Kayu, Barang dari Kayu dan Gabus (Tidak Termasuk Furnitur) dan Barang Anyaman dari Bambu, Rotan dan Sejenisnya</option>
+                              <option value="Industri Kertas dan Barang dari Kertas">Industri Kertas dan Barang dari Kertas</option>
+                              <option value="Industri Pencetakan dan Reproduksi Media Rekaman">Industri Pencetakan dan Reproduksi Media Rekaman</option>
+                              <option value="Industri Produk Dari Batu Bara dan Pengilangan Minyak Bumi">Industri Produk Dari Batu Bara dan Pengilangan Minyak Bumi</option>
+                              <option value="Industri Bahan Kimia dan Barang dari Bahan Kimia">Industri Bahan Kimia dan Barang dari Bahan Kimia</option>
+                              <option value="Industri Farmasi, Produk Obat Kimia dan Obat Tradisional">Industri Farmasi, Produk Obat Kimia dan Obat Tradisional</option>
+                              <option value="Industri Karet, Barang dari Karet dan Plastik">Industri Karet, Barang dari Karet dan Plastik</option>
+                              <option value="Industri Barang Galian Bukan Logam">Industri Barang Galian Bukan Logam</option>
+                              <option value="Industri Logam Dasar">Industri Logam Dasar</option>
+                              <option value="Industri Barang Logam, Bukan Mesin dan Peralatannya">Industri Barang Logam, Bukan Mesin dan Peralatannya</option>
+                              <option value="Industri Komputer, Barang Elektronik dan Optik">Industri Komputer, Barang Elektronik dan Optik</option>
+                              <option value="Industri Peralatan Listrik">Industri Peralatan Listrik</option>
+                              <option value="Industri Mesin dan Perlengkapan ytdl">Industri Mesin dan Perlengkapan ytdl</option>
+                              <option value="Industri Kendaraan Bermotor, Trailer dan Semi Trailer">Industri Kendaraan Bermotor, Trailer dan Semi Trailer</option>
+                              <option value="Industri Alat Angkutan Lainnya">Industri Alat Angkutan Lainnya</option>
+                              <option value="Industri Furnitur">Industri Furnitur</option>
+                              <option value="Industri Pengolahan Lainnya">Industri Pengolahan Lainnya</option>
+                              <option value="Reparasi dan Pemasangan Mesin dan Peralatan">Reparasi dan Pemasangan Mesin dan Peralatan</option>
+                              <option value="Pengadaan Listrik, Gas, Uap/Air Panas dan Udara Dingin">Pengadaan Listrik, Gas, Uap/Air Panas dan Udara Dingin</option>
+                              <option value="Treatment Air">Treatment Air</option>
+                              <option value="Treatment Air Limbah">Treatment Air Limbah</option>
+                              <option value="Pengumpulan, Treatment dan Pembuangan Limbah dan Sampah Serta Aktivitas Pemulihan Material">Pengumpulan, Treatment dan Pembuangan Limbah dan Sampah Serta Aktivitas Pemulihan Material</option>
+                              <option value="Aktivitas Remediasi dan Pengelolaan Limbah dan Sampah Lainnya">Aktivitas Remediasi dan Pengelolaan Limbah dan Sampah Lainnya</option>
+                              <option value="Konstruksi Gedung">Konstruksi Gedung</option>
+                              <option value="Konstruksi Bangunan Sipil">Konstruksi Bangunan Sipil</option>
+                              <option value="Konstruksi Khusus">Konstruksi Khusus</option>
+                              <option value="Perdagangan, Reparasi dan Perawatan Mobil dan Sepeda Motor">Perdagangan, Reparasi dan Perawatan Mobil dan Sepeda Motor</option>
+                              <option value="Perdagangan Besar, Bukan Mobil dan Sepeda Motor">Perdagangan Besar, Bukan Mobil dan Sepeda Motor</option>
+                              <option value="Perdagangan Eceran, Bukan Mobil dan Motor">Perdagangan Eceran, Bukan Mobil dan Motor</option>
+                              <option value="Angkutan Darat dan Angkutan Melalui Saluran Pipa">Angkutan Darat dan Angkutan Melalui Saluran Pipa</option>
+                              <option value="Angkutan Perairan">Angkutan Perairan</option>
+                              <option value="Angkutan Udara">Angkutan Udara</option>
+                              <option value="Pergudangan dan Aktivitas Penunjang Angkutan">Pergudangan dan Aktivitas Penunjang Angkutan</option>
+                              <option value="Aktivitas Pos dan Kurir">Aktivitas Pos dan Kurir</option>
+                              <option value="Penyediaan Akomodasi">Penyediaan Akomodasi</option>
+                              <option value="Penyediaan Makanan dan Minuman">Penyediaan Makanan dan Minuman</option>
+                              <option value="Aktivitas Penerbitan">Aktivitas Penerbitan</option>
+                              <option value="Aktivitas Produksi Gambar Bergerak, Video dan Program Televisi, Perekaman Suara dan Penerbitan Musik">Aktivitas Produksi Gambar Bergerak, Video dan Program Televisi, Perekaman Suara dan Penerbitan Musik</option>
+                              <option value="Aktivitas Penyiaran dan Pemrograman">Aktivitas Penyiaran dan Pemrograman</option>
+                              <option value="Telekomunikasi">Telekomunikasi</option>
+                              <option value="Aktivitas Pemrograman, Konsultasi Komputer dan Kegiatan Ybdi">Aktivitas Pemrograman, Konsultasi Komputer dan Kegiatan Ybdi</option>
+                              <option value="Aktivitas Jasa Informasi">Aktivitas Jasa Informasi</option>
+                              <option value="Aktivitas Jasa Keuangan, Bukan Asuransi dan Dana Pensiun">Aktivitas Jasa Keuangan, Bukan Asuransi dan Dana Pensiun</option>
+                              <option value="Asuransi, Penjaminan, Reasuransi dan Dana Pensiun, Bukan Jaminan Sosial Wajib">Asuransi, Penjaminan, Reasuransi dan Dana Pensiun, Bukan Jaminan Sosial Wajib</option>
+                              <option value="Aktivitas Penunjang Jasa Keuangan, Asuransi, Penjaminan dan Dana Pensiun">Aktivitas Penunjang Jasa Keuangan, Asuransi, Penjaminan dan Dana Pensiun</option>
+                              <option value="Real Estat">Real Estat</option>
+                              <option value="Aktivitas Hukum dan Akuntansi">Aktivitas Hukum dan Akuntansi</option>
+                              <option value="Aktivitas Kantor Pusat dan Konsultasi Manajemen">Aktivitas Kantor Pusat dan Konsultasi Manajemen</option>
+                              <option value="Aktivitas Arsitektur dan Keinsinyuran; Analisis dan Uji Teknis">Aktivitas Arsitektur dan Keinsinyuran; Analisis dan Uji Teknis</option>
+                              <option value="Penelitian dan Pengembangan Ilmu Pengetahuan">Penelitian dan Pengembangan Ilmu Pengetahuan</option>
+                              <option value="Periklanan dan Penelitian Pasar">Periklanan dan Penelitian Pasar</option>
+                              <option value="Aktivitas Profesional, Ilmiah dan Teknis Lainnya">Aktivitas Profesional, Ilmiah dan Teknis Lainnya</option>
+                              <option value="Aktivitas Kesehatan Hewan">Aktivitas Kesehatan Hewan</option>
+                              <option value="Aktivitas Penyewaan dan Sewa Guna Usaha Tanpa Hak Opsi">Aktivitas Penyewaan dan Sewa Guna Usaha Tanpa Hak Opsi</option>
+                              <option value="Aktivitas Ketenagakerjaan">Aktivitas Ketenagakerjaan</option>
+                              <option value="Aktivitas Agen Perjalanan, Penyelenggara Tur dan Jasa Reservasi Lainnya">Aktivitas Agen Perjalanan, Penyelenggara Tur dan Jasa Reservasi Lainnya</option>
+                              <option value="Aktivitas Keamanan dan Penyelidikan">Aktivitas Keamanan dan Penyelidikan</option>
+                              <option value="Aktivitas Penyedia Jasa untuk Gedung dan Pertamanan">Aktivitas Penyedia Jasa untuk Gedung dan Pertamanan</option>
+                              <option value="Aktivitas Administrasi Kantor, Aktivitas Penunjang Kantor dan Aktivitas Penunjang Usaha Lainnya">Aktivitas Administrasi Kantor, Aktivitas Penunjang Kantor dan Aktivitas Penunjang Usaha Lainnya</option>
+                              <option value="Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib">Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib</option>
+                              <option value="Pendidikan">Pendidikan</option>
+                              <option value="Aktivitas Kesehatan Manusia">Aktivitas Kesehatan Manusia</option>
+                              <option value="Aktivitas Sosial di Dalam Panti">Aktivitas Sosial di Dalam Panti</option>
+                              <option value="Aktivitas Sosial Tanpa Akomodasi">Aktivitas Sosial Tanpa Akomodasi</option>
+                              <option value="Aktivitas Hiburan, Kesenian dan Kreativitas">Aktivitas Hiburan, Kesenian dan Kreativitas</option>
+                              <option value="Perpustakaan, Arsip, Museum dan Kegiatan Kebudayaan Lainnya">Perpustakaan, Arsip, Museum dan Kegiatan Kebudayaan Lainnya</option>
+                              <option value="Aktivitas Perjudian dan Pertaruhan">Aktivitas Perjudian dan Pertaruhan</option>
+                              <option value="Aktivitas Olahraga dan Rekreasi Lainnya">Aktivitas Olahraga dan Rekreasi Lainnya</option>
+                              <option value="Aktivitas Keanggotaan Organisasi">Aktivitas Keanggotaan Organisasi</option>
+                              <option value="Reparasi Komputer dan Barang Keperluan Pribadi dan Perlengkapan Rumah Tangga">Reparasi Komputer dan Barang Keperluan Pribadi dan Perlengkapan Rumah Tangga</option>
+                              <option value="Aktivitas Jasa Perorangan Lainnya">Aktivitas Jasa Perorangan Lainnya</option>
+                              <option value="Aktivitas Rumah Tangga Sebagai Pemberi Kerja Dari Personil Domestik">Aktivitas Rumah Tangga Sebagai Pemberi Kerja Dari Personil Domestik</option>
+                              <option value="Aktivitas Yang Menghasilkan Barang dan Jasa oleh Rumah Tangga Yang Digunakan untuk Memenuhi Kebutuhan Sendiri">Aktivitas Yang Menghasilkan Barang dan Jasa oleh Rumah Tangga Yang Digunakan untuk Memenuhi Kebutuhan Sendiri</option>
+                              <option value="Aktivitas Badan Internasional dan Badan Ekstra Internasional Lainnya">Aktivitas Badan Internasional dan Badan Ekstra Internasional Lainnya</option>
+                            </select>
                            </td>
                          </tr>
                          <tr>
@@ -332,31 +441,55 @@
                          <tr>
                            <th style="width:50%">Omset Tahunan Usaha</th>
                            <td>
-                            <input type="text" name="omset" class="form-control">
+                            <select class="form-control" name="omset">
+                              <option>-</option>
+                              <option value="≤ 300 Juta">≤ 300 Juta</option>
+                              <option value="300 Juta < Omset < 2,5M">300 Juta < Omset < 2,5M</option>
+                              <option value="≥ 2,5M">≥ 2,5M</option>
+                            </select>
                            </td>
                          </tr>
                          <tr>
                            <th style="width:50%">Kekayaan Bersih Usaha</th>
                            <td>
-                            <input type="text" name="kekayaan_bersih_usaha" class="form-control">
+                            <select class="form-control" name="kekayaan_bersih_usaha">
+                              <option>-</option>
+                              <option value="≤ 50 Juta">≤ 50Jt</option>
+                              <option value="50 Juta < Omset < 500 Juta">50Jt < Omset < 500Jt</option>
+                              <option value="≥ 500 Juta">≥500Jt</option>
+                            </select>
                            </td>
                          </tr>
                          <tr>
                            <th style="width:50%">Jumlah Tenaga Kerja</th>
                            <td>
-                            <input type="text" name="jumlah_tenaga_kerja" class="form-control">
+                            <select class="form-control" name="jumlah_tenaga_kerja">
+                              <option>-</option>
+                              <option value="1-5 Tenaga Kerja">1-5 Tenaga Kerja</option>
+                              <option value="6-19 Tenaga Kerja">6-19 Tenaga Kerja</option>
+                              <option value="≥ 20 Tenaga Kerja">≥20 Tenaga Kerja</option>
+                            </select>
                            </td>
                          </tr>
                          <tr>
                            <th style="width:50%">Sumber Modal Usaha</th>
                            <td>
-                            <input type="text" name="modal_usaha" class="form-control">
+                            <select class="form-control" name="modal_usaha">
+                              <option>-</option>
+                              <option value="Modal Sendiri">Modal Sendiri</option>
+                              <option value="Bantuan Pemerintah">Bantuan Pemerintah</option>
+                              <option value="Modal Sendiri & Bantuan Pemerintah">Modal Sendiri & Bantuan Pemerintah</option>
+                            </select>
                            </td>
                          </tr>
                          <tr>
                            <th style="width:50%">Pembinaan Usaha dari Pemerintah</th>
                            <td>
-                            <input type="text" name="bina_usaha" class="form-control">
+                            <select class="form-control" name="bina_usaha">
+                              <option>-</option>
+                              <option value="Ya">Ya</option>
+                              <option value="Tidak">Tidak</option>
+                            </select>
                            </td>
                          </tr>
                         </tbody>
