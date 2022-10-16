@@ -39,15 +39,21 @@ router.get("/main-admin", function (req, res, next) {
           connection.query("SELECT Count(nik) AS TotalNik FROM penduduk", (err, rows4) => {
             //when done with the connection, release it.
             connection.query("SELECT COUNT(id_Usaha) AS TotalUMKM FROM umkm", (err, rows5) => {
+              //when done with the connection, release it.
+              connection.query("SELECT COUNT(id_kematian) AS TotalMati FROM kematian", (err, rows6) => {
+                  //when done with the connection, release it.
+                connection.query("SELECT COUNT(id_lahir) AS TotalLahir FROM kelahiran", (err, rows7) => {
 
-             connection.release();
-  
-            if (!err) { 
-              res.render("main-admin", { rows1, rows2, rows3, rows4, rows5});
-            } else {
-              console.log(err);
-            }
-            console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5);
+                      connection.release();
+            
+                      if (!err) { 
+                        res.render("main-admin", { rows1, rows2, rows3, rows4, rows5, rows6, rows7});
+                      } else {
+                        console.log(err);
+                      }
+                      console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5, rows6, rows7);
+                });
+              });
             }); 
           }); 
         });

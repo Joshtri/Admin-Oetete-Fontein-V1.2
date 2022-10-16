@@ -67,8 +67,8 @@
             <tr>
               <th scope="col" class="text-center">No</th>
               <!-- <th scope="col" class="text-center">Id Kelahiran</th> -->
-              <th scope="col" class="text-center">Nomor KK</th>
               <th scope="col" class="text-center">Nama</th>
+              <th scope="col" class="text-center">Nomor KK</th>
               <th scope="col" class="text-center">Jenis Kelamin</th>
               <th scope="col" class="text-center">Tanggal Lahir</th>
               <th scope="col" class="text-center">Aksi</th>
@@ -80,8 +80,8 @@
               <% for (let row of rows) {%>
               <td scope="row" class="text-center"><%= number %></td>
                                                            <!-- <td scope="row" class="text-center"></td> -->
-              <td scope="row" class="text-center"><%= row.kel_no_kk_lahir %></td>
               <td scope="row" class="text-center"><%= row.nama %></td>
+              <td scope="row" class="text-center"><%= row.kel_nomor_kk %></td>
               <td scope="row" class="text-center"><%= row.jenis_kelamin %></td>
               <td scope="row" class="text-center"><%= row.tgl_lahir %></td>
               <td scope="row" class="text-center">
@@ -97,8 +97,8 @@
                   <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
                       data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
                       data-json="<%= JSON.stringify(row) %>"
-                      data-form-action="/data/data-keluarga/update/<%= row.no_kk %>"></i></button>
-                  <a href="/data/data-keluarga/delete/<%= row.no_kk %>"><button class="border-0"><i
+                      data-form-action="/data/data-kelahiran/update/<%= row.id_lahir %>"></i></button>
+                  <a href="/data/data-kelahiran/delete/<%= row.id_lahir %>"><button class="border-0"><i
                         class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
                         title="Delete"></i></button></a>
                 </div>
@@ -131,7 +131,7 @@
             <tr>
               <th style="width:50%">No KK</th>
               <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
-              <td class="kel_no_kk"></td>
+              <td class="kel_nomor_kk"></td>
             </tr>
 
             <tr>
@@ -210,19 +210,29 @@
                   <th style="width:50%">No KK</th>
                   <td>
                     <!-- menambah target binding berdasarkan atribut name -->
-                    <input type="number" name="kel_no_kk" class="form-control" />
+                    <select class="form-control" name="kel_nomor_kk">
+                      <option>-</option>
+                      <% for (let row of rows2) {%>
+                        <option value="<%= row.nomorKK %>"><%= row.nomorKK %></option>
+                      <% } %>
+                    </select>
                   </td>
                 </tr>
                 <tr>
                   <th style="width:50%">Nama</th>
                   <td>
+                    
                     <input type="text" name="nama" class="form-control" />
                   </td>
                 </tr>
                 <tr>
                   <th style="width:50%">Jenis Kelamin</th>
                   <td>
-                    <input type="text" name="jenis_kelamin" class="form-control" />
+                    <select class="form-control" name="jenis_kelamin">
+                      <option>-</option>
+                      <option value="Laki-Laki">Laki-Laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                  </select>
                   </td>
                 </tr>
                 <tr>
@@ -283,7 +293,7 @@
       $(document).ready(function () {
         $("#dtHorizontalVerticalExample").DataTable({
           scrollX: true,
-          scrollY: 200,
+          scrollY: 400,
         });
         $(".dataTables_length").addClass("bs-select");
 
@@ -324,7 +334,7 @@
         // binding data yang diterima dari tombol ke element yang ada pada modal detail
 
         // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
-        $(modal).find(".kel_no_kk").text(data.kel_no_kk) // cara jquery
+        $(modal).find(".kel_nomor_kk").text(data.kel_nomor_kk) // cara jquery
         // atau sama dengan cara vanilla javascript (javascript native/biasa)
         // modal.querySelector('.no_kk').innerHTML = data.no_kk
         // binding elemen lainnya yang ada pada modal detail
@@ -349,7 +359,7 @@
         $(modal_edit).find("form").attr("action", target)
         
         // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
-        $(modal_edit).find("[name='kel_no_kk']").val(data.kel_no_kk) // cara jquery
+        $(modal_edit).find("[name='kel_nomor_kk']").val(data.kel_nomor_kk) // cara jquery
         $(modal_edit).find("[name='nama']").val(data.nama)
         $(modal_edit).find("[name='jenis_kelamin']").val(data.jenis_kelamin)
         $(modal_edit).find("[name='tgl_lahir']").val(data.tgl_lahir)

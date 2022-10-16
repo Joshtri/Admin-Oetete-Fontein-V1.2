@@ -39,32 +39,6 @@ exports.view_keluarga = (req, res) => {
 };
 
 //View data
-exports.view_keluarga = (req, res) => {
-  //connect db.
-  pool.getConnection((err, connection) => {
-    if (err) throw err; //NOT CONNECTED.
-    console.log(`Connected as ID ` + connection.threadId);
-
-    //show data
-    connection.query("SELECT * FROM keluarga", (err, rows) => {
-      //when done with the connection, release it.
-      connection.release();
-
-      if (!err) {
-        res.render("data-keluarga", { 
-          rows, 
-          sukses: req.query.sukses, 
-          pesan: req.query.pesan 
-        });
-      } else {
-        console.log(err);
-      }
-      console.log("The data from user table: \n", rows);
-    });
-  });
-};
-
-//View data
 exports.view_umkm = (req, res) => {
   //connect db.
   pool.getConnection((err, connection) => {
@@ -99,17 +73,42 @@ exports.view_penduduk = (req, res) => {
     if (err) throw err; //NOT CONNECTED.
     console.log(`Connected as ID ` + connection.threadId);
 
+      //show data
+      connection.query("SELECT * FROM penduduk", (err, rows) => {
+        //when done with the connection, release it.
+          //show data
+          connection.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS no_kk FROM keluarga", (err, rows2) => {
+            //when done with the connection, release it.
+        connection.release();
+
+        if (!err) {
+          res.render("data-penduduk", {
+            rows,rows2, 
+            sukses: req.query.sukses, 
+            pesan: req.query.pesan 
+            });
+        } else {
+          console.log(err);
+        }
+        console.log("The data from user table: \n", rows,rows2);
+     });
+    });
+  });
+};
+//View data
+exports.view_masuk = (req, res) => {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+
     //show data
     connection.query("SELECT * FROM penduduk", (err, rows) => {
       //when done with the connection, release it.
       connection.release();
 
       if (!err) {
-        res.render("data-penduduk", {
-          rows, 
-          sukses: req.query.sukses, 
-          pesan: req.query.pesan 
-          });
+        res.render("data-masuk", {rows});
       } else {
         console.log(err);
       }
@@ -117,9 +116,6 @@ exports.view_penduduk = (req, res) => {
     });
   });
 };
-
-
-
 
 
 //View data-pengguna
@@ -131,12 +127,16 @@ exports.view_pengguna = (req, res) => {
     console.log(`Connected as ID ` + connection.threadId);
 
     //show data
-    connection.query("SELECT nama_lengkap,user_name,user_password, user_id FROM admin_login;", (err, rows) => {
+    connection.query("SELECT * FROM admin_login", (err, rows) => {
       //when done with the connection, release it.
       connection.release();
 
       if (!err) {
-        res.render("data-pengguna", { rows });
+        res.render("data-pengguna", {
+          rows, 
+          sukses: req.query.sukses,
+          pesan: req.query.pesan 
+          });
       } else {
         console.log(err);
       }
@@ -178,14 +178,22 @@ exports.view_kelahiran = (req, res) => {
     //show data
     connection.query("SELECT * FROM kelahiran", (err, rows) => {
       //when done with the connection, release it.
-      connection.release();
+        //show data
+        connection.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS nomorKK FROM keluarga", (err, rows2) => {
+          //when done with the connection, release it.
+          connection.release();
 
-      if (!err) {
-        res.render("data-kelahiran", { rows });
-      } else {
-        console.log(err);
-      }
-      console.log("The data from user table: \n", rows);
+          if (!err) {
+            res.render("data-kelahiran", { 
+              rows,rows2,
+              sukses: req.query.sukses, 
+              pesan: req.query.pesan 
+            });
+          } else {
+            console.log(err);
+          }
+          console.log("The data from user table: \n", rows,rows2);
+        });
     });
   });
 };
@@ -204,7 +212,11 @@ exports.view_kematian = (req, res) => {
       connection.release();
 
       if (!err) {
-        res.render("data-kematian", { rows });
+        res.render("data-kematian", { 
+          rows, 
+          sukses: req.query.sukses, 
+          pesan: req.query.pesan 
+        });
       } else {
         console.log(err);
       }

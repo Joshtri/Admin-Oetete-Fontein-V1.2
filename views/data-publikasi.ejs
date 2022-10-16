@@ -80,8 +80,20 @@
               <td scope="row" class="text-center" >PDF</td>
               <td scope="row" class="text-center" ><%= row.tanggal_terbit %></td>
               <td scope="row" class="text-center">
-                <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
-                <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button></a>
+            
+                  <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
+                  <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
+                  <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-json="<%= JSON.stringify(row) %>"><i
+                      class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
+                      title="Detail"></i></button>
+                  <!-- menambah data-form-action sebagai target / alamat proses untuk 
+                      mengubah data setiap data yang memiliki alamat update berbeda -->
+                  <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                      data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                      data-json="<%= JSON.stringify(row) %>"
+                      data-form-action="/data/data-pengguna/update/<%= row.id_publish %>"></i></button>
+
                 <a href="/data/data-publikasi/delete/<%= row.id_publish %>"><button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalDelete" data-toggle="tooltip" title="Delete"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button></a> 
               </td>
               <% number++; %>
@@ -92,54 +104,129 @@
       </div>
     </div>
 
-      <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-    <div class=" modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Publikasi</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body table-responsive">
-        <table class="table table-bordered no-margin">
-          <tbody>
-            <!-- <tr>
-            <th style="width:50%">Id KK</th>
-            <td>KK010202</td>
-          </tr> -->
-            <tr>
-              <th style="width:50%">No KK</th>
-              <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
-              <td class="no_kk"></td>
-            </tr>
-            <tr>
-              <th style="width:50%">Kepala Keluarga</th>
-              <td class="kepala_kel"></td>
-            </tr>
-            <tr>
-              <th style="width:50%">Alamat</th>
-              <td class="alamat"></td>
-            </tr>
-            <tr>
-              <th style="width:50%">RT</th>
-              <td class="rt"></td>
-            </tr>
-          </tbody>
-        </table>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-  </div>
-    
-
-
+                  <!-- Modal untuk detail data.  --> 
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Detail Pengguna</h5>
+                          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body table-responsive">
+                          <table class="table table-bordered no-margin">
+                          <tbody>
+                            <tr>
+                              <th style="width:50%">File Upload</th>
+                              <td class="user_id"></td>
+                            </tr>
+                            <tr>
+                              <th style="width:50%">Judul Publish</th>
+                              <td class="judul_publish"></td>
+                            </tr>
+                            <tr>
+                              <th style="width:50%">Tanggal Terbit</th>
+                              <td class="tanggal_terbit"></td>
+                            </tr>
+                            <tr>            
+                            
+                          </tbody>
+                        </table>
+            
+            
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    <!-- Modal edit -->
+                    <!-- $(modal).find(".file_article").text(data.file_article) // cara jquery
+        // atau sama dengan cara vanilla javascript (javascript native/biasa)
+        // modal.querySelector('.no_kk').innerHTML = data.no_kk
+        // binding elemen lainnya yang ada pada modal detail
+        $(modal).find(".judul_publish").text(data.judul_publish)
+        $(modal).find(".tanggal_terbit").text(data.tanggal_terbit)
+        $(modal).find(".id_publish").text(data.id_publish) -->
+              <div class="modal fade " id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <form action="" class="form-edit" method="POST">
+                    <!-- menambah form 🔥🔥🔥🔥🔥🔥 -->
+                    <div class="modal-content ">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Pengguna</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body table-responsive">
+                        <table class="table table-bordered no-margin">
+                          <tbody>
+                            <tr>
+                              <tr>
+                                <th style="width:50%">File Upload</th>
+                                <td>
+                                  <!-- menambah target binding berdasarkan atribut name -->
+                                  <input type="text" name="file_article" class="form-control" />
+                                </td>
+                              </tr>
+                              <th style="width:50%">Judul Publish</th>
+                              <td>
+                         
+                                <input type="text" name="judul_publish" class="form-control" />
+                              </td>
+                            </tr>
+                            <tr>
+                              <th style="width:50%">Tanggal Terbit</th>
+                              <td>
+                                <input type="text" name="tanggal_terbit" class="form-control" />
+                              </td>
+                            </tr>
+                         
+                          </tbody>
+                        </table>
+            
+            
+                      </div>
+            
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                </div>
+                </form>
+              </div>
+            
+              <!-- 🔥🔥🔥🔥 modal pemberitahuan -->
+              <% 
+                if(typeof sukses != "undefined"){
+              %>
+              <div class="modal fade modal-pemberitahuan" tabindex="-1" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class=" modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      <%= sukses == "true" ? "Berhasil" : "Kesalahan" %>
+                    </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body table-responsive">
+                    <%= pesan || "Terjadi sebuah kesalahan" %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <% 
+                }
+              %>
     
 
 
@@ -155,9 +242,77 @@
           "scrollY": 200,
         });
         $('.dataTables_length').addClass('bs-select');
-        });
-         
 
+              /**
+       * aktivasi modal pemberitahuan
+       * 
+       */
+      let pemberitahuan = document.querySelector('.modal-pemberitahuan');
+      if(pemberitahuan){
+        let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
+          
+        })
+        modal_pemberitahuan.show();
+      }
+
+      /**
+       * fungsi ditriger ketika modal dibuka
+       * 
+       */
+      // semua elemen yang memiliki id exampleModal
+      let modal = document.querySelector("#exampleModal");
+      // menambah event listener pada setiap elemen modal
+      modal.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        /**
+         * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+         * (tombol yang diklik)
+         * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+         * keluarga berupa json
+         * 
+         */
+        // cara mengakses data attribut dari jquery
+        // contoh atribut data-json
+        let data = $(event.relatedTarget).data('json');
+        // di console browser
+        console.log("data tombol yang diklik: ", data);
+
+        // binding data yang diterima dari tombol ke element yang ada pada modal detail
+
+        // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+        $(modal).find(".file_article").text(data.file_article) // cara jquery
+        // atau sama dengan cara vanilla javascript (javascript native/biasa)
+        // modal.querySelector('.no_kk').innerHTML = data.no_kk
+        // binding elemen lainnya yang ada pada modal detail
+        $(modal).find(".judul_publish").text(data.judul_publish)
+        $(modal).find(".tanggal_terbit").text(data.tanggal_terbit)
+        $(modal).find(".id_publish").text(data.id_publish)
+
+
+      });
+      /**
+       * modal edit sama seperti modal detail
+       */
+      let modal_edit = document.querySelector("#exampleModalEdit");
+      modal_edit.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        let data = $(event.relatedTarget).data('json');
+        let target = $(event.relatedTarget).data('form-action');
+        console.log("data tombol yang diklik: ", data);
+        console.log("data elemen target: ", data);
+        console.log("data form target: ", target);
+        // binding action form dari data target form
+        $(modal_edit).find("form").attr("action", target)
+        // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
+        $(modal_edit).find("[name='file_article']").val(data.file_article) // cara jquery
+        $(modal_edit).find("[name='judul_publish']").val(data.judul_publish)
+        $(modal_edit).find("[name='tanggal_terbit']").val(data.tanggal_terbit)
+        // $(modal_edit).find("[name='user_password']").val(data.user_password)
+
+
+      });
+
+        });
       </script>
     
     <!-- <h1>Hello, world!</h1> -->

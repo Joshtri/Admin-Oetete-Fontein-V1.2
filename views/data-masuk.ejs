@@ -44,9 +44,9 @@
               <th scope="col" class="text-center">No</th>
               <th scope="col" class="text-center">NIK</th>
               <th scope="col" class="text-center">Nama</th>
-              <th scope="col" class="text-center">Tanggal Masuk</th>
-              <th scope="col" class="text-center">JK</th>
-              <th scope="col" class="text-center">Alasan</th>
+              <th scope="col" class="text-center">Status Perkawinan</th>
+              <th scope="col" class="text-center">Jenis Kelamin</th>
+              <!-- <th scope="col" class="text-center">Alasan</th> -->
               <th scope="col" class="text-center">Aksi</th>
         
            
@@ -54,176 +54,101 @@
           </thead>
           <tbody>
             <tr>
-              <td scope="row" class="text-center">1</td>
-              <td scope="row" class="text-center">1234567891234567</td>
-              <td scope="row" class="text-center">Shanty Djawa</td>
-              <td scope="row" class="text-center">12/08/2022</td>
-              <td scope="row" class="text-center"> P </td>
-              <td scope="row" class="text-center">Bekerja</td>
+              <% var number = 1; %>  
+              <% for (let row of rows) {%>
+              <td scope="row" class="text-center"><%= number %></td>
+              <td scope="row" class="text-center"><%= row.nik %></td>
+              <td scope="row" class="text-center"><%= row.nama %></td>
+              <td scope="row" class="text-center"><%= row.status_perkawinan %></td>
+              <td scope="row" class="text-center"><%= row.jenis_kelamin %></td>
+              <!-- <td scope="row" class="text-center">-</td> -->
               <td scope="row" class="text-center">
-              <button type="button"
-                class="border-0"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"  ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
-                <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
-                <button type="button"
-                class="border-0"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModalDelete"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button>
+                <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
+                <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
+                <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-json="<%= JSON.stringify(row) %>"><i
+                    class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
+                    title="Detail"></i></button>
+              <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit" style="cursor:not-allowed;"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
+              <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalDelete" style="cursor:not-allowed;"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button>
               </td>
             </tr>
+            <% number++ %>
+            <% }%>
           </tbody>
         </table>
       </div>
     </div>
 
 
-         <!-- Modal -->
+
+    <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered"">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Pindah Masuk</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body table-responsive">
-        <table class="table table-bordered no-margin">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class=" modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Detail Penduduk</h5>
+      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body table-responsive">
+      <table class="table table-bordered no-margin">
         <tbody>
+          <!-- <tr>
+          <th style="width:50%">Id KK</th>
+          <td>KK010202</td>
+        </tr> -->
           <tr>
-            <th style="width:50%">Nama</th>
-            <td>Shanty Djawa</td>
+            <th style="width:50%">NIK</th>
+        <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
+            <td class="nik"></td>
           </tr>
           <tr>
             <th style="width:50%">No KK</th>
-            <td>5371041506020007</td>
+            <td class="kel_no_kk"></td>
           </tr>
+
           <tr>
-            <th style="width:50%">NIK</th>
-            <td>5371041506020007</td>
+            <th style="width:50%">Nama</th>
+            <td class="nama"></td>
           </tr>
+          <!-- <tr>
+            <th style="width:50%">Alamat</th>
+            <td class="alamat"></td>
+          </tr> -->
           <tr>
             <th style="width:50%">Jenis Kelamin</th>
-            <td>Perempuan</td>
+            <td class="jenis_kelamin"></td>
           </tr>
           <tr>
-            <th style="width:50%">Tempat Lahir</th>
-            <td>Kupang</td>
+            <th style="width:50%">Lahir</th>
+            <td class="lahir"></td>
           </tr>
           <tr>
-            <th style="width:50%">Tanggal Lahir</th>
-            <td>05/11/2002</td>
+            <th style="width:50%">Hubungan Keluarga</th>
+            <td class="hubungan_keluarga"></td>
+          </tr>
+          <tr>
+            <th style="width:50%">Pendidikan</th>
+            <td class="pendidikan"></td>
           </tr>
           <tr>
             <th style="width:50%">Pekerjaan</th>
-            <td>PNS</td>
-          </tr>          
-          <tr>
-            <th style="width:50%">Kewarganegaraan</th>
-            <td>Indonesia</td>
+            <td class="pekerjaan"></td>
           </tr>
-         
-
-          
+          <tr>
+            <th style="width:50%">Status Perkawinan</th>
+            <td class="status_perkawinan"></td>
+          </tr>
         </tbody>
       </table>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     </div>
   </div>
 </div>
-
-
-<!-- Modal Delete-->
-<div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelDelete">Hapus Data</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body table-responsive">
-        <table class="table table-bordered no-margin">
-        <tbody>
-          <p> Apakah anda ingin menghapus data ?Apakah anda ingin menghapus data ? </p>
-        </tbody>
-      </table>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-  <!-- Modal Edit -->
-  <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered ">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Pindah Masuk</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body table-responsive">
-        <table class="table table-bordered no-margin">
-          <tbody>
-            <tr>
-              <th style="width:50%">Nama</th>
-              <td>Shanty Djawa</td>
-            </tr>
-            <tr>
-              <th style="width:50%">No KK</th>
-              <td>5371041506020007</td>
-            </tr>
-            <tr>
-              <th style="width:50%">NIK</th>
-              <td>5371041506020007</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Jenis Kelamin</th>
-              <td>Perempuan</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Tempat Lahir</th>
-              <td>Soe</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Tanggal Lahir</th>
-              <td>29/08/2002</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Pekerjaan</th>
-              <td>PNS</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Kewarganegaraan</th>
-              <td>Indonesia</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="modal-footer">
-
-        <button type="button" class="btn btn-primary">Simpan</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 
@@ -235,10 +160,51 @@
         $(document).ready(function () {
         $('#dtHorizontalVerticalExample').DataTable({
           "scrollX": true,
-          "scrollY": 200,
+          "scrollY": 400,
         });
         $('.dataTables_length').addClass('bs-select');
+
         });
+            /**
+       * fungsi ditriger ketika modal dibuka
+       * 
+       */
+      // semua elemen yang memiliki id exampleModal
+      let modal = document.querySelector("#exampleModal");
+      // menambah event listener pada setiap elemen modal
+      modal.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        /**
+         * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+         * (tombol yang diklik)
+         * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+         * keluarga berupa json
+         * 
+         */
+        // cara mengakses data attribut dari jquery
+        // contoh atribut data-json
+        let data = $(event.relatedTarget).data('json');
+        // di console browser
+        console.log("data tombol yang diklik: ", data);
+
+        // binding data yang diterima dari tombol ke element yang ada pada modal detail
+
+        // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+        $(modal).find(".nik").text(data.nik) // cara jquery
+        // atau sama dengan cara vanilla javascript (javascript native/biasa)
+        // modal.querySelector('.no_kk').innerHTML = data.no_kk
+        // binding elemen lainnya yang ada pada modal detail
+        $(modal).find(".kel_no_kk").text(data.kel_no_kk)
+        $(modal).find(".nama").text(data.nama)
+        $(modal).find(".jenis_kelamin").text(data.jenis_kelamin)
+        $(modal).find(".lahir").text(data.lahir)
+        $(modal).find(".hubungan_keluarga").text(data.hubungan_keluarga)
+        $(modal).find(".pendidikan").text(data.pendidikan)
+        $(modal).find(".pekerjaan").text(data.pekerjaan)
+        $(modal).find(".status_perkawinan").text(data.status_perkawinan)
+        // $(modal).find(".rw").text(data.rw)
+
+      });
        </script>
     
     <!-- <h1>Hello, world!</h1> -->

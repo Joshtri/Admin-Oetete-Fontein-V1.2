@@ -42,7 +42,7 @@
           <thead>
             <tr>
               <th scope="col" class="text-center">No</th>
-              <th scope="col" class="text-center">Tanggal</th>
+              <th scope="col" class="text-center">Tanggal Kematian</th>
               <th scope="col" class="text-center">NIK</th>
               <th scope="col" class="text-center">Aksi</th>
          
@@ -55,15 +55,27 @@
               <% var number = 1; %>
               <% for (let row of rows) {%>
               <td scope="row" class="text-center"><%= number%></td>
-              <td scope="row" class="text-center"><%= row.tgl_lahir %></td>
+              <td scope="row" class="text-center"><%= row.tgl_kematian %></td>
               <td scope="row" class="text-center"><%= row.nik %></td>
               <td scope="row" class="text-center">
-                <button type="button"
-                class="border-0"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
-                <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
-                <a href="/data/data-kematian/delete/<%= row.id_kematian %>"><button type="button"class="border-0" data-bs-toggle="modal"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button></a>
+                
+                  <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
+                  <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
+                  <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-json="<%= JSON.stringify(row) %>"><i
+                      class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
+                      title="Detail"></i></button>
+                  <!-- menambah data-form-action sebagai target / alamat proses untuk 
+                      mengubah data setiap data yang memiliki alamat update berbeda -->
+                  <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                      data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                      data-json="<%= JSON.stringify(row) %>"
+                      data-form-action="/data/data-kematian/update/<%= row.id_kematian %>"></i></button>
+                      
+                  <a href="/data/data-kematian/delete/<%= row.id_kematian %>"><button class="border-0"><i
+                        class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
+                        title="Delete"></i></button></a>
+             
               </td>
              
        
@@ -95,23 +107,21 @@
                 <th style="width:50%">Id KK</th>
                 <td>KK010202</td>
               </tr> -->
-                <tr>
+                <!-- <tr>
                   <th style="width:50%">No KK</th>
-                  <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
+              
                   <td class="kel_no_kk"></td>
-                </tr>
+                </tr> -->
     
                 <tr>
                   <th style="width:50%">Nama</th>
-                  <td class="nama"></td>
+                      <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
+                  <td class="nik"></td>
                 </tr>
+
                 <tr>
-                  <th style="width:50%">Jenis Kelamin</th>
-                  <td class="jenis_kelamin"></td>
-                </tr>
-                <tr>
-                  <th style="width:50%">Tanggal Lahir</th>
-                  <td class="tgl_lahir"></td>
+                  <th style="width:50%">Tanggal Kematian</th>
+                  <td class="tgl_kematian"></td>
                 </tr>
                 
     
@@ -131,7 +141,7 @@
     
     
       <!-- Modal Delete-->
-      <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -154,7 +164,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     
     
       <!-- Modal edit -->
@@ -174,28 +184,17 @@
                 <table class="table table-bordered no-margin">
                   <tbody>
                     <tr>
-                      <th style="width:50%">No KK</th>
+                      <th style="width:50%">NIK</th>
                       <td>
                         <!-- menambah target binding berdasarkan atribut name -->
-                        <input type="number" name="kel_no_kk" class="form-control" />
+                        <input type="number" name="nik" class="form-control" />
                       </td>
                     </tr>
+
                     <tr>
-                      <th style="width:50%">Nama</th>
+                      <th style="width:50%">Tanggal Kematian</th>
                       <td>
-                        <input type="text" name="nama" class="form-control" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th style="width:50%">Jenis Kelamin</th>
-                      <td>
-                        <input type="text" name="jenis_kelamin" class="form-control" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <th style="width:50%">Tanggal Lahir</th>
-                      <td>
-                        <input type="date" name="tgl_lahir" class="form-control" />
+                        <input type="date" name="tgl_kematian" class="form-control" />
                       </td>
                     </tr>
                   
@@ -248,14 +247,81 @@
        <%- include('footer'); -%>
        <!-- footer end   -->
 
-       <script>
-        $(document).ready(function () {
+      <script>
+      $(document).ready(function () {
         $('#dtHorizontalVerticalExample').DataTable({
-          "scrollX": true,
-          "scrollY": 200,
+            "scrollX": true,
+            "scrollY": 200,
         });
         $('.dataTables_length').addClass('bs-select');
+                      /**
+       * aktivasi modal pemberitahuan
+       * 
+       */
+      let pemberitahuan = document.querySelector('.modal-pemberitahuan');
+      if(pemberitahuan){
+        let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
+          
+        })
+        modal_pemberitahuan.show();
+      }
+
+      /**
+       * fungsi ditriger ketika modal dibuka
+       * 
+       */
+      // semua elemen yang memiliki id exampleModal
+      let modal = document.querySelector("#exampleModal");
+      // menambah event listener pada setiap elemen modal
+      modal.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        /**
+         * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+         * (tombol yang diklik)
+         * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+         * keluarga berupa json
+         * 
+         */
+        // cara mengakses data attribut dari jquery
+        // contoh atribut data-json
+        let data = $(event.relatedTarget).data('json');
+        // di console browser
+        console.log("data tombol yang diklik: ", data);
+
+        // binding data yang diterima dari tombol ke element yang ada pada modal detail
+
+        // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+        $(modal).find(".nik").text(data.nik) // cara jquery
+        // atau sama dengan cara vanilla javascript (javascript native/biasa)
+        // modal.querySelector('.no_kk').innerHTML = data.no_kk
+        // binding elemen lainnya yang ada pada modal detail
+        
+        $(modal).find(".tgl_kematian").text(data.tgl_kematian)
+       
+
       });
+      /**
+       * modal edit sama seperti modal detail
+       */
+      let modal_edit = document.querySelector("#exampleModalEdit");
+      modal_edit.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        let data = $(event.relatedTarget).data('json');
+        let target = $(event.relatedTarget).data('form-action');
+        console.log("data tombol yang diklik: ", data);
+        console.log("data elemen target: ", data);
+        console.log("data form target: ", target);
+        // binding action form dari data target form
+        $(modal_edit).find("form").attr("action", target)
+        
+        // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
+        $(modal_edit).find("[name='nik']").val(data.nik)
+        $(modal_edit).find("[name='tgl_kematian']").val(data.tgl_kematian)
+        
+
+
+      });
+    });  
     </script>
     
     <!-- <h1>Hello, world!</h1> -->

@@ -108,7 +108,7 @@
                 data-form-action="/data/data-penduduk/update/<%= row.nik %>"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
                     data-toggle="tooltip" title="Edit" ></i></button>
 
-                <a href="/data/data-keluarga/delete/<%= row.no_kk %>"><button class="border-0"><i
+                <a href="/data/data-penduduk/delete/<%= row.nik %>"><button class="border-0"><i
                       class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
                       title="Delete"></i></button></a>
               </div>
@@ -216,8 +216,12 @@
                 <tr>
                   <th style="width:50%">No KK</th>
                   <td>
-      
-                    <input type="number" name="kel_no_kk" class="form-control" />
+                    <select class="form-control" name="kel_no_kk">
+                      <option>-</option>
+                      <% for (let row of rows2) {%>
+                        <option value="<%= row.no_kk %>"><%= row.no_kk %>-<%= row.kepala_kel %></option>
+                      <% } %>
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -229,7 +233,11 @@
                 <tr>
                   <th style="width:50%">Jenis Kelamin</th>
                   <td>
-                    <input type="text" name="jenis_kelamin" class="form-control" />
+                    <select class="form-control" name="jenis_kelamin">
+                      <option>-</option>
+                      <option value="Perempuan">Perempuan</option>
+                      <option value="Laki-Laki">Laki-Laki</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
@@ -241,25 +249,68 @@
                 <tr>
                   <th style="width:50%">Hubungan Keluarga</th>
                   <td>
-                    <input type="text" name="hubungan_keluarga" class="form-control" />
+                    <select class="form-control" name="hubungan_keluarga">
+                      <option>-</option>
+                      <option value="Kepala Keluarga">Kepala Keluarga</option>
+                      <option value="Istri">Istri</option>
+                      <option value="Anak">Anak</option>
+                      <option value="Menantu">Menantu</option>
+                      <option value="Orang Tua">Orang Tua</option>
+                      <option value="Mertua">Mertua</option>
+                      <option value="Famili Lain">Famili Lain</option>
+                      <option value="Pembantu">Pembantu</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
                   <th style="width:50%">Pendidikan</th>
                   <td>
-                    <input type="text" name="pendidikan" class="form-control" />
+                    <select class="form-control" name="pendidikan">
+                      <option>-</option>
+                      <option value="Belum/Tidak Pernah Sekolah">Belum/Tidak Pernah Sekolah</option>
+                      <option value="Belum/Tidak Tamat SD/SDLB/MI/Paket A">Belum/Tidak Tamat SD/SDLB/MI/Paket A</option>
+                      <option value="SD/SDLB/MI/Paket A">SD/SDLB/MI/Paket A</option>
+                      <option value="SMP/SMPLB/MTs/Paket B">SMP/SMPLB/MTs/Paket B</option>
+                      <option value="SMA/SMLB/MA/SMK/MAK/paket C">SMA/SMLB/MA/SMK/MAK/paket C</option>
+                      <option value="DI/DII/DIII">DI/DII/DIII</option>
+                      <option value="DIV/S1">DIV/S1</option>
+                      <option value="S2">S2</option>
+                      <option value="S3">S3</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
                   <th style="width:50%">Pekerjaan</th>
                   <td>
-                    <input type="text" name="pekerjaan" class="form-control" />
+                    <select class="form-control" name="pekerjaan">
+                      <option >-</option>
+                      <option value="Belum Bekerja">Belum Bekerja</option>
+                      <option value="Mengurus Rumah Tangga">Mengurus Rumah Tangga</option>
+                      <option value="Pelajar/Mahasiswa">Pelajar/Mahasiswa</option>
+                      <option value="Pensiunan">Pensiunan</option>
+                      <option value="PNS">PNS</option>
+                      <option value="POLRI">POLRI</option>
+                      <option value="TNI">TNI</option>
+                      <option value="WIRASWASTA">WIRASWASTA</option>
+                      <option value="SWASTA">SWASTA</option>
+                      <option value="Pegawai BUMN">Pegawai BUMN</option>
+                      <option value="Pekerja Lepas">Pekerja Lepas</option>
+                      <option value="Petani/peternak/pekebun">Petani/peternak/pekebun</option>
+                      <option value="Nelayan">Nelayan</option>
+                      <option value="Industri">Industri</option>
+                    </select>
                   </td>
                 </tr>
                 <tr>
                   <th style="width:50%">Status Perkawinan</th>
                   <td>
-                    <input type="text" name="status_perkawinan" class="form-control" />
+                    <select class="form-control" name="status_perkawinan">
+                      <option>-</option>
+                      <option value="Belum Menikah">Belum Menikah</option>
+                      <option value="Sudah Menikah">Sudah Menikah</option>
+                      <option value="Cerai Hidup">Cerai Hidup</option>
+                      <option value=">Cerai Mati">Cerai Mati</option>
+                    </select>
                   </td>
                 </tr>
 
@@ -317,7 +368,7 @@
        $(document).ready(function () {
       $('#dtHorizontalVerticalExample').DataTable({
         "scrollX": true,
-        "scrollY": 200,
+        "scrollY": 400,
       });
       $('.dataTables_length').addClass('bs-select');
 

@@ -11,6 +11,7 @@ var database = require("../database");
 
 // GET data-penduduk
 router.get("/data-keluarga", UserController.view_keluarga);
+router.get("/data-kematian", UserController.view_kematian);
 
 // GET data-penduduk
 router.get("/data-penduduk", UserController.view_penduduk);
@@ -49,20 +50,7 @@ router.get("/data-kelahiran/delete/:id_lahir", function (request, response, next
   });
 });
 
-router.get("/data-kematian/delete/:id_kematian", function (request, response, next) {
-  var id_kematian = request.params.id_kematian;
-  // User the connection
-  var query = `DELETE FROM kelahiran WHERE id_kematian = "${id_kematian}"`;
-  // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
 
-  database.query(query, function (error, data) {
-    if (error) {
-      throw error;
-    } else {
-      response.redirect("/data/data-kematian");
-    }
-  });
-});
 
 // GET data-kematian
 router.get("/data-kematian", UserController.view_kematian);
@@ -76,10 +64,13 @@ router.get("/data-pekerjaan", function (req, res, next) {
 router.get("/data-pindah", function (req, res, next) {
   res.render("data-pindah");
 });
+
+// router.get("/data-masuk", function (req, res, next) {
+//   res.render("data-masuk");
+// });
+
 // GET data-masuk
-router.get("/data-masuk", function (req, res, next) {
-  res.render("data-masuk");
-});
+router.get("/data-masuk", UserController.view_masuk);
 
 // GET data-penduduk
 // router.get("/data-penduduk", function (req, res, next) {
@@ -186,6 +177,7 @@ router.post("/data-keluarga/update/:no_kk", function (request, response, next) {
   let query = `
     UPDATE keluarga SET
       no_kk = ?,
+      kepala_kel = ?,
       rt = ?,
       rw = ?,
       alamat = ?,
@@ -193,9 +185,11 @@ router.post("/data-keluarga/update/:no_kk", function (request, response, next) {
       kecamatan = ?,
       kota_n_kab = ?,
       provinsi = ?
+      
     WHERE no_kk = ?`;
   database.query(query, [
     request.body.no_kk,
+    request.body.kepala_kel,
     request.body.rt,
     request.body.rw,
     request.body.alamat,
@@ -261,14 +255,103 @@ router.get("/data-umkm/delete/:id_Usaha", function (request, response, next) {
 });
 
 
+router.get("/data-kematian/delete/:id_kematian", function (request, response, next) {
+  var id_kematian = request.params.id_kematian;
+  // User the connection
+  var query = `DELETE FROM kematian WHERE id_kematian = "${id_kematian}"`;
+  // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
+
+  database.query(query, function (error, data) {
+    if (error) {
+      throw error;
+    } else {
+      response.redirect("/data/data-kematian");
+    }
+  });
+});
+
+router.post("/data-kematian/update/:id_kematian", function (request, response, next) {
+  var id_kematian = request.params.id_kematian;
+  // response.send("Cek No KK = " + no_kk);
+  // response.send("Cek Body = " + JSON.stringify(request.body));
+
+  let query = `
+    UPDATE kematian SET
+    id_kematian  = ?,
+    nik = ?,
+    tgl_kematian = ?
+
+    WHERE id_kematian = ?`;
+  database.query(query, [
+    request.body.id_kematian,
+    request.body.nik,
+    request.body.tgl_kematian,
+
+    id_kematian
+  ], (err, row) => {
+    if(err)
+      return response.redirect(url.format({
+        pathname:"/data/data-kematian",
+        query: {
+          "sukses": false,
+          "pesan": "Gagal menyimpan perubahan"
+        }
+      }));
+    return response.redirect(url.format({
+      pathname:"/data/data-kematian",
+      query: {
+        "sukses": true,
+        "pesan": "Berhasil menyimpan perubahan"
+      }
+    }));
+  })
+});
+
+router.post("/data-kelahiran/update/:id_lahir", function (request, response, next) {
+  var id_lahir = request.params.id_lahir;
+  // response.send("Cek No KK = " + no_kk);
+  // response.send("Cek Body = " + JSON.stringify(request.body));
+
+  let query = `
+    UPDATE kelahiran SET
+    id_lahir  = ?,
+    nama = ?,
+    jenis_kelamin = ?,
+    tgl_lahir = ?
+
+    WHERE id_lahir = ?`;
+  database.query(query, [
+    request.body.id_lahir,
+    request.body.nama,
+    request.body.jenis_kelamin,
+    request.body.tgl_lahir,
+
+    id_lahir
+  ], (err, row) => {
+    if(err)
+      return response.redirect(url.format({
+        pathname:"/data/data-kelahiran",
+        query: {
+          "sukses": false,
+          "pesan": "Gagal menyimpan perubahan"
+        }
+      }));
+    return response.redirect(url.format({
+      pathname:"/data/data-kelahiran",
+      query: {
+        "sukses": true,
+        "pesan": "Berhasil menyimpan perubahan"
+      }
+    }));
+  })
+});
+
+
 //GET Publikasi
 router.get("/data-publikasi", UserController.view_publikasi);
 
 router.get("/data-publikasi/edit/:id_publish", UserController.edit_publikasi);
-router.post(
-  "/data-publikasi/edit/:id_publish",
-  UserController.update_publikasi
-);
+router.post("/data-publikasi/edit/:id_publish",UserController.update_publikasi);
 
 // router.get("/editpublikasi/:id", UserController.edit_publikasi);
 router.get(
@@ -292,50 +375,44 @@ router.get(
 //   res.render("data-publikasi");
 // });
 
-router.post("/editing-pengguna", function (request, response, next) {
-  var action = request.body.action;
+// 'INSERT INTO admin_login SET nama_lengkap = ?, user_name = ?, user_password = ?',
+router.post("/data-pengguna/update/:user_id", function (request, response, next) {
+  var user_id = request.params.user_id;
+  // response.send("Cek No KK = " + no_kk);
+  // response.send("Cek Body = " + JSON.stringify(request.body));
 
-  if (action == "fetch") {
-    var query = "SELECT * FROM admin_login ORDER BY user_id";
+  let query = `
+    UPDATE admin_login SET
+      user_id = ?,
+      nama_lengkap = ?,
+      user_name = ?,
+      user_password = ?
 
-    database.query(query, function (error, data) {
-      response.json({
-        data: data,
-      });
-    });
-  }
+    WHERE user_id = ?`;
+  database.query(query, [
+    request.body.user_id,
+    request.body.nama_lengkap,
+    request.body.user_name,
+    request.body.user_password,
 
-  if (action == "fetch_single") {
-    var user_id = request.body.user_id;
-
-    var query = `SELECT * FROM admin_login WHERE user_id = "${user_id}"`;
-
-    database.query(query, function (error, data) {
-      response.json(data[0]);
-    });
-  }
-  q;
-  if (action == "Edit") {
-    var user_id = request.body.user_id;
-    var nama_lengkap = request.body.nama_lengkap;
-    var user_name = request.body.user_name;
-    var user_password = request.body.user_password;
-    // var = request.body.age;
-
-    var query = `
-		UPDATE admin_login 
-		SET nama_lengkap = "${nama_lengkap}", 
-		user_name = "${user_name}", 
-		user_password = "${user_password}", 
-		WHERE user_id = "${user_id}"
-		`;
-
-    database.query(query, function (error, data) {
-      response.json({
-        message: "Data Edited",
-      });
-    });
-  }
+    user_id
+  ], (err, row) => {
+    if(err)
+      return response.redirect(url.format({
+        pathname:"/data/data-pengguna",
+        query: {
+          "sukses": false,
+          "pesan": "Gagal menyimpan perubahan"
+        }
+      }));
+    return response.redirect(url.format({
+      pathname:"/data/data-pengguna",
+      query: {
+        "sukses": true,
+        "pesan": "Berhasil menyimpan perubahan"
+      }
+    }));
+  })
 });
 
 

@@ -64,7 +64,7 @@
             <td scope="row" class="text-center"><%= row.kepala_kel %></td>
             <td scope="row" class="text-center"><%= row.alamat %></td>
             <td scope="row" class="text-center">
-              <div class="d-flex flex-nowrap">
+             
                 <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
                 <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
                 <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -80,7 +80,7 @@
                 <a href="/data/data-keluarga/delete/<%= row.no_kk %>"><button class="border-0"><i
                       class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
                       title="Delete"></i></button></a>
-              </div>
+             
             </td>
             <% number++; %>
           </tr>
@@ -212,6 +212,13 @@
                     <input type="number" name="no_kk" class="form-control" />
                   </td>
                 </tr>
+
+                <tr>
+                  <th style="width:50%">Kepala Keluarga</th>
+                  <td>
+                    <input type="text" name="kepala_kel" class="form-control" />
+                  </td>
+                </tr>
                 <tr>
                   <th style="width:50%">Alamat</th>
                   <td>
@@ -251,7 +258,45 @@
                 <tr>
                   <th style="width:50%">Provinsi</th>
                   <td>
-                    <input type="text" name="provinsi" class="form-control" />
+                    <select class="form-control" name="provinsi">
+                      <option>-</option>
+                      <option value="Nanggroe Aceh Darussalam (NAD)">Nanggroe Aceh Darussalam (NAD)</option>
+                      <option value="Sumatera Utara">Sumatera Utara</option>
+                      <option value="Sumatera Selatan">Sumatera Selatan</option>
+                      <option value="Sumatera Barat">Sumatera Barat</option>
+                      <option value="Bengkulu">Bengkulu</option>
+                      <option value="Riau">Riau</option>
+                      <option value="Kepulauan Riau">Kepulauan Riau</option>
+                      <option value="Jambi">Jambi</option>
+                      <option value="Lampung">Lampung</option>
+                      <option value="Bangka Belitung">Bangka Belitung</option>
+                      <option value="Kalimantan Barat">Kalimantan Barat</option>
+                      <option value="Kalimantan Timur">Kalimantan Timur</option>
+                      <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                      <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                      <option value="Kalimantan Utara">Kalimantan Utara</option>
+                      <option value="Banten">Banten</option>
+                      <option value="Jawa Barat">Jawa Barat</option>
+                      <option value="Jawa Tengah">Jawa Tengah</option>
+                      <option value="Daerah Khusus Ibu Kota Jakarta (DKI Jakarta)">Daerah Khusus Ibu Kota Jakarta (DKI Jakarta)</option>
+                      <option value="Jawa Timur">Jawa Timur</option>
+                      <option value="Bali">Bali</option>
+                      <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+                      <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+                      <option value="Gorontalo">Gorontalo</option>
+                      <option value="Sulawesi Barat">Sulawesi Barat</option>
+                      <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                      <option value="Sulawesi Utara">Sulawesi Utara</option>
+                      <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                      <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                      <option value="Maluku Utara">Maluku Utara</option>
+                      <option value="Maluku">Maluku</option>
+                      <option value="Papua Barat">Papua Barat</option>
+                      <option value="Papua">Papua</option>
+                      <option value="Papua Selatan">Papua Selatan</option>
+                      <option value="Papua Tengah">Papua Tengah</option>
+                      <option value="Papua Pengunangan">Papua Pengunangan</option>
+                    </select>
                   </td>
                 </tr>
 
@@ -307,7 +352,7 @@
     $(document).ready(function () {
       $('#dtHorizontalVerticalExample').DataTable({
         "scrollX": true,
-        "scrollY": 200,
+        "scrollY": 400,
       });
       $('.dataTables_length').addClass('bs-select');
 
@@ -352,10 +397,10 @@
         // atau sama dengan cara vanilla javascript (javascript native/biasa)
         // modal.querySelector('.no_kk').innerHTML = data.no_kk
         // binding elemen lainnya yang ada pada modal detail
+        $(modal).find(".kepala_kel").text(data.kepala_kel)
         $(modal).find(".alamat").text(data.alamat)
         $(modal).find(".kecamatan").text(data.kecamatan)
         $(modal).find(".kel_n_desa").text(data.kel_n_desa)
-        $(modal).find(".kepala_kel").text(data.kepala_kel)
         $(modal).find(".kota_n_kab").text(data.kota_n_kab)
         $(modal).find(".provinsi").text(data.provinsi)
         $(modal).find(".rt").text(data.rt)
@@ -377,6 +422,7 @@
         $(modal_edit).find("form").attr("action", target)
         // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
         $(modal_edit).find("[name='no_kk']").val(data.no_kk) // cara jquery
+        $(modal_edit).find("[name='kepala_kel']").val(data.kepala_kel) // cara jquery
         $(modal_edit).find("[name='alamat']").val(data.alamat)
         $(modal_edit).find("[name='kecamatan']").val(data.kecamatan)
         $(modal_edit).find("[name='kel_n_desa']").val(data.kel_n_desa)

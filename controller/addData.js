@@ -18,9 +18,39 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
-// exports.form = (req,res)=>{
-//     res.render('tambah-data-keluarga')
-// }
+//add new 
+
+exports.form_pengguna = (req, res) => {
+  res.render('tambah-data-pengguna');
+};
+// Add new pengguna
+exports.create_pengguna = (req, res) => {
+  const {
+    user_id,
+    nama_lengkap,
+    user_name,
+    user_password,
+    
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO admin_login SET user_id = ?, nama_lengkap = ?, user_name = ?, user_password = ?',
+    [user_id, nama_lengkap, user_name, user_password],
+    (err, rows) => {
+      if (!err) {
+        res.render('tambah-data-pengguna', {
+          //send this in views.
+          alert: "User added successfully.",
+        });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    }
+  );
+};
 
 //add new keluarga
 exports.form_keluarga = (req, res) => {
@@ -124,54 +154,9 @@ exports.form_penduduk = (req, res) => {
       res.render("tambah-data-penduduk", { keluarga: rows });
     });
   });
-
 };
 
-exports.form_kelahiran  = (req, res) => {
-  pool.getConnection((err, conn) => {
-    /**
-     * karena int pada js memiliki batasan maka no_kk diconvert ke
-     * string
-     */
-    conn.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS no_kk FROM keluarga", (err, rows) => {
-      if(err) throw new Error(err)
-      conn.release();
-      res.render("tambah-data-kelahiran", { keluarga: rows });
-    });
-  });
-};
-
-
-// Add new user
-exports.create_kelahiran = (req, res) => {
-  const {
-    kel_no_kk,
-    nama,
-    jenis_kelamin,
-    tgl_lahir,
-
-  } = req.body;
-  let searchTerm = req.body.search;
-
-  // User the connection
-  connection.query(
-    'INSERT INTO kelahiran SET kel_no_kk = ?, nama = ?, jenis_kelamin = ?, tgl_lahir = ?',
-    [kel_no_kk, nama, jenis_kelamin, tgl_lahir],
-      (err, rows) => {
-        if (!err) {
-          res.render("tambah-data-kelahiran", {
-            alert: "User added successfully.",
-          });
-        } else {
-          console.log(err);
-        }
-        console.log("The data from user table: \n", rows);
-      }
-    );
-};
-
-
-// Add new user
+// Add new penduduk
 exports.create_penduduk = (req, res) => {
   const {
     kel_no_kk,
@@ -212,38 +197,115 @@ exports.create_penduduk = (req, res) => {
   );
 };
 
-
-//add new pengguna
-exports.form_pengguna_add = (req, res) => {
-  res.render('tambah-data-pengguna');
+exports.form_kematian = (req, res) => {
+  pool.getConnection((err, conn) => {
+    /**
+     * karena int pada js memiliki batasan maka no_kk diconvert ke
+     * string
+     */
+    conn.query("SELECT *, CONVERT(nik, CHAR(17)) AS nikPen FROM penduduk", (err, rows) => {
+      if(err) throw new Error(err)
+      conn.release();
+      res.render("tambah-data-kematian", { penduduk: rows });
+    });
+  });
 };
-// Add new pengguna
-exports.create_pengguna = (req, res) => {
+
+// Add new kematian
+exports.create_kematian = (req, res) => {
   const {
-    nama_lengkap,
-    user_password,
-    user_name,
-    
+    id_kematian,
+    nik,
+    tgl_kematian,
+
   } = req.body;
   let searchTerm = req.body.search;
 
   // User the connection
   connection.query(
-    'INSERT INTO admin_login SET nama_lengkap = ?, user_name = ?, user_password = ?',
-    [nama_lengkap, user_name, user_password],
+    'INSERT INTO kematian SET id_kematian = ?, nik = ?, tgl_kematian = ?',
+    [id_kematian, nik, tgl_kematian],
     (err, rows) => {
-      if (!err) {
-        res.render('tambah-data-pengguna', {
-          //send this in views.
-          alert: "User added successfully.",
-        });
-      } else {
-        console.log(err);
-      }
-      console.log("The data from user table: \n", rows);
+      if(err) return res.send(err);
+      if(err) return res.send(JSON.stringify(err));
+      if(err)
+        return res.redirect(url.format({
+          pathname:"/data/data-kematian",
+          query: {
+            "sukses": false,
+            "pesan": "Gagal menambahkan data"
+          }
+        }));
+      return res.redirect(url.format({
+        pathname:"/data/data-kematian",
+        query: {
+          "sukses": true,
+          "pesan": "Berhasil menambahkan data"
+        }
+      }));
     }
   );
 };
+
+
+exports.form_kelahiran  = (req, res) => {
+  pool.getConnection((err, conn) => {
+    /**
+     * karena int pada js memiliki batasan maka no_kk diconvert ke
+     * string
+     */
+    conn.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS nomorKK FROM keluarga", (err, rows) => {
+      if(err) throw new Error(err)
+      conn.release();
+      res.render("tambah-data-kelahiran", { keluarga: rows });
+    });
+  });
+};
+
+
+
+// Add new user
+exports.create_kelahiran = (req, res) => {
+  const {
+    id_lahir,
+    kel_nomor_kk,
+    nama,
+    jenis_kelamin,
+    tgl_lahir,
+
+  } = req.body;
+  let searchTerm = req.body.search;
+    // User the connection
+    connection.query(
+      'INSERT INTO kelahiran SET id_lahir = ?, kel_nomor_kk = ?, nama = ?,  jenis_kelamin = ?, tgl_lahir = ? ',
+      [id_lahir,kel_nomor_kk, nama, jenis_kelamin,tgl_lahir],
+      (err, rows) => {
+        if(err) return res.send(err);
+        if(err) return res.send(JSON.stringify(err));
+        if(err)
+          return res.redirect(url.format({
+            pathname:"/data/data-kelahiran",
+            query: {
+              "sukses": false,
+              "pesan": "Gagal menambahkan data"
+            }
+          }));
+        return res.redirect(url.format({
+          pathname:"/data/data-kelahiran",
+          query: {
+            "sukses": true,
+            "pesan": "Berhasil menambahkan data"
+          }
+        }));
+      }
+    );
+};
+
+
+
+
+
+
 
 //add new publikasi.
 exports.form_publikasi_add = (req, res) => {
@@ -255,52 +317,35 @@ exports.form_publikasi_add = (req, res) => {
 exports.create_publikasi = (req,res) =>{
   const {
     file_article,
+    judul_publish,
     tanggal_terbit,
-    judul_publish
+    id_publish
   } = req.body;
   let searchTerm = req.body.search;
 
   // User the connection
   connection.query(
-    'INSERT INTO publikasi SET file_article = ?, tanggal_terbit = ?, judul_publish = ?',
-    [file_article, tanggal_terbit, judul_publish],
+    'INSERT INTO publikasi SET file_article = ?, judul_publish = ?, tanggal_terbit = ?,  id_publish = ?',
+    [file_article, judul_publish,tanggal_terbit, id_publish],
     (err, rows) => {
-      if (!err) {
-        res.render('tambah-data-publikasi', {
-          //send this in views.
-          alert: "User added successfully.",
-        });
-      } else {
-        console.log(err);
-      }
-      console.log("The data from user table: \n", rows);
+      if(err) return res.send(err);
+      if(err) return res.send(JSON.stringify(err));
+      if(err)
+        return res.redirect(url.format({
+          pathname:"/data/data-publikasi",
+          query: {
+            "sukses": false,
+            "pesan": "Gagal menambahkan data"
+          }
+        }));
+      return res.redirect(url.format({
+        pathname:"/data/data-publikasi",
+        query: {
+          "sukses": true,
+          "pesan": "Berhasil menambahkan data"
+        }
+      }));
     }
   );
 };
 
-
-// exports.create_kelahiran = (req,res) =>{
-//   const {
-//     file_article,
-//     tanggal_terbit,
-//     judul_publish
-//   } = req.body;
-//   let searchTerm = req.body.search;
-
-//   // User the connection
-//   connection.query(
-//     'INSERT INTO publikasi SET file_article = ?, tanggal_terbit = ?, judul_publish = ?',
-//     [file_article, tanggal_terbit, judul_publish],
-//     (err, rows) => {
-//       if (!err) {
-//         res.render('tambah-data-kelahiran', {
-//           //send this in views. 
-//           alert: "User added successfully.",
-//         });
-//       } else {
-//         console.log(err);
-//       }
-//       console.log("The data from user table: \n", rows);
-//     }
-//   );
-// };
