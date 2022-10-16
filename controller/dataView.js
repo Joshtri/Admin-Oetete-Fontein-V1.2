@@ -38,6 +38,59 @@ exports.view_keluarga = (req, res) => {
   });
 };
 
+//View data
+exports.view_keluarga = (req, res) => {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+
+    //show data
+    connection.query("SELECT * FROM keluarga", (err, rows) => {
+      //when done with the connection, release it.
+      connection.release();
+
+      if (!err) {
+        res.render("data-keluarga", { 
+          rows, 
+          sukses: req.query.sukses, 
+          pesan: req.query.pesan 
+        });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    });
+  });
+};
+
+//View data
+exports.view_umkm = (req, res) => {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+
+    //show data
+    connection.query("SELECT * FROM umkm", (err, rows) => {
+      //when done with the connection, release it.
+      connection.release();
+
+      if (!err) {
+        res.render("data-umkm", { 
+          rows, 
+          sukses: req.query.sukses, 
+          pesan: req.query.pesan 
+        });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    });
+  });
+};
+
+
 
 //View data
 exports.view_penduduk = (req, res) => {
@@ -52,7 +105,11 @@ exports.view_penduduk = (req, res) => {
       connection.release();
 
       if (!err) {
-        res.render("data-penduduk", { rows });
+        res.render("data-penduduk", {
+          rows, 
+          sukses: req.query.sukses, 
+          pesan: req.query.pesan 
+          });
       } else {
         console.log(err);
       }

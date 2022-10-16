@@ -278,36 +278,34 @@
     </form>
   </div>
 
+ <!-- 🔥🔥🔥🔥 modal pemberitahuan -->
+ <% 
+ if(typeof sukses != "undefined"){
+%>
+<div class="modal fade modal-pemberitahuan" tabindex="-1" aria-labelledby="exampleModalLabel">
+ <div class="modal-dialog modal-dialog-centered">
+ <div class=" modal-content">
+   <div class="modal-header">
+     <h5 class="modal-title" id="exampleModalLabel">
+       <%= sukses == "true" ? "Berhasil" : "Kesalahan" %>
+     </h5>
+     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body table-responsive">
+     <%= pesan || "Terjadi sebuah kesalahan" %>
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+   </div>
+ </div>
+</div>
+</div>
+<% 
+ }
+%>
 
-
-
-
-  
-  <!-- 🔥🔥🔥🔥 modal pemberitahuan -->
-  <% 
-    if(typeof sukses != "undefined"){
-  %>
-  <div class="modal fade modal-pemberitahuan" tabindex="-1" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog modal-dialog-centered">
-    <div class=" modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          <%= sukses == "true" ? "Berhasil" : "Kesalahan" %>
-        </h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body table-responsive">
-        <%= pesan || "Terjadi sebuah kesalahan" %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-  </div>
-  <% } %>
 
   <!--Modal Information-->
 

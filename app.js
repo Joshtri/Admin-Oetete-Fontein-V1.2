@@ -7,7 +7,8 @@ const favicon = require('express-favicon');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
 
-var session = require('express-session')
+var session = require('express-session');
+var flash = require('connect-flash');
 
 var mysql = require('mysql');
 
@@ -28,11 +29,15 @@ const port = process.env.PORT || "3000";
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use('/upload', express.static('upload'));
+
 app.use(session({
-  secret: 'webslesson',
-  resave : true, 
-  saveUninitialized : true,
+  secret : 'webslesson',
+  cookie:{maxAge : 60000},
+  saveUninitialized : false,
+  resave : false
 }));
+app.use(flash());
 
 //app.use(express.favicon(__dirname + '/public/images/favicon.ico'))
 app.use(favicon(__dirname + '/public/images/favicon.ico'));

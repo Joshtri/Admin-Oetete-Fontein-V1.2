@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const multer = require('multer');
 
 const UserController = require('../controller/addData');
 
@@ -32,14 +33,18 @@ router.get('/tambah-data-masuk', function (req, res, next) {
 // router.get('/tambah-pengguna', UserController.form_pengguna_add);
 
 
-router.get('/tambah-data-umkm',function(req,res,next){
-    res.render('tambah-data-umkm');
-});
+//GET tambah umkm. 
+router.get('/tambah-data-umkm',UserController.form_umkm);
+router.post('/tambah-data-umkm',UserController.create_umkm);
 
 
 // GET tambah publikasi.
 router.get('/tambah-data-publikasi',UserController.form_publikasi_add);
 router.post('/tambah-data-publikasi',UserController.create_publikasi);
+
+
+
+
 
 router.get('/tambah-data-kelahiran', UserController.form_kelahiran); 
 router.post('/tambah-data-kelahiran', UserController.create_kelahiran); 

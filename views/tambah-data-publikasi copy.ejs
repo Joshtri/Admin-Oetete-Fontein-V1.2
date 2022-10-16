@@ -28,7 +28,7 @@
         <h3><i class="fa-solid fa-book ms-2"></i>&nbsp&nbspTAMBAH PUBLIKASI</h3>
         <hr />
 
-        <form enctype="multipart/form-data" action="/tambah_data/tambah-data-publikasi" method="post">
+      <form action="/tambah_data/tambah-data-publikasi" method="post" novalidate>
           <div class="form-label mb-3">
             <label>Judul Publikasi</label>
             <input type="text" name="judul_publish" class="form-control" />
@@ -56,29 +56,20 @@
             <div class="col-md-6">
               <div class="form-label">
                 <label>Upload File</label>
-                <input type="file" name="sample_file" class="form-control"/>
+                <input type="file" name="file_article" class="form-control"/>
               </div>
             </div>
           </div>
 
-          <button type="submit" name="submit" class="btn btn-primary">SIMPAN</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">SIMPAN</button>
           <a href=""><button type="reset" class="btn btn-danger">RESET</button></a>
           <a href="/data/data-publikasi" ><button type="button" class="btn btn-warning">KEMBALI</button></a>
         
             </div>
           </div>
-          
-          <div class="mt-5">
-            <% if(message.length > 0) { %>
-                <div class="alert alert-success">
-                    File is uploaded successfully
-                </div>
-            <% } %>
-            </div>
-          
 
             <!-- Modal -->
-            <!-- <div
+            <div
               class="modal fade"
               id="exampleModal"
               tabindex="-1"
@@ -111,7 +102,7 @@
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
        </form>
       
       </div>

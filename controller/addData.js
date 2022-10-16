@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const url = require('url')
 
+
 // Connection Pool
 let connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -57,6 +58,52 @@ exports.create_keluarga = (req, res) => {
     }
   );
 };
+
+// (not use)id_Usaha, nama_usaha, alamat_tempat_usaha, nama_kk, umur, nama_pemilik, alamat_tempat_tinggal, pendidikan_pemilik, jenis_lokasi_usaha, jenis_pengelolaan_usaha, kbli, rincian_kgiatan_usaha, omset, kekayaan_bersih_usaha, jumlah_tenaga_kerja, modal_usaha, bina_usaha
+//add new umkm
+exports.form_umkm = (req, res) => {
+  res.render('tambah-data-umkm');
+};
+// Add new  UMKM
+exports.create_umkm = (req, res) => {
+  const {
+    nama_usaha,
+    alamat_tempat_usaha,
+    nama_kk,
+    umur,
+    nama_pemilik,
+    alamat_tempat_tinggal,
+    pendidikan_pemilik,
+    jenis_lokasi_usaha,
+    jenis_pengelolaan_usaha,
+    kbli,
+    rincian_kgiatan_usaha,
+    omset,
+    kekayaan_bersih_usaha,
+    jumlah_tenaga_kerja,
+    modal_usaha,
+    bina_usaha,
+    
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO umkm SET nama_usaha = ?, alamat_tempat_usaha = ?, nama_kk = ?, umur = ?, nama_pemilik = ?, alamat_tempat_tinggal = ?, pendidikan_pemilik = ?, jenis_lokasi_usaha = ?, jenis_pengelolaan_usaha = ?, kbli = ?, rincian_kgiatan_usaha = ?, omset = ?, kekayaan_bersih_usaha = ?, jumlah_tenaga_kerja = ?, modal_usaha = ?, bina_usaha = ?',
+    [nama_usaha, alamat_tempat_usaha, nama_kk, umur, nama_pemilik, alamat_tempat_tinggal, pendidikan_pemilik, jenis_lokasi_usaha, jenis_pengelolaan_usaha, kbli, rincian_kgiatan_usaha, omset, kekayaan_bersih_usaha, jumlah_tenaga_kerja, modal_usaha, bina_usaha],
+    (err, rows) => {
+      if (!err) {
+        res.render("tambah-data-umkm", {
+          alert: "User added successfully.",
+        });
+      } else {
+        console.log(err);
+      }
+      console.log("The data from user table: \n", rows);
+    }
+  );
+};
+
 
 // //add new penduduk
 // exports.form = (req, res) => {
@@ -202,6 +249,7 @@ exports.create_pengguna = (req, res) => {
 exports.form_publikasi_add = (req, res) => {
   res.render('tambah-data-publikasi');
 };
+
 
 
 exports.create_publikasi = (req,res) =>{

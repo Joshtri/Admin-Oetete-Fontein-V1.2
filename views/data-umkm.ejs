@@ -41,28 +41,47 @@
           width="100%">
           <thead>
             <tr>
+
               <th scope="col" class="text-center">No</th>
               <th scope="col" class="text-center">Nama Usaha</th>
               <th scope="col" class="text-center">Alamat Tempat Usaha</th>
-              <th scope="col" class="text-center">  Nama Pemilik  </th>
-              <th scope="col" class="text-center"> Kategori </th>
+              <th scope="col" class="text-center">Nama Pemilik</th>
+              <th scope="col" class="text-center">Jenis Pengelolaan Usaha</th>
               <th scope="col" class="text-center">Aksi</th>
 
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td scope="row" class="text-center" >1</td>
-              <td scope="row" class="text-center" >Ucok IT Service</td>
-              <td scope="row" class="text-center" >Jln Kematian</td>
-              <td scope="row" class="text-center" >Ucok Muhammad</td>
-              <td scope="row" class="text-center" >Mikro</td>
+              <% var number = 1; %>
+              <% for (let row of rows) {%>
+              <td scope="row" class="text-center" ><%= number %></td>
+              <td scope="row" class="text-center" ><%= row.nama_usaha %></td>
+              <td scope="row" class="text-center" ><%= row.alamat_tempat_usaha %></td>
+              <td scope="row" class="text-center" ><%= row.nama_pemilik %></td>
+              <td scope="row" class="text-center" ><%= row.jenis_pengelolaan_usaha %></td>
               <td scope="row" class="text-center">
-                <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip" title="Detail"></i></button>
-                <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
-                <button class="border-0"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button>
+                <div class="d-flex flex-nowrap">
+                  <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
+                  <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
+                  <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-json="<%= JSON.stringify(row) %>"><i
+                      class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
+                      title="Detail"></i></button>
+                  <!-- menambah data-form-action sebagai target / alamat proses untuk 
+                      mengubah data setiap data yang memiliki alamat update berbeda -->
+                  <button class="border-0"  data-bs-toggle="modal" data-bs-target="#exampleModalEdit" data-json="<%= JSON.stringify(row) %>"
+                  data-form-action="/data/data-umkm/update/<%= row.id_Usaha %>"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                      data-toggle="tooltip" title="Edit"></i></button>
+
+                  <a href="/data/data-umkm/delete/<%= row.id_Usaha %>"><button class="border-0"><i
+                        class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
+                        title="Delete"></i></button></a>
+                </div>
               </td>
+              <% number++; %>
             </tr>
+            <% }%>
           </tbody>
         </table>
       </div>
@@ -72,56 +91,121 @@
 
             <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Penduduk</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail UMKM</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body table-responsive">
-        <table class="table table-bordered no-margin">
-        <tbody>
-          <tr>
-            <th style="width:50%">No KK</th>
-            <td>1234567891234567</td>
-          </tr>
-          <tr>
-            <th style="width:50%">NIK</th>
-            <td>5371041506020007</td>
-          </tr>
-          <tr>
-            <th style="width:50%">Nama</th>
-            <td>Tesalonika Maharani Cornelia</td>
-          </tr>
-          <tr>
-            <th style="width:50%">Jenis Kelamin</th>
-            <td>Perempuan</td>
-          </tr>
-          <tr>
-            <th style="width:50%">Tanggal Lahir</th>
-            <td>29/08/2002</td>
-          </tr>
-          <tr>
-            <th style="width:50%">Pendidikan Terakhir</th>
-            <td>SMA/SMLB/MA/SMK/MAK/paket C</td>
-          </tr>
-          <tr>
-            <th style="width:50%">Pekerjaan</th>
-            <td>Mahasiswa</td>
-          </tr>
-          <tr>
-            <th style="width:50%">Status Perkawinan</th>
-            <td>Belum Menikah</td>
-          </tr>
+        <!-- Card 1 -->
+        <div class="card">
+          <h5 class="card-header text-center">Biodata Usaha</h5>
+          <div class="card-body bg-light">
+            <table class="table table-bordered no-margin">
+              <tbody>
+                <!-- <tr>
+                  <th style="width:50%">No Urut Usaha</th>
+                  <td>1</td>
+                </tr> -->
+                <tr>
+                  <th style="width:50%">ID_Usaha</th>
+                  <td class="id_Usaha"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Nama Usaha</th>
+                  <td class="nama_usaha"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Alamat Tempat Usaha</th>
+                  <td class="alamat_tempat_usaha"></td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
 
-          
-        </tbody>
-      </table>
+        <!-- Card 2 -->
 
+        <div class="card">
+           <h5 class="card-header text-center">Biodata Pemilik Usaha</h1>
+          <div class="card-body bg-light">
+             <table class="table table-bordered no-margin">
+                <tbody>
+                  <tr>
+                    <th style="width:50%">Nama Kepala Keluarga</th>
+                    <td class="nama_kk"></td>
+                  </tr>
+                  <tr>
+                    <th style="width:50%">Nama Pemilik Usaha</th>
+                    <td class="nama_pemilik"></td>
+                  </tr>
+                  <tr>
+                    <th style="width:50%">Umur Pemilik Usaha</th>
+                    <td class="umur"></td>
+                  </tr>
+                  <tr>
+                    <th style="width:50%">Alamat Tempat Tinggal Pemilik Usaha</th>
+                    <td class="alamat_tempat_tinggal"></td>
+                  </tr>
+                  <tr>
+                    <th style="width:50%">Pendidikan Pemilik Usaha</th>
+                    <td class="pendidikan_pemilik"></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
 
+        <div class="card">
+          <h5 class="card-header text-center">Rincian Usaha</h1>
+         <div class="card-body bg-light">
+            <table class="table table-bordered no-margin">
+               <tbody>
+                <tr>
+                  <th style="width:50%">Jenis Lokasi Tempat Usaha</th>
+                  <td class="jenis_lokasi_usaha"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Jenis Pengelolaan Usaha</th>
+                  <td class="jenis_pengelolaan_usaha"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">KBLI</th>
+                  <td class="kbli"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Rincian Kegiatan Usaha</th>
+                  <td class="rincian_kgiatan_usaha"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Omset Tahunan Usaha</th>
+                  <td class="omset"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Kekayaan Bersih Usaha</th>
+                  <td class="kekayaan_bersih_usaha"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Jumlah Tenaga Kerja</th>
+                  <td class="jumlah_tenaga_kerja"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Sumber Modal Usaha</th>
+                  <td class="modal_usaha"></td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Pembinaan Usaha dari Pemerintah</th>
+                  <td class="bina_usaha"></td>
+                </tr>
+               </tbody>
+             </table>
+         </div>
+       </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
@@ -130,19 +214,315 @@
 </div>
 
 
+  <!-- Modal edit -->
+
+  <div class="modal fade " id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <form action="" class="form-edit" method="POST">
+        <!-- menambah form 🔥🔥🔥🔥🔥🔥 -->
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Keluarga</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body table-responsive">
+            <div class="card">
+              <h5 class="card-header text-center">Biodata Usaha</h5>
+              <div class="card-body bg-light">
+                <table class="table table-bordered no-margin">
+                      <tbody>
+                        <!-- <tr>
+                          <th style="width:50%">No Urut Usaha</th>
+                          <td>1</td>
+                        </tr> -->
+                        <!-- menambah target binding berdasarkan atribut name -->
+                        <tr>
+                          <th style="width:50%">ID Usaha</th>
+                          <td>
+                            <input type="hidden" name="id_Usaha" class="form-control">
+                          </td>
+                        </tr>
+                        <tr>
+                          <th style="width:50%">Nama Usaha</th>
+                          <td>
+                            <input type="text" name="nama_usaha" class="form-control">
+                          </td>
+                        </tr>
+                        <tr>
+                          <th style="width:50%">Alamat Tempat Usaha</th>
+                          <td>
+                            <input type="text" name="alamat_tempat_usaha" class="form-control">
+                          </td>
+                        </tr>
+                        </tbody>
+                    </table>
+               </div>
+    
+              <div class="card">
+                    <h5 class="card-header text-center">Biodata Pemilik Usaha</h1>
+                   <div class="card-body bg-light">
+                      <table class="table table-bordered no-margin">
+                         <tbody>
+                           <tr>
+                             <th style="width:50%">Nama Kepala Keluarga</th>
+                             <td>
+                              <input type="text" name="nama_kk" class="form-control">
+                             </td>
+                           </tr>
+                           <tr>
+                             <th style="width:50%">Nama Pemilik Usaha</th>
+                             <td>
+                              <input type="text" name="nama_pemilik" class="form-control">
+                             </td>
+                           </tr>
+                           <tr>
+                             <th style="width:50%">Umur Pemilik Usaha</th>
+                             <td>
+                              <input type="number" name="umur" class="form-control">
+                             </td>
+                           </tr>
+                           <tr>
+                             <th style="width:50%">Alamat Tempat Tinggal Pemilik Usaha</th>
+                             <td>
+                              <input type="text" name="alamat_tempat_tinggal" class="form-control">
+                             </td>
+                           </tr>
+                           <tr>
+                             <th style="width:50%">Pendidikan Pemilik Usaha</th>
+                             <td>
+                              <input type="text" name="pendidikan_pemilik" class="form-control">
+                             </td>
+                           </tr>
+                         </tbody>
+                       </table>
+                   </div>
+                 </div>
+         
+                 <div class="card">
+                   <h5 class="card-header text-center">Rincian Usaha</h1>
+                  <div class="card-body bg-light">
+                     <table class="table table-bordered no-margin">
+                        <tbody>
+                         <tr>
+                           <th style="width:50%">Jenis Lokasi Tempat Usaha</th>
+                           <td>
+                            <input type="text" name="jenis_lokasi_usaha" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">Jenis Pengelolaan Usaha</th>
+                           <td>
+                            <input type="text" name="jenis_pengelolaan_usaha" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">KBLI</th>
+                           <td>
+                            <input type="text" name="kbli" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">Rincian Kegiatan Usaha</th>
+                           <td>
+                            <input type="text" name="rincian_kgiatan_usaha" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">Omset Tahunan Usaha</th>
+                           <td>
+                            <input type="text" name="omset" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">Kekayaan Bersih Usaha</th>
+                           <td>
+                            <input type="text" name="kekayaan_bersih_usaha" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">Jumlah Tenaga Kerja</th>
+                           <td>
+                            <input type="text" name="jumlah_tenaga_kerja" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">Sumber Modal Usaha</th>
+                           <td>
+                            <input type="text" name="modal_usaha" class="form-control">
+                           </td>
+                         </tr>
+                         <tr>
+                           <th style="width:50%">Pembinaan Usaha dari Pemerintah</th>
+                           <td>
+                            <input type="text" name="bina_usaha" class="form-control">
+                           </td>
+                         </tr>
+                        </tbody>
+                      </table>
+                  </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+ <!-- 🔥🔥🔥🔥 modal pemberitahuan -->
+ <% 
+ if(typeof sukses != "undefined") {
+%>
+<div class="modal fade modal-pemberitahuan" tabindex="-1" aria-labelledby="exampleModalLabel">
+ <div class="modal-dialog modal-dialog-centered">
+ <div class=" modal-content">
+   <div class="modal-header">
+     <h5 class="modal-title" id="exampleModalLabel">
+       <%= sukses == "true" ? "Berhasil" : "Kesalahan" %>
+     </h5>
+     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body table-responsive">
+     <%= pesan || "Terjadi sebuah kesalahan" %>
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+   </div>
+ </div>
+</div>
+</div>
+<% 
+ }
+%>
+
       <!-- footer start -->
       <%- include('footer'); -%>
       <!-- footer end   -->
 
-      <script>
-        $(document).ready(function () {
-        $('#dtHorizontalVerticalExample').DataTable({
-          "scrollX": true,
-          "scrollY": 200,
-        });
-        $('.dataTables_length').addClass('bs-select');
+    <script>
+    $(document).ready(function () {
+      $('#dtHorizontalVerticalExample').DataTable({
+        "scrollX": true,
+        "scrollY": 200,
       });
+      $('.dataTables_length').addClass('bs-select');
+
+      /**
+       * aktivasi modal pemberitahuan
+       * 
+       */
+       let pemberitahuan = document.querySelector('.modal-pemberitahuan');
+      if(pemberitahuan){
+        let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
+          
+        })
+        modal_pemberitahuan.show();
+      }
+
+      /**
+       * fungsi ditriger ketika modal dibuka
+       * 
+       */
+      // semua elemen yang memiliki id exampleModal
+      let modal = document.querySelector("#exampleModal");
+      // menambah event listener pada setiap elemen modal
+      modal.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        /**
+         * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+         * (tombol yang diklik)
+         * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+         * keluarga berupa json
+         * 
+         */
+        // cara mengakses data attribut dari jquery
+        // contoh atribut data-json
+        let data = $(event.relatedTarget).data('json');
+        // di console browser
+        console.log("data tombol yang diklik: ", data);
+
+        // binding data yang diterima dari tombol ke element yang ada pada modal detail
+
+        // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+        $(modal).find(".id_Usaha").text(data.id_Usaha) // cara jquery
+        // atau sama dengan cara vanilla javascript (javascript native/biasa)
+        // modal.querySelector('.no_kk').innerHTML = data.no_kk
+        // binding elemen lainnya yang ada pada modal detail
+        $(modal).find(".nama_usaha").text(data.nama_usaha)
+        $(modal).find(".alamat_tempat_usaha").text(data.alamat_tempat_usaha)
+        $(modal).find(".nama_kk").text(data.nama_kk)
+        $(modal).find(".umur").text(data.umur)
+        $(modal).find(".nama_pemilik").text(data.nama_pemilik)
+        $(modal).find(".alamat_tempat_tinggal").text(data.alamat_tempat_tinggal)
+        $(modal).find(".pendidikan_pemilik").text(data.pendidikan_pemilik)
+        $(modal).find(".jenis_lokasi_usaha").text(data.jenis_lokasi_usaha)
+        $(modal).find(".jenis_pengelolaan_usaha").text(data.jenis_pengelolaan_usaha)
+        $(modal).find(".kbli").text(data.kbli)
+        $(modal).find(".rincian_kgiatan_usaha").text(data.rincian_kgiatan_usaha)
+        $(modal).find(".omset").text(data.omset)
+        $(modal).find(".kekayaan_bersih_usaha").text(data.kekayaan_bersih_usaha)
+        $(modal).find(".jumlah_tenaga_kerja").text(data.jumlah_tenaga_kerja)
+        $(modal).find(".modal_usaha").text(data.modal_usaha)
+        $(modal).find(".bina_usaha").text(data.bina_usaha)
+
+      });
+      /**
+       * modal edit sama seperti modal detail
+       */
+      let modal_edit = document.querySelector("#exampleModalEdit");
+      modal_edit.addEventListener('show.bs.modal', event => {
+        console.log("Modal dibuka: ", event);
+        let data = $(event.relatedTarget).data('json');
+        let target = $(event.relatedTarget).data('form-action');
+        console.log("data tombol yang diklik: ", data);
+        console.log("data elemen target: ", data);
+        console.log("data form target: ", target);
+        // binding action form dari data target form
+        $(modal_edit).find("form").attr("action", target)
+        // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
+        $(modal_edit).find("[name='id_Usaha']").val(data.id_Usaha) // cara jquery
+        $(modal_edit).find("[name='nama_usaha']").val(data.nama_usaha) // cara jquery
+        $(modal_edit).find("[name='alamat_tempat_usaha']").val(data.alamat_tempat_usaha) // cara jquery
+        $(modal_edit).find("[name='nama_kk']").val(data.nama_kk)
+        $(modal_edit).find("[name='umur']").val(data.umur)
+        $(modal_edit).find("[name='nama_pemilik']").val(data.nama_pemilik)
+        $(modal_edit).find("[name='alamat_tempat_tinggal']").val(data.alamat_tempat_tinggal)
+        $(modal_edit).find("[name='pendidikan_pemilik']").val(data.pendidikan_pemilik)
+        $(modal_edit).find("[name='jenis_lokasi_usaha']").val(data.jenis_lokasi_usaha)
+        $(modal_edit).find("[name='jenis_pengelolaan_usaha']").val(data.jenis_pengelolaan_usaha)
+        $(modal_edit).find("[name='kbli']").val(data.kbli)
+        $(modal_edit).find("[name='rincian_kgiatan_usaha']").val(data.rincian_kgiatan_usaha)
+        $(modal_edit).find("[name='omset']").val(data.omset)
+        $(modal_edit).find("[name='kekayaan_bersih_usaha']").val(data.kekayaan_bersih_usaha)
+        $(modal_edit).find("[name='jumlah_tenaga_kerja']").val(data.jumlah_tenaga_kerja)
+        $(modal_edit).find("[name='modal_usaha']").val(data.modal_usaha)
+        $(modal_edit).find("[name='bina_usaha']").val(data.bina_usaha)
+
+      });
+    });
     </script>
+
+<!-- nama_usaha,
+alamat_tempat_usaha,
+nama_kk,
+umur,
+nama_pemilik,
+alamat_tempat_tinggal,
+pendidikan_pemilik,
+jenis_lokasi_usaha,
+jenis_pengelolaan_usaha,
+kbli,
+rincian_kgiatan_usaha,
+omset,
+kekayaan_bersih_usaha,
+jumlah_tenaga_kerja,
+modal_usaha,
+bina_usaha, -->
     
     <!-- <h1>Hello, world!</h1> -->
 
