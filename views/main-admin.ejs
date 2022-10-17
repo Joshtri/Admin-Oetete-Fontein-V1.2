@@ -118,7 +118,9 @@
             <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-cloud-arrow-up"></i></div>
               <h5 class="card-title">PENDATANG</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">30</div>
+              <% for (let row of rows4) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.TotalNik %></div>
+              <% }%>
               <a href="/data/data-masuk" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
@@ -150,28 +152,36 @@
             <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-shop"></i></div>
               <h5 class="card-title">US. MIKRO</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">0</div>
+              <% for (let row of rows8) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.Tmikro %></div>
+              <% }%>
               <a href="/data/data-umkm" class="text-decoration-none fw-bold" ><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>  
 
           <div class="card bg-danger ms-3" style="width: 14rem;">
             <div class="card-body">
+              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-building"></i></div>
+              <h5 class="card-title">US. MENENGAH</h5>
+              <% for (let row of rows9) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.Tmenengah %></div>
+              <% }%>
+              <a href="/data/data-umkm" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
+            </div>
+          </div>  
+
+          <div class="card bg-warning ms-3" style="width: 14rem;">
+            <div class="card-body">
               <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-cart-shopping"></i></div>
               <h5 class="card-title">US. KECIL</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">0</div>
+              <% for (let row of rows10) {%>
+              <div class="display-4" style="font-weight:bold ; font-size:50px ;"><%= row.Tkecil %></div>
+              <% }%>
               <a href="/data/data-umkm" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
             </div>
           </div>
 
-          <div class="card bg-warning ms-3" style="width: 14rem;">
-            <div class="card-body">
-              <div class="card-body-icon" style="position: absolute; z-index: 0; top: 25px; right: 4px; opacity:0.4 ; font-size: 60px;"><i class="fa-solid fa-building"></i></div>
-              <h5 class="card-title">US. MENENGAH</h5>
-              <div class="display-4" style="font-weight:bold ; font-size:50px ;">0</div>
-              <a href="/data/data-umkm" class="text-decoration-none fw-bold"><p class="card-text text-white">Lihat detail&nbsp&nbsp<i class="fa-sharp fa-solid fa-arrow-right"></i></p></a>
-            </div>
-          </div>  
+         
         </div>
 
         </div>
