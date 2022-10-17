@@ -1,4 +1,6 @@
-DB_HOST = 127.0.0.1
-DB_NAME = db_kel_oetete
+DB_HOST = port
+DB_NAME = db_name
 DB_USER = root
 DB_PASS = 
+
+disesuaikan utk 
