@@ -216,12 +216,7 @@
                 <tr>
                   <th style="width:50%">No KK</th>
                   <td>
-                    <select class="form-control" name="kel_no_kk">
-                      <option>-</option>
-                      <% for (let row of rows2) {%>
-                        <option value="<%= row.no_kk %>"><%= row.no_kk %>-<%= row.kepala_kel %></option>
-                      <% } %>
-                    </select>
+                    <input type="number" name="kel_no_kk" class="form-control" />
                   </td>
                 </tr>
                 <tr>

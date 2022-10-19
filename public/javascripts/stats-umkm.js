@@ -4,7 +4,7 @@ const data = {
   labels: labels,
   datasets: [
     {
-      labels: ["My First dataset"],
+
       backgroundColor: ["#ECDBBA", "#C84B31", "#2D4263"],
 
       data: [4, 4, 4],

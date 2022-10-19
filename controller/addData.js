@@ -60,8 +60,8 @@ exports.form_keluarga = (req, res) => {
 exports.create_keluarga = (req, res) => {
   const {
     no_kk,
-    alamat,
     kepala_kel,
+    alamat,
     rt,
     rw,
     kel_n_desa,
@@ -74,8 +74,8 @@ exports.create_keluarga = (req, res) => {
 
   // User the connection
   connection.query(
-    'INSERT INTO keluarga SET no_kk = ?, alamat = ?, kepala_kel = ?, rt = ?, rw = ?, kel_n_desa = ?, kecamatan = ?, kota_n_kab = ?, provinsi = ?',
-    [no_kk, alamat, kepala_kel, rt, rw, kel_n_desa, kecamatan, kota_n_kab, provinsi],
+    'INSERT INTO keluarga SET no_kk = ?, kepala_kel = ?, alamat = ?, rt = ?, rw = ?, kel_n_desa = ?, kecamatan = ?, kota_n_kab = ?, provinsi = ?',
+    [no_kk, kepala_kel, alamat, rt, rw, kel_n_desa, kecamatan, kota_n_kab, provinsi],
     (err, rows) => {
       if (!err) {
         res.render("tambah-data-keluarga", {

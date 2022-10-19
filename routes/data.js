@@ -6,11 +6,9 @@ const url = require('url');
 const UserController = require("../controller/dataView");
 var database = require("../database");
 
-// // GET data-keluarga
-// router.get('/data-keluarga', UserController.view_keluarga);
-
 // GET data-penduduk
 router.get("/data-keluarga", UserController.view_keluarga);
+
 router.get("/data-kematian", UserController.view_kematian);
 
 // GET data-penduduk
@@ -26,6 +24,22 @@ router.get("/data-penduduk/delete/:nik", function (request, response, next) {
       throw error;
     } else {
       response.redirect("/data/data-penduduk");
+    }
+  });
+});
+
+
+router.get("/data-keluarga/delete/:no_kk", function (request, response, next) {
+  var no_kk = request.params.no_kk;
+  // User the connection
+  var query = `DELETE FROM keluarga WHERE no_kk = "${no_kk}"`;
+  // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
+
+  database.query(query, function (error, data) {
+    if (error) {
+      throw error;
+    } else {
+      response.redirect("/data/data-keluarga");
     }
   });
 });
@@ -144,14 +158,10 @@ router.post("/data-umkm/update/:id_Usaha", function (request, response, next) {
   })
 });
 
-// GET Pengguna
-// router.get("/data-pengguna", function (req, res, next) {
-//   res.render("data-pengguna");
-// });
 
 //GET Pengguna
 router.get("/data-pengguna", UserController.view_pengguna);
-// router.post("/data-publikasi/edit/:nik", UserController.delete_publikasi);
+
 
 router.get("/data-pengguna/delete/:user_id",function (request, response, next) {
     var user_id = request.params.user_id;
@@ -222,20 +232,7 @@ router.post("/data-keluarga/update/:no_kk", function (request, response, next) {
 
 
 
-router.get("/data-keluarga/delete/:no_kk", function (request, response, next) {
-  var no_kk = request.params.no_kk;
-  // User the connection
-  var query = `DELETE FROM keluarga WHERE no_kk = "${no_kk}"`;
-  // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
 
-  database.query(query, function (error, data) {
-    if (error) {
-      throw error;
-    } else {
-      response.redirect("/data/data-keluarga");
-    }
-  });
-});
 
 
 //DELETE FEATURE IN UMKM.

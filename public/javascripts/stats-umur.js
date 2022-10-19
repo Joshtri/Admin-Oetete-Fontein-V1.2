@@ -12,7 +12,7 @@ const data = {
   labels: labels,
   datasets: [
     {
-      label: ["0-15 Tahun", ""],
+
       backgroundColor: [
         "#62374E",
         "#007880",

@@ -5,10 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const favicon = require('express-favicon');
 require('dotenv').config();
-const fileUpload = require('express-fileupload');
+
+// const fileUpload = require('express-fileupload');
 
 var session = require('express-session');
-var flash = require('connect-flash');
+// var flash = require('connect-flash');
 
 var mysql = require('mysql');
 
@@ -29,7 +30,7 @@ const port = process.env.PORT || "3000";
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use('/upload', express.static('upload'));
+// app.use('/upload', express.static('upload'));
 
 app.use(session({
   secret : 'webslesson',
@@ -37,7 +38,8 @@ app.use(session({
   saveUninitialized : false,
   resave : false
 }));
-app.use(flash());
+
+// app.use(flash());
 
 //app.use(express.favicon(__dirname + '/public/images/favicon.ico'))
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
@@ -62,7 +64,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(fileUpload());
+// app.use(fileUpload());
 
 
 app.use('/', indexRouter);  // most  top level sitemap. 
@@ -77,15 +79,15 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 
 app.listen(port, () => console.log(`listening on ${port}`));

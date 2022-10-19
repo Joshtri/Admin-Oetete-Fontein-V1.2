@@ -10,7 +10,7 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
-var database  = require('../database');
+// var database  = require('../database');
 
 //View data
 exports.view_keluarga = (req, res) => {
