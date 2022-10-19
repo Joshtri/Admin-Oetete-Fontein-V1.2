@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2022 at 01:30 AM
+-- Generation Time: Oct 19, 2022 at 02:50 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -35,15 +35,6 @@ CREATE TABLE `admin_login` (
   `user_session_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `admin_login`
---
-
-INSERT INTO `admin_login` (`nama_lengkap`, `user_id`, `user_name`, `user_password`, `user_session_id`) VALUES
-('Edina Felix', 12, 'Edin', 'admin', ''),
-('Lucky Kingston', 13, 'Lucky', 'admin', ''),
-('Terono', 15, 'admin', 'admin', '');
-
 -- --------------------------------------------------------
 
 --
@@ -57,14 +48,6 @@ CREATE TABLE `kelahiran` (
   `jenis_kelamin` enum('Laki-Laki','Perempuan') NOT NULL,
   `tgl_lahir` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kelahiran`
---
-
-INSERT INTO `kelahiran` (`id_lahir`, `kel_nomor_kk`, `nama`, `jenis_kelamin`, `tgl_lahir`) VALUES
-(0, 5371041550008889, 'Erix Kingston', 'Laki-Laki', '2022-10-26'),
-(7, 5371046021115222, 'Andreas Ludjo', 'Laki-Laki', '2022-10-25');
 
 -- --------------------------------------------------------
 
@@ -84,16 +67,6 @@ CREATE TABLE `keluarga` (
   `provinsi` enum('Nanggroe Aceh Darussalam (NAD)','Sumatera Utara','Sumatera Selatan','Sumatera Barat','Bengkulu','Riau','Kepulauan Riau','Jambi','Lampung','Bangka Belitung','Kalimantan Barat','Kalimantan Timur','Kalimantan Selatan','Kalimantan Tengah','Kalimantan Utara','Banten','Daerah Khusus Ibu Kota Jakarta (DKI Jakarta)','Jawa Barat','Jawa Tengah','Daerah Istimewa Yogyakarta (DIY)','Jawa Timur','Bali','Nusa Tenggara Timur','Nusa Tenggara Barat','Gorontalo','Sulawesi Barat','Sulawesi Tengah','Sulawesi Utara','Sulawesi Tenggara','Sulawesi Selatan','Maluku Utara','Maluku','Papua Barat','Papua','Papua Selatan','Papua Tengah','Papua Pegunungan') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `keluarga`
---
-
-INSERT INTO `keluarga` (`no_kk`, `kepala_kel`, `alamat`, `rt`, `rw`, `kel_n_desa`, `kecamatan`, `kota_n_kab`, `provinsi`) VALUES
-(5371041550008889, 'Tino Query', 'Jalan Seribu Langkah', 5, 1, 'Oetete', 'Oebobo', 'Kota Kupang', 'Nusa Tenggara Timur'),
-(5371046021115222, 'Endemic Anony', 'Jalan Terus Gak Jadian', 3, 1, 'Oetete', 'Oebobo', 'Kupang', 'Nusa Tenggara Timur'),
-(7670015658892450, 'Albert Tylo', 'Jln. Ahmad Yani No 20', 8, 5, 'Oetete', 'Oebobo', 'Kota Kupang', 'Nusa Tenggara Timur'),
-(53710401506020007, 'Eroxim', 'Jalan Amfibi', 3, 2, 'Oetete', 'Oebobo', 'Kota Kupang', 'Nusa Tenggara Timur');
-
 -- --------------------------------------------------------
 
 --
@@ -105,14 +78,6 @@ CREATE TABLE `kematian` (
   `nik` bigint(16) NOT NULL,
   `tgl_kematian` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kematian`
---
-
-INSERT INTO `kematian` (`id_kematian`, `nik`, `tgl_kematian`) VALUES
-(0, 100588834599, '2022-10-19'),
-(3, 537088834512343, '2022-10-10');
 
 -- --------------------------------------------------------
 
@@ -131,22 +96,6 @@ CREATE TABLE `penduduk` (
   `pendidikan` enum('Belum/Tidak Pernah Sekolah','Belum/Tidak Tamat SD/SDLB/MI/Paket A','SD/SDLB/MI/Paket A','SMP/SMPLB/MTs/Paket B','SMA/SMLB/MA/SMK/MAK/paket C','DI/DII/DIII','DIV/S1','S2','S3') NOT NULL,
   `kel_no_kk` bigint(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `penduduk`
---
-
-INSERT INTO `penduduk` (`nik`, `nama`, `jenis_kelamin`, `hubungan_keluarga`, `lahir`, `status_perkawinan`, `pekerjaan`, `pendidikan`, `kel_no_kk`) VALUES
-(100588834599, 'Ayo Andrew', 'Laki-Laki', 'Kepala Keluarga', '', 'Cerai Hidup', 'Pegawai BUMN', 'S2', 7670015658892450),
-(537088834512343, 'Urei', 'Perempuan', 'Istri', '', 'Cerai Hidup', 'SWASTA', 'DIV/S1', 5371046021115222),
-(3201162706040004, 'Erico Ling', 'Laki-Laki', 'Anak', '2002-02-21', 'Belum Menikah', 'Pegawai BUMN', 'Belum/Tidak Pernah Sekolah', 53710401506020007),
-(5370008882233401, 'Endin', 'Perempuan', 'Anak', '2022-10-13', 'Belum Menikah', 'Pelajar/Mahasiswa', 'DIV/S1', 7670015658892450),
-(5371030912912990, 'Sulesto', 'Laki-Laki', 'Kepala Keluarga', '2022-01-20', 'Sudah Menikah', 'SWASTA', 'S2', 5371046021115222),
-(5371041506020002, 'Eroxim', 'Laki-Laki', 'Kepala Keluarga', '2002-06-15', 'Sudah Menikah', 'SWASTA', 'DIV/S1', 53710401506020007),
-(5371041506021452, 'Frenderic X. Marxim', 'Perempuan', 'Istri', '2002-07-29', 'Sudah Menikah', 'SWASTA', 'S2', 5371046021115222),
-(5541114453450091, 'Ulexia Uefina Udin', 'Perempuan', 'Anak', '2034-10-18', 'Belum Menikah', 'Belum Bekerja', 'DIV/S1', 5371046021115222),
-(6105556005450002, 'Axio Acerina Trodox', 'Laki-Laki', 'Anak', '2030-07-24', 'Belum Menikah', 'Belum Bekerja', 'SMP/SMPLB/MTs/Paket B', 5371046021115222),
-(6705556610130005, 'Vandali Uriem', 'Perempuan', 'Anak', '2030-09-27', 'Belum Menikah', 'Belum Bekerja', 'SMA/SMLB/MA/SMK/MAK/paket C', 5371046021115222);
 
 -- --------------------------------------------------------
 
@@ -186,14 +135,6 @@ CREATE TABLE `umkm` (
   `modal_usaha` enum('Modal Sendiri','Bantuan Pemerintah','Modal Sendiri & Bantuan Pemerintah') NOT NULL,
   `bina_usaha` enum('Ya','Tidak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `umkm`
---
-
-INSERT INTO `umkm` (`id_Usaha`, `nama_usaha`, `alamat_tempat_usaha`, `nama_kk`, `umur`, `nama_pemilik`, `alamat_tempat_tinggal`, `pendidikan_pemilik`, `jenis_lokasi_usaha`, `jenis_pengelolaan_usaha`, `kbli`, `rincian_kgiatan_usaha`, `omset`, `kekayaan_bersih_usaha`, `jumlah_tenaga_kerja`, `modal_usaha`, `bina_usaha`) VALUES
-(1, 'Bakmie Covid 19', 'Jln. Sentikom Anjayd', 'Sulthan Lamarian', 20, 'Sulthan Lamarian', 'Jln. Kebiri 10', 'S2', 'Tetap', 'Perorangan', 'Industri Makanan', 'Tempat makan yang bergizi dan sangat sehat sekali, ya sangat enak sih bro.', 'Omset <= Rp.300 Juta', 'KBU <= Rp.50 Juta', '1-5 Tenaga Kerja', 'Bantuan Pemerintah', 'Ya'),
-(5, 'Warung Sentikom', 'Jalan Penfui No.3', 'Ricky Manafe', 27, 'Ricky Manafe', 'Jln. IBM', 'DIV/S1', 'Tetap', 'Badan Usaha', 'Industri Makanan', 'Bekerja dengan semangat bersama warung sentikom', 'Omset <= Rp.300 Juta', 'KBU <= Rp.50 Juta', '6-19 Tenaga Kerja', 'Modal Sendiri', 'Ya');
 
 --
 -- Indexes for dumped tables
