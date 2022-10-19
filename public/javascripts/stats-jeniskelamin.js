@@ -3,7 +3,7 @@ const data = {
   labels: labels,
   datasets: [
     {
-      
+      label:[],
       backgroundColor: ["#2D4263", "#C84B31"],
 
       data: [0, 0],
