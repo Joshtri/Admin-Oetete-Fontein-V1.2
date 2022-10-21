@@ -3,6 +3,7 @@ var router = express.Router();
 const mysql = require("mysql");
 
 var database = require("../database");
+const { redirectIfLoggedIn } = require("../middlewares/auth");
 
 // Connection Pool
 let connection = mysql.createConnection({
@@ -91,7 +92,7 @@ router.get("/data-umkm", function (req, res, next) {
 });
 
 /* GET login page. */
-router.get("/", function (req, res, next) {
+router.get("/", redirectIfLoggedIn, function (req, res, next) {
   res.render("login", { title: "Express", session: req.session });
 });
 
@@ -109,7 +110,6 @@ router.post("/main-admin", function (request, response, next) {
         for (var count = 0; count < data.length; count++) {
           if (data[count].user_password == user_password) {
             request.session.user_id = data[count].user_id;
-
             response.redirect("/");
           } else {
             response.send("Incorrect Password");

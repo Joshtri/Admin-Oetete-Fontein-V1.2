@@ -33,10 +33,10 @@ app.set('view engine', 'ejs');
 // app.use('/upload', express.static('upload'));
 
 app.use(session({
-  secret : 'webslesson',
+  secret : 'login',
   cookie:{maxAge : 60000},
   saveUninitialized : false,
-  resave : false
+  resave : true
 }));
 
 // app.use(flash());

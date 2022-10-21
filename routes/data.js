@@ -5,15 +5,16 @@ const url = require('url');
 
 const UserController = require("../controller/dataView");
 var database = require("../database");
+const { isLoggedIn } = require("../middlewares/auth");
 
 // GET data-penduduk
-router.get("/data-keluarga", UserController.view_keluarga);
+router.get("/data-keluarga", isLoggedIn,  UserController.view_keluarga);
 
-router.get("/data-kematian", UserController.view_kematian);
+router.get("/data-kematian", isLoggedIn,  UserController.view_kematian);
 
 // GET data-penduduk
-router.get("/data-penduduk", UserController.view_penduduk);
-router.get("/data-penduduk/delete/:nik", function (request, response, next) {
+router.get("/data-penduduk", isLoggedIn,  UserController.view_penduduk);
+router.get("/data-penduduk/delete/:nik", isLoggedIn,  function (request, response, next) {
   var nik = request.params.nik;
   // User the connection
   var query = `DELETE FROM penduduk WHERE nik = "${nik}"`;
@@ -29,7 +30,7 @@ router.get("/data-penduduk/delete/:nik", function (request, response, next) {
 });
 
 
-router.get("/data-keluarga/delete/:no_kk", function (request, response, next) {
+router.get("/data-keluarga/delete/:no_kk", isLoggedIn,  function (request, response, next) {
   var no_kk = request.params.no_kk;
   // User the connection
   var query = `DELETE FROM keluarga WHERE no_kk = "${no_kk}"`;
@@ -47,9 +48,9 @@ router.get("/data-keluarga/delete/:no_kk", function (request, response, next) {
 
 
 // GET data-kelahiran
-router.get("/data-kelahiran", UserController.view_kelahiran);
+router.get("/data-kelahiran", isLoggedIn,  UserController.view_kelahiran);
 
-router.get("/data-kelahiran/delete/:id_lahir", function (request, response, next) {
+router.get("/data-kelahiran/delete/:id_lahir", isLoggedIn,  function (request, response, next) {
   var id_lahir = request.params.id_lahir;
   // User the connection
   var query = `DELETE FROM kelahiran WHERE id_lahir = "${id_lahir}"`;
@@ -67,34 +68,34 @@ router.get("/data-kelahiran/delete/:id_lahir", function (request, response, next
 
 
 // GET data-kematian
-router.get("/data-kematian", UserController.view_kematian);
+router.get("/data-kematian", isLoggedIn,  UserController.view_kematian);
 
 
 // GET data-pekerjaan
-router.get("/data-pekerjaan", function (req, res, next) {
+router.get("/data-pekerjaan", isLoggedIn,  function (req, res, next) {
   res.render("data-pekerjaan");
 });
 // GET data-pindah
-router.get("/data-pindah", function (req, res, next) {
+router.get("/data-pindah", isLoggedIn,  function (req, res, next) {
   res.render("data-pindah");
 });
 
-// router.get("/data-masuk", function (req, res, next) {
+// router.get("/data-masuk", isLoggedIn,  function (req, res, next) {
 //   res.render("data-masuk");
 // });
 
 // GET data-masuk
-router.get("/data-masuk", UserController.view_masuk);
+router.get("/data-masuk", isLoggedIn,  UserController.view_masuk);
 
 // GET data-penduduk
-// router.get("/data-penduduk", function (req, res, next) {
+// router.get("/data-penduduk", isLoggedIn,  function (req, res, next) {
 //   res.render("data-penduduk");
 // });
 
 // GET data-umkm
-router.get("/data-umkm", UserController.view_umkm);
+router.get("/data-umkm", isLoggedIn,  UserController.view_umkm);
 //UPDATE UMKM!!!!
-router.post("/data-umkm/update/:id_Usaha", function (request, response, next) {
+router.post("/data-umkm/update/:id_Usaha", isLoggedIn,  function (request, response, next) {
   var id_Usaha = request.params.id_Usaha;
   // response.send("Cek No KK = " + no_kk);
   // response.send("Cek Body = " + JSON.stringify(request.body));
@@ -160,10 +161,10 @@ router.post("/data-umkm/update/:id_Usaha", function (request, response, next) {
 
 
 //GET Pengguna
-router.get("/data-pengguna", UserController.view_pengguna);
+router.get("/data-pengguna", isLoggedIn,  UserController.view_pengguna);
 
 
-router.get("/data-pengguna/delete/:user_id",function (request, response, next) {
+router.get("/data-pengguna/delete/:user_id", isLoggedIn, function (request, response, next) {
     var user_id = request.params.user_id;
     // User the connection
     var query = `DELETE FROM admin_login WHERE user_id = "${user_id}"`;
@@ -179,7 +180,7 @@ router.get("/data-pengguna/delete/:user_id",function (request, response, next) {
   }
 );
 
-router.post("/data-keluarga/update/:no_kk", function (request, response, next) {
+router.post("/data-keluarga/update/:no_kk", isLoggedIn,  function (request, response, next) {
   var no_kk = request.params.no_kk;
   // response.send("Cek No KK = " + no_kk);
   // response.send("Cek Body = " + JSON.stringify(request.body));
@@ -236,7 +237,7 @@ router.post("/data-keluarga/update/:no_kk", function (request, response, next) {
 
 
 //DELETE FEATURE IN UMKM.
-router.get("/data-umkm/delete/:id_Usaha", function (request, response, next) {
+router.get("/data-umkm/delete/:id_Usaha", isLoggedIn,  function (request, response, next) {
   var id_Usaha = request.params.id_Usaha;
   // User the connection
   var query = `DELETE FROM umkm WHERE id_Usaha = "${id_Usaha}"`;
@@ -252,7 +253,7 @@ router.get("/data-umkm/delete/:id_Usaha", function (request, response, next) {
 });
 
 
-router.get("/data-kematian/delete/:id_kematian", function (request, response, next) {
+router.get("/data-kematian/delete/:id_kematian", isLoggedIn,  function (request, response, next) {
   var id_kematian = request.params.id_kematian;
   // User the connection
   var query = `DELETE FROM kematian WHERE id_kematian = "${id_kematian}"`;
@@ -267,7 +268,7 @@ router.get("/data-kematian/delete/:id_kematian", function (request, response, ne
   });
 });
 
-router.post("/data-kematian/update/:id_kematian", function (request, response, next) {
+router.post("/data-kematian/update/:id_kematian", isLoggedIn,  function (request, response, next) {
   var id_kematian = request.params.id_kematian;
   // response.send("Cek No KK = " + no_kk);
   // response.send("Cek Body = " + JSON.stringify(request.body));
@@ -304,7 +305,7 @@ router.post("/data-kematian/update/:id_kematian", function (request, response, n
   })
 });
 
-router.post("/data-kelahiran/update/:id_lahir", function (request, response, next) {
+router.post("/data-kelahiran/update/:id_lahir", isLoggedIn,  function (request, response, next) {
   var id_lahir = request.params.id_lahir;
   // response.send("Cek No KK = " + no_kk);
   // response.send("Cek Body = " + JSON.stringify(request.body));
@@ -345,12 +346,12 @@ router.post("/data-kelahiran/update/:id_lahir", function (request, response, nex
 
 
 //GET Publikasi
-router.get("/data-publikasi", UserController.view_publikasi);
+router.get("/data-publikasi", isLoggedIn,  UserController.view_publikasi);
 
-router.get("/data-publikasi/edit/:id_publish", UserController.edit_publikasi);
-router.post("/data-publikasi/edit/:id_publish",UserController.update_publikasi);
+router.get("/data-publikasi/edit/:id_publish", isLoggedIn,  UserController.edit_publikasi);
+router.post("/data-publikasi/edit/:id_publish", isLoggedIn, UserController.update_publikasi);
 
-// router.get("/editpublikasi/:id", UserController.edit_publikasi);
+// router.get("/editpublikasi/:id", isLoggedIn,  UserController.edit_publikasi);
 router.get(
   "/data-publikasi/delete/:id_publish",
   function (request, response, next) {
@@ -368,12 +369,12 @@ router.get(
   }
 );
 
-// router.get("/data-publikasi", function (req, res, next) {
+// router.get("/data-publikasi", isLoggedIn,  function (req, res, next) {
 //   res.render("data-publikasi");
 // });
 
 // 'INSERT INTO admin_login SET nama_lengkap = ?, user_name = ?, user_password = ?',
-router.post("/data-pengguna/update/:user_id", function (request, response, next) {
+router.post("/data-pengguna/update/:user_id", isLoggedIn,  function (request, response, next) {
   var user_id = request.params.user_id;
   // response.send("Cek No KK = " + no_kk);
   // response.send("Cek Body = " + JSON.stringify(request.body));
@@ -413,7 +414,7 @@ router.post("/data-pengguna/update/:user_id", function (request, response, next)
 });
 
 
-router.post("/data-penduduk/update/:nik", function (request, response, next) {
+router.post("/data-penduduk/update/:nik", isLoggedIn,  function (request, response, next) {
   var nik = request.params.nik;
   // response.send("Cek No KK = " + no_kk);
   // response.send("Cek Body = " + JSON.stringify(request.body));

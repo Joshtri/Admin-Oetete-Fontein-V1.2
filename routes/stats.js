@@ -3,6 +3,7 @@ var router = express.Router();
 const mysql = require("mysql");
 
 const UserController = require('../controller/dataController');
+const { isLoggedIn } = require('../middlewares/auth');
 
 let connection = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -26,7 +27,7 @@ const pool = mysql.createPool({
 // There is 7 router
 
 //DONE
-router.get('/statistik/umur', function (req, res, next) {
+router.get('/statistik/umur', isLoggedIn,  function (req, res, next) {
     // konek
     // data dari tabel
     res.json(
@@ -48,7 +49,7 @@ router.get('/statistik/umur', function (req, res, next) {
 });
 
 
-router.get('/statistik/status', function (req, res, next) {
+router.get('/statistik/status', isLoggedIn,  function (req, res, next) {
     // konek
         // data dari tabel
     
@@ -96,7 +97,7 @@ router.get('/statistik/status', function (req, res, next) {
 });
 
 
-router.get('/statistik/pendidikan', function (req, res, next) {
+router.get('/statistik/pendidikan', isLoggedIn,  function (req, res, next) {
   // konek
   pool.getConnection((err, connection) => {
     if (err) throw err; //NOT CONNECTED.
@@ -154,7 +155,7 @@ connection.query("SELECT SUM(pendidikan = 'Belum/Tidak Pernah Sekolah') AS Total
 });
 
 //
-router.get('/statistik/jeniskelamin', function (req, res, next) {
+router.get('/statistik/jeniskelamin', isLoggedIn,  function (req, res, next) {
 // konek
     // data dari tabel
 
@@ -194,7 +195,7 @@ router.get('/statistik/jeniskelamin', function (req, res, next) {
 
 
 //
-router.get('/statistik/umkm', function (req, res, next) {
+router.get('/statistik/umkm', isLoggedIn,  function (req, res, next) {
     // konek
         // data dari tabel
     
@@ -236,7 +237,7 @@ router.get('/statistik/umkm', function (req, res, next) {
 });
 
 
-router.get('/statistik/pekerjaan', function (req, res, next) {
+router.get('/statistik/pekerjaan', isLoggedIn,  function (req, res, next) {
     // konek
     pool.getConnection((err, connection) => {
         if (err) throw err; //NOT CONNECTED.
@@ -305,7 +306,7 @@ router.get('/statistik/pekerjaan', function (req, res, next) {
 
 
 
-router.get('/statistik-pendidikan', function (req, res, next) {
+router.get('/statistik-pendidikan', isLoggedIn,  function (req, res, next) {
   //connect db.
   pool.getConnection((err, connection) => {
     if (err) throw err; //NOT CONNECTED.
@@ -400,11 +401,11 @@ router.get('/statistik-pendidikan', function (req, res, next) {
 });
 // res.render('statistik-pendidikan');
 
-router.get('/statistik-umur', function (req, res, next) {
+router.get('/statistik-umur', isLoggedIn,  function (req, res, next) {
     res.render('statistik-umur');
 });
 
-router.get('/statistik-jeniskelamin', function (req, res, next) {
+router.get('/statistik-jeniskelamin', isLoggedIn,  function (req, res, next) {
       //connect db.
   pool.getConnection((err, connection) => {
     if (err) throw err; //NOT CONNECTED.
@@ -433,7 +434,7 @@ router.get('/statistik-jeniskelamin', function (req, res, next) {
 
 
 
-router.get('/statistik-status', function (req, res, next) {
+router.get('/statistik-status', isLoggedIn,  function (req, res, next) {
       //connect db.
   pool.getConnection((err, connection) => {
     if (err) throw err; //NOT CONNECTED.
@@ -492,7 +493,7 @@ router.get('/statistik-status', function (req, res, next) {
 
 // res.render('statistik-status');
 
-router.get('/statistik-umkm', function(req,res,next){
+router.get('/statistik-umkm', isLoggedIn,  function(req,res,next){
    
   //connect db.
   pool.getConnection((err, connection) => {
@@ -525,7 +526,7 @@ router.get('/statistik-umkm', function(req,res,next){
 });
 // res.render('statistik-umkm');
 
-router.get('/statistik-pekerjaan', function (req, res, next) {
+router.get('/statistik-pekerjaan', isLoggedIn,  function (req, res, next) {
     //connect db.
   pool.getConnection((err, connection) => {
     if (err) throw err; //NOT CONNECTED.
