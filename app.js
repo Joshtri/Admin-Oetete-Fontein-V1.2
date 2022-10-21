@@ -17,6 +17,7 @@ var app = express();
 
 
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var addRouter = require('./routes/add');
@@ -24,7 +25,7 @@ var statsRouter = require('./routes/stats');
 var datasRouter = require('./routes/data');
 
 
-const port = process.env.PORT || "3000";
+const port = process.env.PORT || "3001";
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -71,7 +72,8 @@ app.use('/', indexRouter);  // most  top level sitemap.
 app.use('/data', datasRouter)
 app.use('/users', usersRouter);
 app.use('/tambah_data', addRouter);
-app.use('/statistics', statsRouter)
+app.use('/statistics', statsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

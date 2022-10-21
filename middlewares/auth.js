@@ -11,7 +11,7 @@ module.exports = {
 	redirectIfLoggedIn : (req, res, next) => {
 
 		if (req.session.user_id)
-			res.redirect('/main-admin')
+			res.redirect('main-admin')
 		else
 			next()
 

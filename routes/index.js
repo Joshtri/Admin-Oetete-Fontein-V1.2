@@ -4,6 +4,7 @@ const mysql = require("mysql");
 
 var database = require("../database");
 const { redirectIfLoggedIn } = require("../middlewares/auth");
+const { isLoggedIn } = require("../middlewares/auth");
 
 // Connection Pool
 let connection = mysql.createConnection({
@@ -21,8 +22,10 @@ let connection = mysql.createConnection({
     database: process.env.DB_NAME,
   });
 
-/* GET home page. */
-router.get("/main-admin", function (req, res, next) {
+
+
+  /* GET home page. */
+router.get("/main-admin",isLoggedIn , function (req, res, next) {
   //connect db.
   pool.getConnection((err, connection) => {
     if (err) throw err; //NOT CONNECTED.
@@ -85,11 +88,12 @@ router.get("/main-admin", function (req, res, next) {
 // router.get('/publikasi',function(req,res,next){
 //   res.render('publikasi');
 // });
+//GET Publikasi
+// router.get('/publikasi',function(req,res,next){
+//   res.render('publikasi');
+// });
 
-// GET data-kbli
-router.get("/data-umkm", function (req, res, next) {
-  res.render("data-umkm");
-});
+
 
 /* GET login page. */
 router.get("/", redirectIfLoggedIn, function (req, res, next) {
