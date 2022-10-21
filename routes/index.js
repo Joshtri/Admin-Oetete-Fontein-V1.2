@@ -5,7 +5,6 @@ const mysql = require("mysql");
 var database = require("../database");
 const { redirectIfLoggedIn } = require("../middlewares/auth");
 const { isLoggedIn } = require("../middlewares/auth");
-
 // Connection Pool
 let connection = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -100,7 +99,7 @@ router.get("/", redirectIfLoggedIn, function (req, res, next) {
   res.render("login", { title: "Express", session: req.session });
 });
 
-router.post("/main-admin", function (request, response, next) {
+router.post("/main-admin", redirectIfLoggedIn, function (request, response, next) {
   var user_name = request.body.user_name;
 
   var user_password = request.body.user_password;
