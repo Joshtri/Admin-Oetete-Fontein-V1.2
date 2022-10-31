@@ -25,7 +25,7 @@ var statsRouter = require('./routes/stats');
 var datasRouter = require('./routes/data');
 
 
-const port = process.env.PORT || "3001";
+const port = process.env.PORT || "3000";
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +35,7 @@ app.set('view engine', 'ejs');
 
 app.use(session({
   secret : 'login',
-  cookie:{maxAge : 60000},
+  cookie:{maxAge : 3.24e+7},
   saveUninitialized : false,
   resave : true
 }));

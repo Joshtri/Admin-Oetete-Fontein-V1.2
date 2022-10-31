@@ -20,7 +20,7 @@ exports.view_keluarga = (req, res) => {
     console.log(`Connected as ID ` + connection.threadId);
 
     //show data
-    connection.query("SELECT * FROM keluarga", (err, rows) => {
+    connection.query("select * from keluarga union  select * from penduduk ", (err, rows) => {
       //when done with the connection, release it.
       connection.release();
 

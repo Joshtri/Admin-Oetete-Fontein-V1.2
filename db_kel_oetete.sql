@@ -127,7 +127,7 @@ CREATE TABLE `umkm` (
   `pendidikan_pemilik` enum('Belum/Tidak Pernah Sekolah','Belum/Tidak Pernah Tamat SD/SDLB/MI/Paket A','SD/SDLB/MI/Paket A','SMP/SMPLB/MTs/Paket B','SMA/SMLB/MTA/SMK/MAK/paket C','DI/DII/DII','DIV/S1','S2','S3') NOT NULL,
   `jenis_lokasi_usaha` enum('Tetap','Keliling') NOT NULL,
   `jenis_pengelolaan_usaha` enum('Perorangan','Badan Usaha') NOT NULL,
-  `kbli` enum('Pertanian Tanaman, Peternakan, Perburuan dan Kegiatan YBDI','Pengelolaan Kehutanan dan Penebangan','Perikanan','Pertambangan Batu Bara dan Lignit','Pertambangan Minyak Bumi dan Gas Alam dan Panas Bumi','Pertambangan Bijih Logam','Pertambangan dan Penggalian Lainnya','Aktivitas Jasa Penunjang Pertambangan','Industri Makanan','Industri Minuman','Industri Pengolahan Tembakau','Industri Tekstil','Industri Pakaian Jadi','Industri Kulit, Barang dari Kulit dan Alas\nKaki','Industri Kayu, Barang dari Kayu dan Gabus (Tidak Termasuk Furnitur) dan Barang Anyaman dari Bambu, Rotan\ndan Sejenisnya','Industri Kertas dan Barang dari Kertas','Industri Pencetakan dan Reproduksi\nMedia Rekaman','Industri Produk Dari Batu Bara dan Pengilangan Minyak Bumi','Industri Bahan Kimia dan Barang dari Bahan Kimia','Industri Farmasi, Produk Obat Kimia dan Obat Tradisional','Industri Karet, Barang dari Karet dan Plastik','Industri Barang Galian Bukan Logam','Industri Logam Dasar','Industri Barang Logam, Bukan Mesin\ndan Peralatannya','Industri Komputer, Barang Elektronik dan Optik','Industri Peralatan Listrik','Industri Mesin dan Perlengkapan ytdl','Industri Kendaraan Bermotor, Trailer dan Semi Trailer','Industri Alat Angkutan Lainnya','Industri Furnitur','Industri Pengolahan Lainnya','Reparasi dan Pemasangan Mesin dan Peralatan','Pengadaan Listrik, Gas, Uap/Air Panas dan Udara Dingin','Treatment Air','Treatment Air Limbah','Pengumpulan, Treatment dan Pembuangan Limbah dan Sampah Serta\nAktivitas Pemulihan Material','Aktivitas Remediasi dan Pengelolaan Limbah dan Sampah Lainnya','Konstruksi Gedung','Konstruksi Bangunan Sipil','Konstruksi Khusus','Perdagangan, Reparasi dan Perawatan\nMobil dan Sepeda Motor','Perdagangan Besar, Bukan Mobil dan Sepeda Motor','Perdagangan Eceran, Bukan Mobil dan Motor','Angkutan Darat dan Angkutan Melalui Saluran Pipa','Angkutan Perairan','Angkutan Udara','Pergudangan dan Aktivitas Penunjang Angkutan','Aktivitas Pos dan Kurir','Penyediaan Akomodasi','Penyediaan Makanan dan Minuman','Aktivitas Penerbitan','Aktivitas Produksi Gambar Bergerak, Video dan Program Televisi, Perekaman Suara dan Penerbitan Musik','Aktivitas Penyiaran dan Pemrograman','Telekomunikasi','Aktivitas Pemrograman, Konsultasi\nKomputer dan Kegiatan Ybdi','Aktivitas Jasa Informasi','Aktivitas Jasa Keuangan, Bukan Asuransi dan Dana Pensiun','Asuransi, Penjaminan, Reasuransi dan Dana Pensiun, Bukan Jaminan Sosial\nWajib','Aktivitas Penunjang Jasa Keuangan, Asuransi, Penjaminan dan Dana Pensiun','Real Estat','Aktivitas Hukum dan Akuntansi','Aktivitas Kantor Pusat dan Konsultasi Manajemen','Aktivitas Arsitektur dan Keinsinyuran;\nAnalisis dan Uji Teknis','Penelitian dan Pengembangan Ilmu\nPengetahuan	','Periklanan dan Penelitian Pasar','Aktivitas Profesional, Ilmiah dan Teknis Lainnya','Aktivitas Kesehatan Hewan','Aktivitas Penyewaan dan Sewa Guna Usaha Tanpa Hak Opsi','Aktivitas Ketenagakerjaan','Aktivitas Agen Perjalanan, Penyelenggara Tur dan Jasa Reservasi Lainnya','Aktivitas Keamanan dan Penyelidikan','Aktivitas Penyedia Jasa untuk Gedung dan Pertamanan','Aktivitas Administrasi Kantor, Aktivitas Penunjang Kantor dan Aktivitas Penunjang Usaha Lainnya','Administrasi Pemerintahan, Pertahanan dan Jaminan Sosial Wajib','Pendidikan','Aktivitas Kesehatan Manusia','Aktivitas Sosial di Dalam Panti','Aktivitas Sosial Tanpa Akomodasi','Aktivitas Hiburan, Kesenian dan Kreativitas','Perpustakaan, Arsip, Museum dan Kegiatan Kebudayaan Lainnya','Aktivitas Perjudian dan Pertaruhan','Aktivitas Olahraga dan Rekreasi Lainnya','Aktivitas Keanggotaan Organisasi','Reparasi Komputer dan Barang Keperluan Pribadi dan Perlengkapan\nRumah Tangga','Aktivitas Jasa Perorangan Lainnya','Aktivitas Rumah Tangga Sebagai Pemberi Kerja Dari Personil Domestik','Aktivitas Yang Menghasilkan Barang dan Jasa oleh Rumah Tangga Yang Digunakan untuk Memenuhi Kebutuhan\nSendiri','Aktivitas Badan Internasional dan Badan Ekstra Internasional Lainnya') NOT NULL,
+  `kbli` enum('') NOT NULL,
   `rincian_kgiatan_usaha` text NOT NULL,
   `omset` enum('Omset <= Rp.300 Juta','Rp.300 Juta < Omset <= Rp.2,5 Milliar','Rp.2,5 Milliar < Omset <= Rp.50 Milliar') NOT NULL,
   `kekayaan_bersih_usaha` enum('KBU <= Rp.50 Juta','Rp.50 Juta < KBU <= Rp.500 Juta','Rp.500 Juta < KBU <= Rp.10 Milliar') NOT NULL,
@@ -245,3 +245,109 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+INSERT INTO kbli(no_kbli ,deskripsi_kbli) 
+VALUES
+(1,'Pertanian Tanaman, Peternakan, Perburuan dan Kegiatan YBDI'),
+(2,''),
+(3,''),
+(5,''),
+(6,''),
+(7,''),
+
+(8,''),
+(9,''),
+(10,''),
+(11,''),
+
+(12,''),
+(13,''),
+(14,''),
+(15,''),
+(16,''),
+(17,''),
+(18,''),
+(19,''),
+(20,''),
+(21,''),
+(22,''),
+(23,''),
+(24,''),
+
+
+(25,''),
+(26,''),
+(27,''),
+(28,''),
+
+(29,''),
+(30,''),
+(31,''),
+
+(32,''),
+(33,''),
+(35,''),
+(36,''),
+(37,''),
+(38,''),
+(39,''),
+
+(41,''),
+(42,''),
+(43,''),
+(45,''),
+(46,''),
+(47,''),
+
+(49,''),
+(50,''),
+(51,''),
+
+(52,''),
+(53,''),
+(55,''),
+(56,''),
+(58,''),
+(59,''),
+(60,''),
+(61,''),
+(62,''),
+(63,''),
+(64,''),
+(65,''),
+(66,''),
+(68,''),
+
+(69,''),
+(70,''),
+(71,''),
+(72,''),
+(73,''),
+
+(74,''),
+(75,''),
+
+(77,''),
+(78,''),
+(79,''),
+(80,''),
+(81,''),
+(82,''),
+(84,''),
+(85,''),
+(86,''),
+(87,''),
+(88,''),
+(90,''),
+(91,''),
+
+(92,''),
+(93,''),
+(94,''),
+(95,''),
+(96,''),
+(97,''),
+(98,''),
+(99,'');

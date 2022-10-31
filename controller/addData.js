@@ -92,6 +92,7 @@ exports.create_keluarga = (req, res) => {
 // (not use)id_Usaha, nama_usaha, alamat_tempat_usaha, nama_kk, umur, nama_pemilik, alamat_tempat_tinggal, pendidikan_pemilik, jenis_lokasi_usaha, jenis_pengelolaan_usaha, kbli, rincian_kgiatan_usaha, omset, kekayaan_bersih_usaha, jumlah_tenaga_kerja, modal_usaha, bina_usaha
 //add new umkm
 exports.form_umkm = (req, res) => {
+  
   res.render('tambah-data-umkm');
 };
 // Add new  UMKM
