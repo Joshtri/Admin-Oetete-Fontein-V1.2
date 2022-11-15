@@ -59,7 +59,7 @@ router.get("/main-admin",isLoggedIn , function (req, res, next) {
                       } else {
                         console.log(err);
                       }
-                      console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5, rows6, rows7,rows8, rows9, rows10);
+                      // console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5, rows6, rows7,rows8, rows9, rows10);
 
                     });
                   });

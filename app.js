@@ -35,7 +35,7 @@ app.set('view engine', 'ejs');
 
 app.use(session({
   secret : 'login',
-  cookie:{maxAge : 3.24e+7},
+  cookie:{maxAge : 3.24e+7},  //more longer than before. 
   saveUninitialized : false,
   resave : true
 }));

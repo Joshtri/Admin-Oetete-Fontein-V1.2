@@ -47,7 +47,7 @@ exports.create_pengguna = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user tabl\e: \n", rows);
     }
   );
 };
@@ -84,7 +84,7 @@ exports.create_keluarga = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
     }
   );
 };
@@ -130,7 +130,7 @@ exports.create_umkm = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
     }
   );
 };
@@ -349,4 +349,69 @@ exports.create_publikasi = (req,res) =>{
     }
   );
 };
+
+
+
+
+exports.form_keluar_add = (req, res) => {
+ 
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+    
+    //show data
+    connection.query("SELECT *, CONVERT(nik, CHAR(17)) AS nik_pen FROM penduduk", (err, rows1) => {
+      //when done with the connection, release it.
+          connection.release();
+
+          if(!err){
+              res.render("tambah-data-pindah",{ penduduk: rows1 });
+          }
+
+          else{
+              console.log(err);
+          } 
+          // console.log('The data from user table: \n', rows1);
+    });
+  });
+};
+
+
+exports.create_keluar = (req,res) =>{
+  const {
+    id_pindah,
+    kel_nomor_kk,
+    tgl_pindah,
+    penduduk_nik,
+    alasan
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO keluar SET id_pindah = ?, kel_nomor_kk = ?, tgl_pindah = ?, penduduk_nik = ?,  alasan = ?',
+    [id_pindah, kel_nomor_kk,tgl_pindah, penduduk_nik,alasan],
+    (err, rows) => {
+      if(err) return res.send(err);
+      if(err) return res.send(JSON.stringify(err));
+      if(err)
+        return res.redirect(url.format({
+          pathname:"/data/data-pindah",
+          query: {
+            "sukses": false,
+            "pesan": "Gagal menambahkan data"
+          }
+        }));
+      return res.redirect(url.format({
+        pathname:"/data/data-pindah",
+        query: {
+          "sukses": true,
+          "pesan": "Berhasil menambahkan data"
+        }
+      }));
+    }
+  );
+};
+
 

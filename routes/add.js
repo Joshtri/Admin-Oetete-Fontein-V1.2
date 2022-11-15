@@ -5,13 +5,18 @@ var router = express.Router();
 const UserController = require('../controller/addData');
 const { isLoggedIn } = require('../middlewares/auth');
 
+var database = require("../database");
+
+
 // router.get('/tambah-data-pengguna', isLoggedIn,  UserController.form_pengguna);
 // router.post('/tambah-data-pengguna', isLoggedIn,  UserController.create_pengguna);
 
 // GET tambah kematian.
-router.get('/tambah-data-pindah', isLoggedIn,  function (req, res, next) {
-    res.render('tambah-data-pindah');
-});
+router.get('/tambah-data-pindah', isLoggedIn,  UserController.form_keluar_add);
+router.post('/tambah-data-pindah', isLoggedIn,  UserController.create_keluar);
+
+
+
 
 router.get('/tambah-data-keluarga', isLoggedIn,  UserController.form_keluarga);
 router.post('/tambah-data-keluarga', isLoggedIn,  UserController.create_keluarga); 

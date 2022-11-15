@@ -87,7 +87,7 @@ router.get('/statistik/status', isLoggedIn,  function (req, res, next) {
                             } else {
                                 console.log(err);
                             }
-                            console.log("The data from user table: \n",  rows1, rows2, rows3, rows4);
+                            // console.log("The data from user table: \n",  rows1, rows2, rows3, rows4);
                     
                         }); 
                     });
@@ -140,7 +140,7 @@ connection.query("SELECT SUM(pendidikan = 'Belum/Tidak Pernah Sekolah') AS Total
                                             } else {
                                                 console.log(err);
                                             }
-                                            console.log("The data from user table: \n",  rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9);
+                                            // console.log("The data from user table: \n",  rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9);
                     
                                 });
                             }); 
@@ -187,7 +187,7 @@ router.get('/statistik/jeniskelamin', isLoggedIn,  function (req, res, next) {
                         } else {
                             console.log(err);
                         }
-                        console.log("The data from user table: \n",  rows2, rows1);
+                        // console.log("The data from user table: \n",  rows2, rows1);
             });
         });
     });
@@ -229,7 +229,7 @@ router.get('/statistik/umkm', isLoggedIn,  function (req, res, next) {
                           } else {
                               console.log(err);
                           }
-                          console.log("The data from user table: \n", rows1, rows2, rows3);
+                          // console.log("The data from user table: \n", rows1, rows2, rows3);
               });
           });
       });
@@ -289,7 +289,7 @@ router.get('/statistik/pekerjaan', isLoggedIn,  function (req, res, next) {
                                                                         } else {
                                                                             console.log(err);
                                                                         }
-                                                                        console.log("The data from user table: \n",  rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9, rows10, rows11, rows12, rows13, rows14);
+                                                                        // console.log("The data from user table: \n",  rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9, rows10, rows11, rows12, rows13, rows14);
                             
                                         }); });});});});});
                                     }); 
@@ -368,7 +368,7 @@ router.get('/statistik-pendidikan', isLoggedIn,  function (req, res, next) {
                                                           else{
                                                             console.log(err);
                                                           } 
-                                                          console.log('The data from user table: \n', pendpria1,pendwan1,totalpend1,pendpria2,pendwan2,totalpend2,pendpria3,pendwan3,totalpend3,pendpria4,pendwan4,totalpend4,pendpria5,pendwan5,totalpend5,pendpria6,pendwan6,totalpend6,pendpria7,pendwan7,totalpend7,pendpria8,pendwan8,totalpend8,pendpria9,pendwan9,totalpend9);
+                                                          // console.log('The data from user table: \n', pendpria1,pendwan1,totalpend1,pendpria2,pendwan2,totalpend2,pendpria3,pendwan3,totalpend3,pendpria4,pendwan4,totalpend4,pendpria5,pendwan5,totalpend5,pendpria6,pendwan6,totalpend6,pendpria7,pendwan7,totalpend7,pendpria8,pendwan8,totalpend8,pendpria9,pendwan9,totalpend9);
                                                         }); 
                                                       }); 
                                                     }); 
@@ -425,7 +425,7 @@ router.get('/statistik-jeniskelamin', isLoggedIn,  function (req, res, next) {
               else{
                   console.log(err);
               } 
-              console.log('The data from user table: \n', rows1, rows2,rows3);
+              // console.log('The data from user table: \n', rows1, rows2,rows3);
        });
     });
     });
@@ -475,7 +475,7 @@ router.get('/statistik-status', isLoggedIn,  function (req, res, next) {
                                 else{
                                     console.log(err);
                                 }
-                                console.log('The data from user table: \n', rows1totalblmnikah, rows1sec, rows1third, rows2totalsdhnikah, rows2sec, rows2third, rows3totalceraihidup,rows3sec,rows3third, rows4totalceraimati, rows4sec,rows4third);
+                                // console.log('The data from user table: \n', rows1totalblmnikah, rows1sec, rows1third, rows2totalsdhnikah, rows2sec, rows2third, rows3totalceraihidup,rows3sec,rows3third, rows4totalceraimati, rows4sec,rows4third);
                                 });
                               });
                             });
@@ -517,7 +517,7 @@ router.get('/statistik-umkm', isLoggedIn,  function(req,res,next){
                 else{
                     console.log(err);
                 } 
-                console.log('The data from user table: \n', rows1, rows2, rows3,rows4);
+                // console.log('The data from user table: \n', rows1, rows2, rows3,rows4);
               });
         });
       });
@@ -602,10 +602,10 @@ router.get('/statistik-pekerjaan', isLoggedIn,  function (req, res, next) {
                                                                                         else{
                                                                                             console.log(err);
                                                                                         } 
-                                                                                        console.log('The data from user table: \n',pekerjapria1,pekerjawanita1,totalpekerja1,pekerjapria2,pekerjawanita2,totalpekerja2,pekerjapria3,pekerjawanita3,totalpekerja3,pekerjapria4,pekerjawanita4,totalpekerja4,
-                                                                                        pekerjapria5,pekerjawanita5,totalpekerja5,pekerjapria6,pekerjawanita6,totalpekerja6,pekerjapria7,pekerjawanita7,totalpekerja7,pekerjapria8,pekerjawanita8,totalpekerja8,
-                                                                                      pekerjapria9,pekerjawanita9,totalpekerja9,pekerjapria10,pekerjawanita10,totalpekerja10,pekerjapria11,pekerjawanita11,totalpekerja11,
-                                                                                    pekerjapria12,pekerjawanita12,totalpekerja12,pekerjapria13,pekerjawanita13,totalpekerja13,pekerjapria14,pekerjawanita14,totalpekerja14 );
+                                                                                    //     console.log('The data from user table: \n',pekerjapria1,pekerjawanita1,totalpekerja1,pekerjapria2,pekerjawanita2,totalpekerja2,pekerjapria3,pekerjawanita3,totalpekerja3,pekerjapria4,pekerjawanita4,totalpekerja4,
+                                                                                    //     pekerjapria5,pekerjawanita5,totalpekerja5,pekerjapria6,pekerjawanita6,totalpekerja6,pekerjapria7,pekerjawanita7,totalpekerja7,pekerjapria8,pekerjawanita8,totalpekerja8,
+                                                                                    //   pekerjapria9,pekerjawanita9,totalpekerja9,pekerjapria10,pekerjawanita10,totalpekerja10,pekerjapria11,pekerjawanita11,totalpekerja11,
+                                                                                    // pekerjapria12,pekerjawanita12,totalpekerja12,pekerjapria13,pekerjawanita13,totalpekerja13,pekerjapria14,pekerjawanita14,totalpekerja14 );
                                                                                       });
                                                                                     });
                                                                                   });

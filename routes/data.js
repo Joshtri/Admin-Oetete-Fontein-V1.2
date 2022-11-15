@@ -76,9 +76,25 @@ router.get("/data-pekerjaan", isLoggedIn,  function (req, res, next) {
   res.render("data-pekerjaan");
 });
 // GET data-pindah
-router.get("/data-pindah", isLoggedIn,  function (req, res, next) {
-  res.render("data-pindah");
-});
+router.get("/data-pindah", isLoggedIn,  UserController.view_keluar);
+
+
+router.get("/data-pindah/delete/:nik", isLoggedIn, function (request, response, next) {
+  var user_id = request.params.user_id;
+  // User the connection
+  var query = `DELETE FROM penduduk WHERE nik = "${nik}"`;
+  // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
+
+  database.query(query, function (error, data) {
+    if (error) {
+      throw error;
+    } else {
+      response.redirect("/data/data-pindah");
+    }
+  });
+}
+);
+
 
 // router.get("/data-masuk", isLoggedIn,  function (req, res, next) {
 //   res.render("data-masuk");
@@ -352,8 +368,7 @@ router.get("/data-publikasi/edit/:id_publish", isLoggedIn,  UserController.edit_
 router.post("/data-publikasi/edit/:id_publish", isLoggedIn, UserController.update_publikasi);
 
 // router.get("/editpublikasi/:id", isLoggedIn,  UserController.edit_publikasi);
-router.get(
-  "/data-publikasi/delete/:id_publish",
+router.get("/data-publikasi/delete/:id_publish",
   function (request, response, next) {
     var id_publish = request.params.id_publish;
     // User the connection

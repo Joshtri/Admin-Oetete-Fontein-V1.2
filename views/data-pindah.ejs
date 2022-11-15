@@ -43,20 +43,56 @@
             <tr>
               <th scope="col" class="text-center">No</th>
               <!-- <th scope="col" class="text-center">Id Pindah</th> -->
-              <th scope="col" class="text-center">Nomor KK</th>
-              <th scope="col" class="text-center">Tanggal Pindah</th>
               <th scope="col" class="text-center">NIK</th>
+              <th scope="col" class="text-center">Tanggal Pindah</th>
+              <th scope="col" class="text-center">Nomor KK</th>
               <th scope="col" class="text-center">Alasan</th>
               <th scope="col" class="text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <% var number = 1; %> 
+              <% for (let row of rows) {%>
+              <td scope="row" class="text-center" ><%= number %></td>
+              <td scope="row" class="text-center" ><%= row.penduduk_nik %></td>
+              <td scope="row" class="text-center" ><%= row.tgl_pindah %></td>
+              <td scope="row" class="text-center" ><%= row.kel_nomor_kk %></td>
+              <td scope="row" class="text-center" ><%= row.alasan %></td>
+              <!-- <td scope="row" class="text-center" ><%= row.user_password %></td> -->
+              <td scope="row" class="text-center">
+            
+                  <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
+                  <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
+                  <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-json="<%= JSON.stringify(row) %>"><i
+                      class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
+                      title="Detail"></i></button>
+                  <!-- menambah data-form-action sebagai target / alamat proses untuk 
+                      mengubah data setiap data yang memiliki alamat update berbeda -->
+                  <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                      data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                      data-json="<%= JSON.stringify(row) %>"
+                      data-form-action="/data/data-pengguna/update/<%= row.user_id %>"></i></button>
 
+                      <a href="/data/data-penduduk/delete/<%= row.penduduk_nik %>"><button class="border-0"><i
+                        class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
+                        title="Delete"></i></button></a>
+  
+              </td>
+              <% number++; %>
             </tr>
+            <% }%>
           </tbody>
         </table>
       </div>
     </div>
+
+
+
+
+
+
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

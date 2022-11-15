@@ -20,7 +20,7 @@ exports.view_keluarga = (req, res) => {
     console.log(`Connected as ID ` + connection.threadId);
 
     //show data
-    connection.query("select * from keluarga union  select * from penduduk ", (err, rows) => {
+    connection.query("select * from keluarga ", (err, rows) => {
       //when done with the connection, release it.
       connection.release();
 
@@ -33,7 +33,7 @@ exports.view_keluarga = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
     });
   });
 };
@@ -59,7 +59,34 @@ exports.view_umkm = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
+    });
+  });
+};
+
+
+//View data
+exports.view_keluar = (req, res) => {
+  //connect db.
+  pool.getConnection((err, connection) => {
+    if (err) throw err; //NOT CONNECTED.
+    console.log(`Connected as ID ` + connection.threadId);
+
+    //show data
+    connection.query("SELECT * FROM keluar", (err, rows) => {
+      //when done with the connection, release it.
+      connection.release();
+
+      if (!err) {
+        res.render("data-pindah", { 
+          rows, 
+          sukses: req.query.sukses, 
+          pesan: req.query.pesan 
+        });
+      } else {
+        console.log(err);
+      }
+      // console.log("The data from user table: \n", rows);
     });
   });
 };
@@ -77,21 +104,19 @@ exports.view_penduduk = (req, res) => {
       connection.query("SELECT * FROM penduduk", (err, rows) => {
         //when done with the connection, release it.
           //show data
-          connection.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS no_kk FROM keluarga", (err, rows2) => {
-            //when done with the connection, release it.
         connection.release();
 
         if (!err) {
           res.render("data-penduduk", {
-            rows,rows2, 
+            rows, 
             sukses: req.query.sukses, 
             pesan: req.query.pesan 
             });
         } else {
           console.log(err);
         }
-        console.log("The data from user table: \n", rows,rows2);
-     });
+        // console.log("The data from user table: \n", rows);
+    
     });
   });
 };
@@ -112,7 +137,7 @@ exports.view_masuk = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
     });
   });
 };
@@ -140,7 +165,7 @@ exports.view_pengguna = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
     });
   });
 };
@@ -163,7 +188,7 @@ exports.view_publikasi = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
     });
   });
 };
@@ -192,7 +217,7 @@ exports.view_kelahiran = (req, res) => {
           } else {
             console.log(err);
           }
-          console.log("The data from user table: \n", rows,rows2);
+          // console.log("The data from user table: \n", rows,rows2);
         });
     });
   });
@@ -220,7 +245,7 @@ exports.view_kematian = (req, res) => {
       } else {
         console.log(err);
       }
-      console.log("The data from user table: \n", rows);
+      // console.log("The data from user table: \n", rows);
     });
   });
 };
@@ -236,7 +261,7 @@ exports.delete_publikasi = (req, res) => {
     } else {
     console.log(err);
     }
-    console.log('The data from user table: \n', rows);
+    // console.log('The data from user table: \n', rows);
 
   });
 };
@@ -254,7 +279,7 @@ exports.delete_penduduk = (req, res) => {
     } else {
       console.log(err);
     }
-    console.log('The data from user table: \n', rows);
+    // console.log('The data from user table: \n', rows);
 
   });
 
@@ -289,7 +314,7 @@ exports.edit_publikasi = (req, res) => {
     } else {
       console.log(err);
     }
-    console.log('The data from user table: \n', rows);
+    // console.log('The data from user table: \n', rows);
   });
 }
 
@@ -309,11 +334,11 @@ exports.update_publikasi = (req, res) => {
         } else {
           console.log(err);
         }
-        console.log('The data from user table: \n', rows);
+        // console.log('The data from user table: \n', rows);
       });
     } else {
       console.log(err);
     }
-    console.log('The data from user table: \n', rows);
+    // console.log('The data from user table: \n', rows);
   });
 }
