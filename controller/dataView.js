@@ -75,11 +75,14 @@ exports.view_keluar = (req, res) => {
     //show data
     connection.query("SELECT * FROM keluar", (err, rows) => {
       //when done with the connection, release it.
+        //show data
+        connection.query("SELECT *, CONVERT(nik, CHAR(17)) AS nik_pen FROM penduduk", (err, rows2) => {
+          //when done with the connection, release it.
       connection.release();
 
       if (!err) {
         res.render("data-pindah", { 
-          rows, 
+          rows, rows2,
           sukses: req.query.sukses, 
           pesan: req.query.pesan 
         });
@@ -87,6 +90,7 @@ exports.view_keluar = (req, res) => {
         console.log(err);
       }
       // console.log("The data from user table: \n", rows);
+    });
     });
   });
 };

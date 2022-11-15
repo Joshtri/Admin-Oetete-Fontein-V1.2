@@ -64,16 +64,14 @@
             
                   <!-- menambah JSON.stringify(row) ke atribut data-json untuk diakses dari modal -->
                   <!-- setiap data json memiliki nilai berbeda mengikuti variabel row -->
-                  <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  <button type="button" disabled class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     data-json="<%= JSON.stringify(row) %>"><i
                       class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
                       title="Detail"></i></button>
                   <!-- menambah data-form-action sebagai target / alamat proses untuk 
                       mengubah data setiap data yang memiliki alamat update berbeda -->
-                  <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
-                      data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
-                      data-json="<%= JSON.stringify(row) %>"
-                      data-form-action="/data/data-pengguna/update/<%= row.user_id %>"></i></button>
+                      <button disabled><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                          data-toggle="tooltip" title="Edit" ></i></button>
 
                       <a href="/data/data-penduduk/delete/<%= row.penduduk_nik %>"><button class="border-0"><i
                         class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
@@ -87,134 +85,202 @@
         </table>
       </div>
     </div>
+    
 
 
 
+      <!-- Modal edit -->
+  <div class="modal fade " id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <form action="" class="form-edit" method="POST">
+        <!-- menambah form 🔥🔥🔥🔥🔥🔥 -->
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Kelahiran</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body table-responsive">
+            <table class="table table-bordered no-margin">
+              <tbody>
+                
+
+                <tr>
+                  <th style="width:50%">ID Pindah</th>
+                  <td>
+                    
+                    <input type="number" name="id_pindah" class="form-control"  hidden/>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th style="width:50%">NIK</th>
+                  <td>
+                    <!-- menambah target binding berdasarkan atribut name -->
+                    <select class="form-control" name="penduduk_nik">
+                      <option>-</option>
+                      <% for (let row of rows2) {%>
+                        <option value="<%= row.nik_pen %>"><%= row.nik_pen %></option>
+                      <% } %>
+                    </select>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th style="width:50%">Nomor KK</th>
+                  <td>
+                    
+                    <input type="number" name="kel_nomor_kk" class="form-control" />
+                  </td>
+                </tr>
 
 
 
+                <tr>
+                  <th style="width:50%">Tanggal Pindah</th>
+                  <td>
+                    <input type="date" name="tgl_pindah" class="form-control" />
+                  </td>
+                </tr>
+                <tr>
+                  <th style="width:50%">Alasan</th>
+                  <td>
+                    <input type="text" name="alasan" class="form-control" />
+                  </td>
+                </tr>
+              
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Detail Pindah Keluar</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body table-responsive">
-          <table class="table table-bordered no-margin">
-          <tbody>
-            <tr>
-              <th style="width:50%">No KK</th>
-              <td>5371041506020007</td>
-            </tr>
-            <tr>
-              <th style="width:50%">NIK</th>
-              <td>5371041506020007</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Tanggal Pindah</th>
-              <td>10/12/2008</td>
-            </tr>
-            <tr>
-              <th style="width:50%">Alasan Pindah</th>
-              <td>Dapat Suanggi</td>
-            </tr>
-            
-          </tbody>
-        </table>
-  
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+              </tbody>
+            </table>
 
-        <!-- Modal Edit -->
-        <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Pindah Keluar</h5>
-              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body table-responsive">
-              <table class="table table-bordered no-margin">
-                <tbody>
-                  <tr>
-                    <th style="width:50%">No. KK</th>
-                    <td>5371041506020007</td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%">NIK</th>
-                    <td>5371041506020007</td>
-                  </tr>
-                    <th style="width:50%">Tanggal Pindah</th>
-                    <td>19/08/2012</td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%">Alasan Pindah</th>
-                    <td>Dapatr Suanggi</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-      
-            <div class="modal-footer">
-      
-              <button type="button" class="btn btn-primary">Simpan</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
-      </div>
+    </div>
+    </form>
+  </div>
 
-  <!-- Modal Delete-->
-<div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+  <!-- 🔥🔥🔥🔥 modal pemberitahuan -->
+  <% 
+    if(typeof sukses != "undefined"){
+  %>
+  <div class="modal fade modal-pemberitahuan" tabindex="-1" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class=" modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelDelete">Hapus Data</h5>
+        <h5 class="modal-title" id="exampleModalLabel">
+          <%= sukses == "true" ? "Berhasil" : "Kesalahan" %>
+        </h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body table-responsive">
-        <table class="table table-bordered no-margin">
-        <tbody>
-          <p> Apakah anda ingin menghapus data ? </p>
-        </tbody>
-      </table>
-
+        <%= pesan || "Terjadi sebuah kesalahan" %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
-</div>
+  </div>
+  <% 
+    }
+  %>
 
+
+
+
+ 
       <!-- footer start -->
       <%- include('footer'); -%>
       <!-- footer end   -->
       <script>
         $(document).ready(function () {
-        $('#dtHorizontalVerticalExample').DataTable({
-          "scrollX": true,
-          "scrollY": 200,
-        });
-        $('.dataTables_length').addClass('bs-select');
-        });
+          $('#dtHorizontalVerticalExample').DataTable({
+            "scrollX": true,
+            "scrollY": 400,
+          });
+          $('.dataTables_length').addClass('bs-select');
+    
+          /**
+           * aktivasi modal pemberitahuan
+           * 
+           */
+          let pemberitahuan = document.querySelector('.modal-pemberitahuan');
+          if(pemberitahuan){
+            let modal_pemberitahuan = new bootstrap.Modal(pemberitahuan, {
+              
+            })
+            modal_pemberitahuan.show();
+          }
+    
+          /**
+           * fungsi ditriger ketika modal dibuka
+           * 
+           */
+          // semua elemen yang memiliki id exampleModal
+          let modal = document.querySelector("#exampleModal");
+          // menambah event listener pada setiap elemen modal
+          modal.addEventListener('show.bs.modal', event => {
+            console.log("Modal dibuka: ", event);
+            /**
+             * mengambil tombol relasi / tombol toggle dari modal yang sedang aktif
+             * (tombol yang diklik)
+             * didalam elemen tombol disisipkan atribut data-json yang memuat data 
+             * keluarga berupa json
+             * 
+             */
+            // cara mengakses data attribut dari jquery
+            // contoh atribut data-json
+            let data = $(event.relatedTarget).data('json');
+            // di console browser
+            console.log("data tombol yang diklik: ", data);
+    
+            // binding data yang diterima dari tombol ke element yang ada pada modal detail
+    
+            // bind data.no_kk ke anak elemen dari modal detail yang memiliki class no_kk
+            $(modal).find(".id_pindah").text(data.id_pindah) // cara jquery
+            // atau sama dengan cara vanilla javascript (javascript native/biasa)
+            // modal.querySelector('.no_kk').innerHTML = data.no_kk
+            // binding elemen lainnya yang ada pada modal detail
+            //$(modal).find(".id_pindah").text(data.id_pindah)
+            $(modal).find(".penduduk_nik").text(data.penduduk_nik)
+            $(modal).find(".kel_nomor_kk").text(data.kel_nomor_kk)
+            $(modal).find(".tgl_pindah").text(data.tgl_pindah)
+            $(modal).find(".alasan").text(data.alasan)
+            // $(modal).find(".provinsi").text(data.provinsi)
+ 
+          });
+          /**
+           * modal edit sama seperti modal detail
+           */
+          let modal_edit = document.querySelector("#exampleModalEdit");
+          modal_edit.addEventListener('show.bs.modal', event => {
+            console.log("Modal dibuka: ", event);
+            let data = $(event.relatedTarget).data('json');
+            let target = $(event.relatedTarget).data('form-action');
+            console.log("data tombol yang diklik: ", data);
+            console.log("data elemen target: ", data);
+            console.log("data form target: ", target);
+            // binding action form dari data target form
+            $(modal_edit).find("form").attr("action", target)
+            // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
+            $(modal_edit).find("[name='id_pindah']").val(data.id_pindah) // cara jquery
+            $(modal_edit).find("[name='penduduk_nik']").val(data.penduduk_nik) // cara jquery
+            $(modal_edit).find("[name='kel_nomor_kk']").val(data.kel_nomor_kk) // cara jquery
+            $(modal_edit).find("[name='tgl_pindah']").val(data.alamat)
+            $(modal_edit).find("[name='alasan']").val(data.kecamatan)
 
+    
+          });
+        });
       </script>
     
     <!-- <h1>Hello, world!</h1> -->
