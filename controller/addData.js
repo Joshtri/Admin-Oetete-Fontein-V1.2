@@ -391,7 +391,7 @@ exports.create_keluar = (req,res) =>{
   // User the connection
   connection.query(
     'INSERT INTO keluar SET id_pindah = ?, kel_nomor_kk = ?, tgl_pindah = ?, penduduk_nik = ?,  alasan = ?',
-    [id_pindah, kel_nomor_kk,tgl_pindah, penduduk_nik,alasan],
+    [id_pindah,kel_nomor_kk,tgl_pindah,penduduk_nik,alasan],
     (err, rows) => {
       if(err) return res.send(err);
       if(err) return res.send(JSON.stringify(err));
@@ -413,5 +413,3 @@ exports.create_keluar = (req,res) =>{
     }
   );
 };
-
-

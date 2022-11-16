@@ -79,10 +79,10 @@ router.get("/data-pekerjaan", isLoggedIn,  function (req, res, next) {
 router.get("/data-pindah", isLoggedIn,  UserController.view_keluar);
 
 
-router.get("/data-pindah/delete/:nik", isLoggedIn, function (request, response, next) {
-  var user_id = request.params.user_id;
+router.get("/data-pindah/delete/:id_pindah", isLoggedIn, function (request, response, next) {
+  var id_pindah = request.params.id_pindah;
   // User the connection
-  var query = `DELETE FROM penduduk WHERE nik = "${nik}"`;
+  var query = `DELETE FROM keluar WHERE id_pindah = "${id_pindah}"`;
   // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
 
   database.query(query, function (error, data) {
@@ -361,49 +361,6 @@ router.post("/data-kelahiran/update/:id_lahir", isLoggedIn,  function (request, 
 });
 
 
-router.post("/data-pindah/update/:id_pindah", isLoggedIn,  function (request, response, next) {
-  var id_pindah = request.params.id_pindah;
-  // response.send("Cek No KK = " + no_kk);
-  // response.send("Cek Body = " + JSON.stringify(request.body));
-
-  let query = `
-    UPDATE keluar SET
-    id_pindah  = ?,
-    kel_nomor_kk = ?,
-    tgl_pindah = ?,
-    penduduk_nik = ?
-    alasan = ?
-
-    WHERE id_pindah = ?`;
-  database.query(query, [
-    request.body.id_pindah,
-    request.body.kel_nomor_kk,
-    request.body.tgl_pindah,
-    request.body.penduduk_nik,
-    request.body.alasan,
-
-    id_pindah
-  ], (err, row) => {
-    if(err)
-      return response.redirect(url.format({
-        pathname:"/data/data-pindah",
-        query: {
-          "sukses": false,
-          "pesan": "Gagal menyimpan perubahan"
-        }
-      }));
-    return response.redirect(url.format({
-      pathname:"/data/data-pindah",
-      query: {
-        "sukses": true,
-        "pesan": "Berhasil menyimpan perubahan"
-      }
-    }));
-  })
-});
-
-
-
 //GET Publikasi
 router.get("/data-publikasi", isLoggedIn,  UserController.view_publikasi);
 
@@ -520,4 +477,49 @@ router.post("/data-penduduk/update/:nik", isLoggedIn,  function (request, respon
   })
 });
 
+
+
+
+router.post("/data-pindah/update/:id_pindah", isLoggedIn,  function (request, response, next) {
+  var id_pindah = request.params.id_pindah;
+  // response.send("Cek No KK = " + no_kk);
+  // response.send("Cek Body = " + JSON.stringify(request.body));
+
+  let query = `
+    UPDATE keluar SET
+    id_pindah = ?,
+    kel_nomor_kk = ?,
+    tgl_pindah = ?,
+    penduduk_nik = ?,
+    alasan = ?
+
+      
+    WHERE id_pindah = ?`;
+  database.query(query, [
+    request.body.id_pindah,
+    request.body.kel_nomor_kk,
+    request.body.tgl_pindah,
+    request.body.penduduk_nik,
+    request.body.alasan,
+
+
+    id_pindah,
+  ], (err, row) => {
+    if(err)
+      return response.redirect(url.format({
+        pathname:"/data/data-pindah",
+        query: {
+          "sukses": false,
+          "pesan": "Gagal menyimpan perubahan"
+        }
+      }));
+    return response.redirect(url.format({
+      pathname:"/data/data-pindah",
+      query: {
+        "sukses": true,
+        "pesan": "Berhasil menyimpan perubahan"
+      }
+    }));
+  })
+});
 module.exports = router;

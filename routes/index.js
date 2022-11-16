@@ -52,15 +52,18 @@ router.get("/main-admin",isLoggedIn , function (req, res, next) {
                         //when done with the connection, release it.
                         connection.query("SELECT COUNT(id_Usaha) AS Tkecil from umkm WHERE omset ='Rp.300 Juta < Omset <= Rp.2,5 Milliar' AND kekayaan_bersih_usaha = 'KBU <= Rp.500 Juta' OR omset ='Rp.300 Juta < Omset <= Rp.2,5 Milliar' AND kekayaan_bersih_usaha = 'Rp.500 Juta < KBU <= Rp.10 Milliar' OR omset = 'Rp.2,5 Milliar < Omset <= Rp.50 Milliar' AND kekayaan_bersih_usaha = 'Rp.50 Juta < KBU <= Rp.500 Juta'", (err, rows10) => {
                             //when done with the connection, release it.
+                            connection.query("SELECT Count(id_pindah) AS Tkeluar FROM keluar", (err, rows11) => {
+                              //when done with the connection, release it.
                             connection.release();
-            
-                      if (!err) { 
-                        res.render("main-admin", { rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9, rows10});
-                      } else {
-                        console.log(err);
-                      }
-                      // console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5, rows6, rows7,rows8, rows9, rows10);
+                  
+                            if (!err) { 
+                              res.render("main-admin", { rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9, rows10,rows11});
+                            } else {
+                              console.log(err);
+                            }
+                            // console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5, rows6, rows7,rows8, rows9, rows10);
 
+                      });
                     });
                   });
                 }); 
