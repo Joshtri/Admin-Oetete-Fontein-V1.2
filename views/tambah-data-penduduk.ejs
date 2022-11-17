@@ -63,9 +63,11 @@
             </div>
           </div>
 
+          <script src="/javascripts/inputnum.js"></script>
+
           <div class="form-label">
             <label>NIK</label>
-            <input name="nik" type="number" class="form-control"/>
+            <input name="nik" type="text" class="form-control"maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)"/>
           </div>
 
           <div class="form-label">

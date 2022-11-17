@@ -29,6 +29,7 @@
           <i class="fa-solid fa-users ms-2"></i>&nbsp&nbspTAMBAH DATA MASUK
         </h3>
         <hr />
+        <script src="/javascripts/inputnum.js"></script>
 
         <form>
           <div class="form-label">
@@ -38,7 +39,7 @@
 
           <div class="form-label">
             <label>NIK</label>
-            <input type="text" name="" class="form-control" />
+            <input type="text" name="" class="form-control" maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)" />
           </div>
 
           <div class="form-label">

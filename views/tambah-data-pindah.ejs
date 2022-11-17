@@ -42,11 +42,12 @@
                 </div>
             </div>
 
-            
+            <script src="/javascripts/inputnum.js"></script>
+
 
             <div class="form-label">
             <label>Nomor KK</label>
-            <input type="number" name="kel_nomor_kk"  class="form-control">
+            <input type="text" name="kel_nomor_kk"  class="form-control" maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)">
             </div>
 
 
