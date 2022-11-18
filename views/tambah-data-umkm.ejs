@@ -30,7 +30,7 @@
           UMKM
         </h4>
         <hr />
-
+        <script src="/javascripts/inputnum.js"></script>
         <form method="POST" action="/tambah_data/tambah-data-umkm" novalidate>
           <div class="card-body card shadow border-3 bg-gradient">
             <div class="card-header text-center">
@@ -77,7 +77,7 @@
               <div class="col-md-6">
                 <div class="form-label">
                   <label>Umur</label>
-                  <input type="number" name="umur" class="form-control" />
+                  <input type="text" name="umur" class="form-control" maxlength="2" onkeypress="return onlyNumberKey(event), isNumber(event)"/>
                 </div>
               </div>
 
