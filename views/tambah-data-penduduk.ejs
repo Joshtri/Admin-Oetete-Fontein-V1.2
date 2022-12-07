@@ -52,7 +52,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-label">
-                <label>Keluarga</label>
+                <label>Nomor KK</label>
                 <select class="form-control" name="kel_no_kk">
                   <option>-</option>
                   <% for (let row of keluarga) {%>
@@ -67,7 +67,7 @@
 
           <div class="form-label">
             <label>NIK</label>
-            <input name="nik" type="text" class="form-control"maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)"/>
+            <input name="nik" type="number" class="form-control"maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)"/>
           </div>
 
           <div class="form-label">

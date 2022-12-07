@@ -52,7 +52,7 @@ router.get("/main-admin",isLoggedIn , function (req, res, next) {
                         //when done with the connection, release it.
                         connection.query("SELECT COUNT(id_Usaha) AS Tkecil from umkm WHERE omset ='Rp.300 Juta < Omset <= Rp.2,5 Milliar' AND kekayaan_bersih_usaha = 'KBU <= Rp.500 Juta' OR omset ='Rp.300 Juta < Omset <= Rp.2,5 Milliar' AND kekayaan_bersih_usaha = 'Rp.500 Juta < KBU <= Rp.10 Milliar' OR omset = 'Rp.2,5 Milliar < Omset <= Rp.50 Milliar' AND kekayaan_bersih_usaha = 'Rp.50 Juta < KBU <= Rp.500 Juta'", (err, rows10) => {
                             //when done with the connection, release it.
-                            connection.query("SELECT Count(id_pindah) AS Tkeluar FROM keluar", (err, rows11) => {
+                            connection.query("SELECT Count(id_masuk) AS Tmasuk FROM masuk", (err, rows11) => {
                               //when done with the connection, release it.
                               connection.query("SELECT Count(id_pindah) AS Tpindah FROM keluar", (err, rows12) => {
                             connection.release();

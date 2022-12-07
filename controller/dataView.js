@@ -75,18 +75,24 @@ exports.view_keluar = (req, res) => {
     //show data
     connection.query("SELECT * FROM keluar", (err, rows) => {
       //when done with the connection, release it.
-      connection.release();
+            //when done with the connection, release it.
+        connection.query("SELECT *, CONVERT(nik, CHAR(17)) AS nik_pen FROM penduduk", (err, rows2) => {
+              //when done with the connection, release it.
+          connection.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS no_kk FROM keluarga", (err, rows3) => {
+            connection.release();
 
-      if (!err) {
-        res.render("data-pindah", { 
-          rows, 
-          sukses: req.query.sukses, 
-          pesan: req.query.pesan 
+            if (!err) {
+              res.render("data-pindah", { 
+                rows, rows2,rows3,
+                sukses: req.query.sukses, 
+                pesan: req.query.pesan 
+              });
+            } else {
+              console.log(err);
+            }
+            // console.log("The data from user table: \n", rows);
         });
-      } else {
-        console.log(err);
-      }
-      // console.log("The data from user table: \n", rows);
+      });
     });
   });
 };
@@ -103,12 +109,13 @@ exports.view_penduduk = (req, res) => {
       //show data
       connection.query("SELECT * FROM penduduk", (err, rows) => {
         //when done with the connection, release it.
+        connection.query("SELECT * FROM keluarga", (err, rows2) => {
           //show data
         connection.release();
 
         if (!err) {
           res.render("data-penduduk", {
-            rows, 
+            rows,rows2,
             sukses: req.query.sukses, 
             pesan: req.query.pesan 
             });
@@ -116,9 +123,9 @@ exports.view_penduduk = (req, res) => {
           console.log(err);
         }
         // console.log("The data from user table: \n", rows);
-    
+      });
     });
-  });
+  }); 
 };
 //View data
 exports.view_masuk = (req, res) => {
@@ -128,16 +135,22 @@ exports.view_masuk = (req, res) => {
     console.log(`Connected as ID ` + connection.threadId);
 
     //show data
-    connection.query("SELECT * FROM masuk", (err, rows) => {
+    connection.query("SELECT * FROM masuk", (err, rows) => {  
       //when done with the connection, release it.
+      connection.query("SELECT *, CONVERT(nik, CHAR(17)) AS nik_pen FROM penduduk", (err, rows2) => {
+        //when done with the connection, release it.
+        connection.query("SELECT *, CONVERT(no_kk, CHAR(17)) AS no_kk FROM keluarga", (err, rows3) => {
+          //when done with the connection, release it.
       connection.release();
 
       if (!err) {
-        res.render("data-masuk", {rows});
+        res.render("data-masuk", {rows,rows2,rows3});
       } else {
         console.log(err);
       }
       // console.log("The data from user table: \n", rows);
+        });
+      });
     });
   });
 };
@@ -234,11 +247,13 @@ exports.view_kematian = (req, res) => {
     //show data
     connection.query("SELECT * FROM kematian", (err, rows) => {
       //when done with the connection, release it.
+          //show data
+        connection.query("SELECT *, CONVERT(nik, CHAR(17)) AS nik_pen FROM penduduk", (err, rows2) => {
       connection.release();
 
       if (!err) {
         res.render("data-kematian", { 
-          rows, 
+          rows,rows2, 
           sukses: req.query.sukses, 
           pesan: req.query.pesan 
         });
@@ -246,6 +261,7 @@ exports.view_kematian = (req, res) => {
         console.log(err);
       }
       // console.log("The data from user table: \n", rows);
+    });
     });
   });
 };

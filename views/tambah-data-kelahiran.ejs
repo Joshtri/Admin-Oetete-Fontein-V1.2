@@ -40,7 +40,7 @@
                   <select class="form-control" name="kel_nomor_kk">
                     <option>-</option>
                     <% for (let row of keluarga) {%>
-                      <option value="<%= row.nomorKK %>"><%= row.nomorKK %></td>
+                      <option value="<%= row.nomorKK %>"><%= row.nomorKK %> - <% row.kepala_kel %></td>
                     <% } %>
                   </select>
                 </div>

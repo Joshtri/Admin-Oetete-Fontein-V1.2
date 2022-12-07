@@ -95,7 +95,7 @@
         <div class="modal-dialog modal-dialog-centered">
         <div class=" modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Detail Kelahiran</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Detail Data Kematian</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -175,7 +175,7 @@
             <!-- menambah form 🔥🔥🔥🔥🔥🔥 -->
             <div class="modal-content ">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Kelahiran</h5>
+                <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Kematian</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -183,13 +183,22 @@
               <div class="modal-body table-responsive">
                 <table class="table table-bordered no-margin">
                   <tbody>
+
                     <tr>
                       <th style="width:50%">NIK</th>
                       <td>
                         <!-- menambah target binding berdasarkan atribut name -->
-                        <input type="number" name="nik" class="form-control" />
+                        <select class="form-control" name="nik">
+                          <option>-</option>
+                          <% for (let row of rows2) {%>
+                            <option value="<%= row.nik_pen %>"><%= row.nik_pen %> - <%= row.nama %></option>
+                          <% } %>
+                        </select>
                       </td>
                     </tr>
+
+
+
 
                     <tr>
                       <th style="width:50%">Tanggal Kematian</th>

@@ -69,8 +69,21 @@
                   data-json="<%= JSON.stringify(row) %>"><i
                     class="fa-solid fa-users-rectangle bg-primary p-2 text-white rounded" data-toggle="tooltip"
                     title="Detail"></i></button>
-              <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip" title="Edit"></i></button>
-              <button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalDelete"><i class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Delete"></i></button>
+                  <!-- menambah data-form-action sebagai target / alamat proses untuk 
+                      mengubah data setiap data yang memiliki alamat update berbeda -->
+
+                      <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                      data-json="<%= JSON.stringify(row) %>"
+                      data-form-action="/data/data-masuk/update/<%= row.id_masuk %>"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                          data-toggle="tooltip" title="Edit" ></i></button>    
+                <!-- <button class="border-0"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                     data-toggle="tooltip" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                     data-json="<%= JSON.stringify(row) %>"
+                     data-form-action="/data/data-masuk/update/<%= row.id_masuk %>"></i></button> -->
+                        
+               <a href="/data/data-masuk/delete/<%= row.id_masuk %>"><button class="border-0"><i
+                    class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
+                     title="Delete"></i></button></a>
               </td>
             </tr>
             <% number++ %>
@@ -102,12 +115,15 @@
           <tr>
             <th style="width:50%">NIK</th>
         <!-- target binding 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 -->
-            <td class="nik"></td>
+            <td class="nik_kk"></td>
           </tr>
+
           <tr>
             <th style="width:50%">No KK</th>
             <td class="nomor_kk"></td>
           </tr>
+
+
 
           <tr>
             <th style="width:50%">Tanggal Masuk</th>
@@ -131,6 +147,82 @@
   </div>
 </div>
 </div>
+
+      <!-- Modal edit -->
+    
+      <div class="modal fade " id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <form action="" class="form-edit" method="POST">
+            <!-- menambah form 🔥🔥🔥🔥🔥🔥 -->
+            <div class="modal-content ">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Masuk</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body table-responsive">
+                <table class="table table-bordered no-margin">
+                  <tbody>
+
+
+                    <tr>
+                      <th style="width:50%">No KK</th>
+                      <td>
+                          <select class="form-control" name="nomor_kk">
+                            <option>-</option>
+                            <% for (let row of rows3) {%>
+                              <option value="<%= row.no_kk %>"><%= row.no_kk %>-<%= row.kepala_kel %></option>
+                            <% } %>
+                          </select>
+                      </td> 
+                    </tr>
+
+                    <tr>
+                      <th style="width:50%">NIK</th>
+                      <td>
+                          <select class="form-control" name="kel_no_kk">
+                            <option>-</option>
+                            <% for (let row of rows2) {%>
+                              <option value="<%= row.nik_pen %>"><%= row.nik_pen %>-<%= row.nama %></option>
+                            <% } %>
+                          </select>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th style="width:50%">Tanggal Masuk</th>
+                      <td>
+                        <input type="date" name="tgl_masuk" class="form-control" />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th style="width:50%">Alamat Sebelumnya</th>
+                      <td>
+                        <input type="text" name="alamat_sebelumnya" class="form-control" />
+                      </td>
+                    </tr>
+                  
+    
+                  </tbody>
+                </table>
+    
+    
+              </div>
+    
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+        </div>
+        </form>
+      </div>
+
+
+
+
 
 
 
@@ -218,7 +310,7 @@
                 // atau sama dengan cara vanilla javascript (javascript native/biasa)
                 // modal.querySelector('.no_kk').innerHTML = data.no_kk
                 // binding elemen lainnya yang ada pada modal detail
-                $(modal).find(".nik").text(data.nik)
+                $(modal).find(".nik_kk").text(data.nik_kk)
                 $(modal).find(".tgl_masuk").text(data.tgl_masuk)
                 $(modal).find(".alamat_sebelumnya").text(data.alamat_sebelumnya)
                 // $(modal).find(".alasan").text(data.alasan)
@@ -239,8 +331,8 @@
                 // binding action form dari data target form
                 $(modal_edit).find("form").attr("action", target)
                 // sedikit berbeda target bindingnya elemen input berdasarkan atribut name
+                $(modal_edit).find("[name='nik_kk']").val(data.nik_kk) // cara jquery
                 $(modal_edit).find("[name='nomor_kk']").val(data.nomor_kk) // cara jquery
-                $(modal_edit).find("[name='nik']").val(data.nik) // cara jquery
                 $(modal_edit).find("[name='tgl_masuk']").val(data.tgl_masuk)
                 $(modal_edit).find("[name='alamat_sebelumnya']").val(data.alamat_sebelumnya)
                 // $(modal_edit).find("[name='alasan']").val(data.alasan)

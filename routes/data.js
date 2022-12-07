@@ -103,6 +103,63 @@ router.get("/data-pindah/delete/:id_pindah", isLoggedIn, function (request, resp
 
 // GET data-masuk
 router.get("/data-masuk", isLoggedIn,  UserController.view_masuk);
+router.get("/data-masuk/delete/:id_masuk", isLoggedIn,  function (request, response, next) {
+  var id_masuk = request.params.id_masuk;
+  // User the connection
+  var query = `DELETE FROM masuk WHERE id_masuk = "${id_masuk}"`;
+  // connection.query('DELETE FROM admin_login WHERE user_id = ?', [req.params.user_id], (err, row
+
+  database.query(query, function (error, data) {
+    if (error) {
+      throw error;
+    } else {
+      response.redirect("/data/data-masuk");
+    }
+  });
+});
+
+// 🔥
+router.post("/data-masuk/update/:id_masuk", isLoggedIn,  function (request, response, next) {
+  var id_masuk = request.params.id_masuk;
+  // response.send("Cek No KK = " + no_kk);
+  // response.send("Cek Body = " + JSON.stringify(request.body));
+
+  let query = `
+    UPDATE masuk SET
+    id_masuk  = ?,
+    nik_kk = ?,
+    nomor_kk = ?,
+    tgl_masuk = ?,
+    alamat_sebelumnya = ?
+
+    WHERE id_masuk = ?`;
+  database.query(query, [
+    request.body.id_masuk,
+    request.body.nik_kk,
+    request.body.nomor_kk,
+    request.body.tgl_masuk,
+    request.body.alamat_sebelumnya,
+
+    id_masuk
+  ], (err, row) => {
+    if(err)
+      return response.redirect(url.format({
+        pathname:"/data/data-masuk",
+        query: {
+          "sukses": false,
+          "pesan": "Gagal menyimpan perubahan"
+        }
+      }));
+    return response.redirect(url.format({
+      pathname:"/data/data-masuk",
+      query: {
+        "sukses": true,
+        "pesan": "Berhasil menyimpan perubahan"
+      }
+    }));
+  })
+});
+
 
 // GET data-penduduk
 // router.get("/data-penduduk", isLoggedIn,  function (req, res, next) {

@@ -99,7 +99,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class=" modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Keluarga</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Data Keluarga</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -194,7 +194,7 @@
 
 
   <!-- Modal edit -->
-
+  <script src="/javascripts/inputnum.js"></script>
   <div class="modal fade " id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <form action="" class="form-edit" method="POST">
@@ -212,15 +212,17 @@
                 <tr>
                   <th style="width:50%">No KK</th>
                   <td>
+
+                    
                     <!-- menambah target binding berdasarkan atribut name -->
-                    <input type="number" name="no_kk" class="form-control" />
+                    <input type="number" name="no_kk" class="form-control" maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)" />
                   </td>
                 </tr>
 
                 <tr>
                   <th style="width:50%">Kepala Keluarga</th>
                   <td>
-                    <input type="text" name="kepala_kel" class="form-control" />
+                    <input type="text" name="kepala_kel" class="form-control"  />
                   </td>
                 </tr>
                 <tr>
@@ -232,13 +234,13 @@
                 <tr>
                   <th style="width:50%">RT</th>
                   <td>
-                    <input type="number" name="rt" class="form-control" />
+                    <input type="number" name="rt" class="form-control" maxlength="2" onkeypress="return onlyNumberKey(event), isNumber(event)" />
                   </td>
                 </tr>
                 <tr>
                   <th style="width:50%">RW</th>
                   <td>
-                    <input type="number" name="rw" class="form-control" />
+                    <input type="number" name="rw" class="form-control" maxlength="2" onkeypress="return onlyNumberKey(event), isNumber(event)" />
                   </td>
                 </tr>
                 <tr>

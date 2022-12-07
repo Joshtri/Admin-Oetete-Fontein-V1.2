@@ -93,19 +93,24 @@
                       <!-- menambah data-form-action sebagai target / alamat proses untuk 
                       mengubah data setiap data yang memiliki alamat update berbeda -->
 
-                      <!-- <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                       <i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
-                              data-toggle="tooltip" title="Edit" data-json="<%= JSON.stringify(row) %>"
-                              data-form-action="/data/data-pindah/update/<%= row.id_pindah %>" ></i></button> -->
-                             
-                              <!-- IT WORKS! -->
-                       <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit" data-json="<%= JSON.stringify(row) %>"><i
-                          class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip"
-                          title="Edit"></i></button>
+                  <!-- <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                    <i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                          data-toggle="tooltip" title="Edit" data-json="<%= JSON.stringify(row) %>"
+                          data-form-action="/data/data-pindah/update/<%= row.id_pindah %>" ></i></button> -->
+                          
+                          <!-- IT WORKS! -->
+                
+                <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit"
+                data-json="<%= JSON.stringify(row) %>"
+                data-form-action="/data/data-pindah/update/<%= row.id_pindah %>"><i class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded"
+                    data-toggle="tooltip" title="Edit" ></i></button>  
+                    <!-- <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalEdit" data-json="<%= JSON.stringify(row) %>"><i
+                      class="fa-solid fa-pen-to-square bg-success p-2 text-white rounded" data-toggle="tooltip"
+                      title="Edit"></i></button> -->
 
-                       <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalDelete" data-json="<%= JSON.stringify(row) %>"><i
-                         class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
-                         title="Delete"></i></button>
+                    <button class="border-0" data-bs-toggle="modal" data-bs-target="#exampleModalDelete" data-json="<%= JSON.stringify(row) %>"><i
+                      class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
+                      title="Delete"></i></button>
     
                           <!-- <a href="/data/data-penduduk/delete/<%= row.penduduk_nik %>"><button class="border-0"><i
                             class="fa-solid fa-trash-can bg-danger p-2 text-white rounded" data-toggle="tooltip"
@@ -125,7 +130,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class=" modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Keluarga</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Data Pindah Keluar</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -232,7 +237,7 @@
           <!-- menambah form 🔥🔥🔥🔥🔥🔥 -->
           <div class="modal-content ">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Keluarga</h5>
+              <h5 class="modal-title" id="exampleModalLabelEdit">Edit Data Pindah Keluar</h5>
               <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -240,18 +245,29 @@
             <div class="modal-body table-responsive">
               <table class="table table-bordered no-margin">
                 <tbody>
-                  <tr>
-                    <th style="width:50%">ID Pindah</th>
-                    <td>
-                      <!-- menambah target binding berdasarkan atribut name -->
-                      <input type="number" name="id_pindah" class="form-control" disabled hidden />
-                    </td>
-                  </tr>
+
             
                   <tr>
-                    <th style="width:50%">Nomor KK</th>
+                    <th style="width:50%">No KK</th>
                     <td>
-                      <input type="number" name="kel_nomor_kk" class="form-control" /> 
+                        <select class="form-control" name="kel_nomor_kk">
+                          <option>-</option>
+                          <% for (let row of rows3) {%>
+                            <option value="<%= row.no_kk %>"><%= row.no_kk %>-<%= row.kepala_kel %></option>
+                          <% } %>
+                        </select>
+                    </td> 
+                  </tr>
+
+                  <tr>
+                    <th style="width:50%">NIK</th>
+                    <td>
+                        <select class="form-control" name="penduduk_nik">
+                          <option>-</option>
+                          <% for (let row of rows2) {%>
+                            <option value="<%= row.nik_pen %>"><%= row.nik_pen %>-<%= row.nama %></option>
+                          <% } %>
+                        </select>
                     </td>
                   </tr>
 
@@ -259,12 +275,6 @@
                     <th style="width:50%">Tanggal Pindah</th>
                     <td>
                       <input type="date" name="tgl_pindah" class="form-control" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <th style="width:50%">NIK</th>
-                    <td>
-                      <input type="number" name="penduduk_nik" class="form-control" />
                     </td>
                   </tr>
                   <tr>

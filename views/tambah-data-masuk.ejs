@@ -37,10 +37,10 @@
               <div class="col-md-6">
                 <div class="form-label">
                   <label>NIK Penduduk</label>
-                  <select class="form-control" name="nik">
+                  <select class="form-control" name="nik_kk">
                     <option>-</option>
                     <% for (let row of penduduk) {%>
-                      <option value="<%= row.nik_pen %>"><%= row.nik %> - <%= row.nama %></td>
+                      <option value="<%= row.nik %>"><%= row.nik %> - <%= row.nama %></td>
                     <% } %>
                   </select>
                 </div>
@@ -68,9 +68,6 @@
               <label>Tanggal Masuk</label>
               <input type="date" name="tgl_masuk"  class="form-control">
           </div>
-
-
-      
 
           <div class="form-label mb-3">
               <label>Alamat Sebelumnya</label>

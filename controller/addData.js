@@ -381,7 +381,7 @@ exports.form_keluar_add = (req, res) => {
     connection.query("SELECT *, CONVERT(nik, CHAR(17)) AS nik_pen FROM penduduk", (err, rows1) => {
       //when done with the connection, release it.
           connection.release();
-
+            
           if(!err){
               res.render("tambah-data-pindah",{ penduduk: rows1 });
           }
@@ -399,7 +399,7 @@ exports.create_masuk = (req,res) =>{
   const {
     id_masuk,
     nomor_kk, //keluarga
-    nik,
+    nik_kk,
     tgl_masuk,
     alamat_sebelumnya
     // alasan
@@ -409,7 +409,7 @@ exports.create_masuk = (req,res) =>{
   // User the connection
   connection.query(
     'INSERT INTO masuk SET id_masuk = ?, nomor_kk = ?, nik_kk = ?, tgl_masuk = ?,  alamat_sebelumnya = ?',
-    [id_masuk,nomor_kk,nik,tgl_masuk,alamat_sebelumnya],
+    [id_masuk,nomor_kk,nik_kk,tgl_masuk,alamat_sebelumnya],
     (err, rows) => {
       if(err) return res.send(err);
       if(err) return res.send(JSON.stringify(err));

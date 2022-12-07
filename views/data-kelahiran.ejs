@@ -117,7 +117,7 @@
     <div class="modal-dialog modal-dialog-centered">
     <div class=" modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Kelahiran</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Data Kelahiran</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -207,6 +207,7 @@
           <div class="modal-body table-responsive">
             <table class="table table-bordered no-margin">
               <tbody>
+
                 <tr>
                   <th style="width:50%">No KK</th>
                   <td>
@@ -214,11 +215,13 @@
                     <select class="form-control" name="kel_nomor_kk">
                       <option>-</option>
                       <% for (let row of rows2) {%>
-                        <option value="<%= row.nomorKK %>"><%= row.nomorKK %></option>
+                        <option value="<%= row.nomorKK %>"><%= row.nomorKK %> - <% row.kepala_kel %></option>
                       <% } %>
                     </select>
                   </td>
                 </tr>
+
+                
                 <tr>
                   <th style="width:50%">Nama</th>
                   <td>
