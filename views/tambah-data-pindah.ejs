@@ -44,12 +44,19 @@
 
             <script src="/javascripts/inputnum.js"></script>
 
-
-            <div class="form-label">
-            <label>Nomor KK</label>
-            <input type="text" name="kel_nomor_kk"  class="form-control" maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)">
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-label">
+                    <label>Nomor KK</label>
+                    <select class="form-control" name="kel_nomor_kk">
+                      <option>-</option>
+                      <% for (let row of penduduk) {%>
+                        <option value="<%= row.kel_no_kk %>"><%= row.kel_no_kk %></td>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
             </div>
-
 
 
             <div class="form-label">
@@ -64,10 +71,10 @@
                 <label>Alasan Pindah</label>
                 <input type="text" name="alasan" class="form-control">
             </div>
-
+            
             <button type="submit"class="btn btn-primary">SIMPAN</button>
             <button type="reset" class="btn btn-danger">RESET</button>
-            <a href="/data/data-pindah"><button type="button" class="btn btn-warning">KEMBALI</button></a>
+            <a href="/data/data-masuk"><button type="button" class="btn btn-warning">KEMBALI</button></a>
         
         </form>
         

@@ -27,10 +27,8 @@ router.post('/tambah-data-kematian', isLoggedIn,  UserController.create_kematian
 
 
 
-// router.get('/tambah-data-masuk', isLoggedIn,  function (req, res, next) {
-//     res.render('tambah-data-masuk');
-// });
-
+router.get('/tambah-data-masuk', isLoggedIn, UserController.form_masuk);
+router.post('/tambah-data-masuk', isLoggedIn,UserController.create_masuk);
 
 
 router.get('/tambah-data-pengguna', isLoggedIn,  UserController.form_pengguna);

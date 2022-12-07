@@ -91,10 +91,27 @@ exports.create_keluarga = (req, res) => {
 
 // (not use)id_Usaha, nama_usaha, alamat_tempat_usaha, nama_kk, umur, nama_pemilik, alamat_tempat_tinggal, pendidikan_pemilik, jenis_lokasi_usaha, jenis_pengelolaan_usaha, kbli, rincian_kgiatan_usaha, omset, kekayaan_bersih_usaha, jumlah_tenaga_kerja, modal_usaha, bina_usaha
 //add new umkm
+
+
 exports.form_umkm = (req, res) => {
-  
-  res.render('tambah-data-umkm');
+  pool.getConnection((err, conn) => {
+    /**
+     * karena int pada js memiliki batasan maka no_kk diconvert ke
+     * string
+     */
+    conn.query("SELECT * FROM kbli", (err, rows) => {
+      if(err) throw new Error(err)
+      conn.release();
+      res.render("tambah-data-umkm", { kbli: rows });
+    });
+  });
+
+
+
+  // res.render('tambah-data-umkm');
 };
+
+
 // Add new  UMKM
 exports.create_umkm = (req, res) => {
   const {
@@ -373,6 +390,61 @@ exports.form_keluar_add = (req, res) => {
               console.log(err);
           } 
           // console.log('The data from user table: \n', rows1);
+    });
+  });
+};
+
+
+exports.create_masuk = (req,res) =>{
+  const {
+    id_masuk,
+    nomor_kk, //keluarga
+    nik,
+    tgl_masuk,
+    alamat_sebelumnya
+    // alasan
+  } = req.body;
+  let searchTerm = req.body.search;
+
+  // User the connection
+  connection.query(
+    'INSERT INTO masuk SET id_masuk = ?, nomor_kk = ?, nik_kk = ?, tgl_masuk = ?,  alamat_sebelumnya = ?',
+    [id_masuk,nomor_kk,nik,tgl_masuk,alamat_sebelumnya],
+    (err, rows) => {
+      if(err) return res.send(err);
+      if(err) return res.send(JSON.stringify(err));
+      if(err)
+        return res.redirect(url.format({
+          pathname:"/data/data-masuk",
+          query: {
+            "sukses": false,
+            "pesan": "Gagal menambahkan data"
+          }
+        }));
+      return res.redirect(url.format({
+        pathname:"/data/data-masuk",
+        query: {
+          "sukses": true,
+          "pesan": "Berhasil menambahkan data"
+        }
+      }));
+    }
+  );
+};
+
+
+
+exports.form_masuk = (req, res) => {
+  pool.getConnection((err, conn) => {
+    /**
+     * karena int pada js memiliki batasan maka no_kk diconvert ke
+     * string
+     */
+    conn.query("SELECT * FROM penduduk", (err, rows) => {
+      if(err) throw new Error(err)
+      conn.release();
+      res.render("tambah-data-masuk", { penduduk: rows });
+      // console.log(rows)
     });
   });
 };

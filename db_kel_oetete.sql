@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 12:56 PM
+-- Generation Time: Dec 06, 2022 at 01:40 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -131,6 +131,13 @@ CREATE TABLE `publikasi` (
   `id_publish` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `publikasi`
+--
+
+INSERT INTO `publikasi` (`file_article`, `judul_publish`, `tanggal_terbit`, `id_publish`) VALUES
+('Secret Data terbaruu.docx', 'Ikan Arwana', '2022-11-11', 27);
+
 -- --------------------------------------------------------
 
 --
@@ -232,7 +239,7 @@ ALTER TABLE `kelahiran`
 -- AUTO_INCREMENT for table `keluar`
 --
 ALTER TABLE `keluar`
-  MODIFY `id_pindah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pindah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kematian`
@@ -244,13 +251,13 @@ ALTER TABLE `kematian`
 -- AUTO_INCREMENT for table `publikasi`
 --
 ALTER TABLE `publikasi`
-  MODIFY `id_publish` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_publish` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `umkm`
 --
 ALTER TABLE `umkm`
-  MODIFY `id_Usaha` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Usaha` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

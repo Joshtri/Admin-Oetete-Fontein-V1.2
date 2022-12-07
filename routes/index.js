@@ -54,15 +54,17 @@ router.get("/main-admin",isLoggedIn , function (req, res, next) {
                             //when done with the connection, release it.
                             connection.query("SELECT Count(id_pindah) AS Tkeluar FROM keluar", (err, rows11) => {
                               //when done with the connection, release it.
+                              connection.query("SELECT Count(id_pindah) AS Tpindah FROM keluar", (err, rows12) => {
                             connection.release();
                   
                             if (!err) { 
-                              res.render("main-admin", { rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9, rows10,rows11});
+                              res.render("main-admin", { rows1, rows2, rows3, rows4, rows5, rows6, rows7, rows8, rows9, rows10,rows11, rows12});
                             } else {
                               console.log(err);
                             }
                             // console.log("The data from user table: \n",rows1, rows2, rows3,rows4,rows5, rows6, rows7,rows8, rows9, rows10);
 
+                          });
                       });
                     });
                   });

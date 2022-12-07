@@ -12,6 +12,7 @@ router.get("/data-keluarga", isLoggedIn,  UserController.view_keluarga);
 
 router.get("/data-kematian", isLoggedIn,  UserController.view_kematian);
 
+
 // GET data-penduduk
 router.get("/data-penduduk", isLoggedIn,  UserController.view_penduduk);
 router.get("/data-penduduk/delete/:nik", isLoggedIn,  function (request, response, next) {

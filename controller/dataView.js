@@ -128,7 +128,7 @@ exports.view_masuk = (req, res) => {
     console.log(`Connected as ID ` + connection.threadId);
 
     //show data
-    connection.query("SELECT * FROM penduduk", (err, rows) => {
+    connection.query("SELECT * FROM masuk", (err, rows) => {
       //when done with the connection, release it.
       connection.release();
 

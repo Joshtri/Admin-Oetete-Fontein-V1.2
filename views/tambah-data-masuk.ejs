@@ -31,71 +31,55 @@
         <hr />
         <script src="/javascripts/inputnum.js"></script>
 
-        <form>
-          <div class="form-label">
-            <label>Nama</label>
-            <input type="text" name="" class="form-control" />
+        <form method="POST" action="/tambah_data/tambah-data-masuk" novalidate>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-label">
+                  <label>NIK Penduduk</label>
+                  <select class="form-control" name="nik">
+                    <option>-</option>
+                    <% for (let row of penduduk) {%>
+                      <option value="<%= row.nik_pen %>"><%= row.nik %> - <%= row.nama %></td>
+                    <% } %>
+                  </select>
+                </div>
+              </div>
           </div>
 
-          <div class="form-label">
-            <label>NIK</label>
-            <input type="text" name="" class="form-control" maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)" />
-          </div>
-
-          <div class="form-label">
-            <label>Pilih Jenis Kelamin</label>
-            <select class="form-control">
-              <option value="">-</option>
-              <option value="">Pria</option>
-              <option value="">Wanita</option>
-            </select>
-          </div>
+          <!-- <script src="/javascripts/inputnum.js"></script> -->
 
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-label">
-                <label>Tempat Lahir</label>
-                <input type="text" name="" class="form-control" />
+              <div class="col-md-6">
+                <div class="form-label">
+                  <label>Nomor KK</label>
+                  <select class="form-control" name="nomor_kk">
+                    <option>-</option>
+                    <% for (let row of penduduk) {%>
+                      <option value="<%= row.kel_no_kk %>"><%= row.kel_no_kk %></td>
+                    <% } %>
+                  </select>
+                </div>
               </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="form-label">
-                <label>Tanggal Lahir</label>
-                <input type="date" name="" class="form-control" />
-              </div>
-            </div>
           </div>
+
 
           <div class="form-label">
-            <label>Pekerjaan</label>
-            <input type="text" name="" class="form-control" />
+              <label>Tanggal Masuk</label>
+              <input type="date" name="tgl_masuk"  class="form-control">
           </div>
 
-          <div class="form-label">
-            <label>Kewarganegaraan</label>
-            <input type="text" name="" class="form-control" />
-          </div>
 
-          <div class="form-label">
-            <label>Nomor KK</label>
-            <input type="text" name="" class="form-control" maxlength="16" onkeypress="return onlyNumberKey(event), isNumber(event)"  />
-          </div>
+      
 
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            SIMPAN
-          </button>
-          <a href=""
-            ><button type="reset" class="btn btn-danger">RESET</button></a
-          >
-          <a href="/data/data-masuk"
-            ><button type="button" class="btn btn-warning">KEMBALI</button></a
-          >
+          <div class="form-label mb-3">
+              <label>Alamat Sebelumnya</label>
+              <input type="text" name="alamat_sebelumnya" class="form-control">
+          </div>
+          
+          <button type="submit"class="btn btn-primary">SIMPAN</button>
+          <button type="reset" class="btn btn-danger">RESET</button>
+          <a href="/data/data-masuk"><button type="button" class="btn btn-warning">KEMBALI</button></a>
         </form>
       </div>
     </div>
