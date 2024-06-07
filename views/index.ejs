@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Admin Panel SI Penduduk & UMKM</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/login.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .img-left {
+      background: url('/images/background-image.jpg') center center/cover no-repeat;
+      width: 45%;
+    }
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .card-body {
+      padding: 0rem;
+    }
+    .text-center img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+        <div class="card flex-row mx-auto p-2">
+          <div class="img-left d-none d-md-block"></div>
+          <div class="card-body">
+            <div class="row text-center mt-2">
+              <div class="col text-end">
+                <a href="https://kupangkota.bps.go.id">
+                  <img src="/images/310px-Lambang_Badan_Pusat_Statistik_(BPS)_Indonesia.svg.png" alt="BPS Logo" width="70" height="60">
+                </a>
+              </div>
+              <div class="col">
+                <a href="#">
+                  <img src="/images/489px-LOGO_KOTA_KUPANG (1 300x300).png" alt="Kupang Logo" width="72" height="70">
+                </a>
+              </div>
+              <div class="col text-start">
+                <a href="https://undana.ac.id">
+                  <img src="/images/Logo_Undana (1).png" alt="Undana Logo" width="70" height="70">
+                </a>
+              </div>
+            </div>
+            <h4 class="title text-center mt-4">
+              SISTEM INFORMASI <br> KEPENDUDUKAN & UMKM <br> KELURAHAN OETETE
+            </h4>
+            <h6 class="text-center mt-5">
+              Masukkan akun Anda sebagai admin
+            </h6>
+            <form method="post" action="/main-admin">
+              <div class="mb-3">
+                <label for="user_name" class="form-label">Username</label>
+                <input type="text" name="user_name" id="user_name" class="form-control" required>
+              </div>
+              <div class="mb-4">
+                <label for="user_password" class="form-label">Password</label>
+                <input type="password" name="user_password" id="user_password" class="form-control" required>
+              </div>
+              <div class="d-grid gap-2 col-6 mx-auto mb-3">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js" integrity="sha512-8pHNiqTlsrRjVD4A/3va++W1sMbUHwWxxRPWNyVlql3T+Hgfd81Qc6FC5WMXDC+tSauxxzp1tgiAvSKFu1qIlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

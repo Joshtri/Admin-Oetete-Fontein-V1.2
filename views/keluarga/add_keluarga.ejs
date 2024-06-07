@@ -1,0 +1,45 @@
+<div class="modal fade" id="tambahKKModal" tabindex="-1" aria-labelledby="tambahKKModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahKKModalLabel">Tambah Kartu Keluarga</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/adm/data/post_kartu_keluarga" method="POST">
+                    <div class="mb-3">
+                        <label for="namaKepalaKeluarga" class="form-label">Nama Kepala Keluarga</label>
+                        <input type="text" class="form-control" name="nama_kepala_keluarga" id="namaKepalaKeluarga" placeholder="Masukkan nama kepala keluarga">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nomorKK" class="form-label">Nomor KK</label>
+                        <input type="text" class="form-control" name="nomor_kartu_keluarga" id="nomorKK" placeholder="Masukkan nomor KK">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="alamatKK" class="form-label">Alamat Kartu Keluarga</label>
+                        <input type="text" class="form-control" name="alamat_kartu_keluarga" id="alamatKK" placeholder="Masukkan alamat KK">
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="mb-3">
+                            <label for="alamatKK" class="form-label">RT</label>
+                            <input type="text" class="form-control" name="rt_kk" id="alamatKK" placeholder="Masukkan RT KK">
+                        </div>
+                        
+                        <div class="mb-3 mx-2">
+                            <label for="alamatKK" class="form-label">RW</label>
+                            <input type="text" class="form-control" name="rw_kk" id="alamatKK" placeholder="Masukkan RW KK">
+                        </div>
+                    </div>
+                    <!-- Add more fields as needed -->
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
